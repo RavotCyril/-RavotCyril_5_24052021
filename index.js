@@ -5,7 +5,6 @@
                 displayArticle(articles[i]);
                 //console.log(articles[i].name);
         }
-        
 })()
 
 async function getArticles() {
@@ -19,5 +18,7 @@ async function getArticles() {
 }
 
 function displayArticle(article) {
-        console.log(article.description);
+        console.log(article._id);
 }
+
+
