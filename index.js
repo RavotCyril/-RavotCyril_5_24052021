@@ -1,10 +1,12 @@
-(async function() {
-        let articles = await getArticles();
+let fourniture;
 
-        for (let i in articles) {
-            displayArticle(articles[i]);
-            //console.log(articles[i].name);
-        }
-    }
+//APi Demande
 
-    document.createElement(main) get element = document.createElement(main[options]);
+Const fetchFourniture = async() => {
+    fourniture = await fetch("http://localhost:3000/api/furniture").then(res => res.json());
+
+    console.log(fourniture);
+
+};
+
+fetchFourniture();
