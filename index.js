@@ -10,8 +10,12 @@ console.log(b);
 let newMain = document.createElement("Main");
 let newTexte = document.createTextNode("Tableau Fourniture");
 
-newMain.id = "Fourniture";
 b.appendChild(newMain);
+
+let SectionTag = document.createElement("section");
+SectionTag.className = "Content";
+SectionTag.id = "Fourniture";
+newMain.appendChild(SectionTag);
 
 console.log(newMain);
 
@@ -40,16 +44,17 @@ function afficherArticle(article) {
     let articleTag = document.createElement("article");
     let titleTag = document.createElement("h2");
     let figureTag = document.createElement("figure");
-    let SectionTag = document.createElement("section");
     let DivTag = document.createElement("div");
-    let Div2Tag = document.createElement("div");
     let ImageTag = document.createElement("img");
     let figcaptionTag = document.createElement("figcaption");
     let paragrapheTag = document.createElement("p");
     let paragraphe2Tag = document.createElement("p");
+
     // Appel - Variable et Fonction - > Id
 
     articleTag.id = article._id;
+
+    // Créer un élément style
 
     // Appel - Variable et Fonction - > Name + Description Figcaption
 
@@ -57,9 +62,7 @@ function afficherArticle(article) {
     figcaptionTag.textContent = article.description;
 
     // Appel - Variable et Fonction - > Titre h2 + Figure
-    newMain.appendChild(SectionTag);
-    newMain.appendChild(Div2Tag);
-    Div2Tag.appendChild(articleTag);
+    SectionTag.appendChild(articleTag);
     articleTag.appendChild(titleTag);
     articleTag.appendChild(figureTag);
 
