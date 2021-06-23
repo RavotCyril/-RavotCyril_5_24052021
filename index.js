@@ -4,6 +4,7 @@ let DivLogo = document.createElement("div");
 let ImageLogo = document.createElement("img");
 let h1Tag = document.createElement("h1");
 
+b.appendChild(newMain);
 DivLogo.className = "Logo";
 newMain.appendChild(h1Tag);
 h1Tag.textContent = "Catalogue : Meubles en chêne";
@@ -78,14 +79,12 @@ function afficherArticle(article) {
 
     let Price = article.price;
 
-    const rounded = Math.round(Price / 100)
-        // on affiche une devise avec le style "currency"  et  on se limite ici à deux chiffres  l'euro et les centimes. 
+    // on affiche une devise avec le style "currency"  et  on se limite ici à deux chiffres  l'euro et les centimes. 
 
-    new Intl.NumberFormat("de-DE", { style: "currency", currency: "EUR", minimumFractionDigits: null }).format(rounded);
+    let Price2 = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR', minimumFractionDigits: "0" }).format(Math.round(Price / 100));
+
     // Appel- constante - > Price
 
-
-    paragrapheTag.textContent = rounded;
+    paragrapheTag.textContent = Price2;
     figcaptionTag.appendChild(paragrapheTag);
-
 }
