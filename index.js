@@ -1,12 +1,9 @@
-// Variable générale ( toute la page )
-
 let b = document.body;
 let newMain = document.createElement("Main");
 let DivLogo = document.createElement("div");
 let ImageLogo = document.createElement("img");
 let h1Tag = document.createElement("h1");
 
-b.appendChild(newMain);
 DivLogo.className = "Logo";
 newMain.appendChild(h1Tag);
 h1Tag.textContent = "Catalogue : Meubles en chêne";
@@ -16,15 +13,10 @@ DivLogo.appendChild(ImageLogo);
 
 
 
-let SectionTag = document.createElement("section");
-
-SectionTag.id = "Fourniture";
-SectionTag.className = "Content";
-newMain.appendChild(SectionTag);
-b.appendChild(newMain);
 // Variable -> Balise Main Déclaration
 
 // Variable - Fonction - > APi Déclaration
+let SectionTag = document.createElement("section");
 
 (async function() {
     const articles = await getArticles();
@@ -33,6 +25,10 @@ b.appendChild(newMain);
         console.log(articles[i]);
         afficherArticle(articles[i]);
     }
+    SectionTag.id = "Fourniture";
+    SectionTag.className = "Content";
+    newMain.appendChild(SectionTag);
+    b.appendChild(newMain);
 })();
 
 async function getArticles() {
@@ -78,13 +74,18 @@ function afficherArticle(article) {
     DivTag.appendChild(ImageTag);
     figureTag.appendChild(figcaptionTag);
 
-    // Appel - Variable et Fonction - > Price
+    // Déclaration - Variable et constante - > Price
 
     let Price = article.price;
 
-    // on affiche une devise avec le style "currency"
+    const rounded = Math.round(Price / 100)
+        // on affiche une devise avec le style "currency"  et  on se limite ici à deux chiffres  l'euro et les centimes. 
 
-    new Intl.NumberFormat("de-DE", { style: "currency", currency: "EUR" }).format(Price);
-    paragrapheTag.textContent = Price;
+    new Intl.NumberFormat("de-DE", { style: "currency", currency: "EUR", minimumFractionDigits: null }).format(rounded);
+    // Appel- constante - > Price
+
+
+    paragrapheTag.textContent = rounded;
     figcaptionTag.appendChild(paragrapheTag);
+
 }
