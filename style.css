@@ -3,7 +3,7 @@
 
 {
     font-family: "Roboto Regular";
-    src: url("Police-Roboto/Roboto-Regular.ttf") format("truetype");
+    src: url("Roboto-Regular.ttf") format("truetype");
 }
 
 body
@@ -13,12 +13,34 @@ body
     font-family: "Roboto Regular", sans-serif;
 }
 
+h1 {
+    text-align: center;
+    margin: 20px 0px;
+}
+
+.Logo {
+    text-align: center;
+}
+
+.Article {
+    text-align: center;
+}
+
 .Content {
+    background: burlywood;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
 }
 
-img {
-    width: 300px;
+.Div-Article {
+    height: 360px;
+    overflow: hidden;
+}
+
+.Div-Article img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
 }

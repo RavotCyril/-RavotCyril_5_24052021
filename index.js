@@ -1,23 +1,28 @@
 // Variable générale ( toute la page )
 
-let fourniture;
-let main;
-
-// Variable -> Balise Main Déclaration
-
 let b = document.body;
-console.log(b);
 let newMain = document.createElement("Main");
-let newTexte = document.createTextNode("Tableau Fourniture");
+let DivLogo = document.createElement("div");
+let ImageLogo = document.createElement("img");
+let h1Tag = document.createElement("h1");
 
 b.appendChild(newMain);
+DivLogo.className = "Logo";
+newMain.appendChild(h1Tag);
+h1Tag.textContent = "Catalogue : Meubles en chêne";
+ImageLogo.src = "Orinoco.png";
+newMain.appendChild(DivLogo);
+DivLogo.appendChild(ImageLogo);
+
+
 
 let SectionTag = document.createElement("section");
-SectionTag.className = "Content";
-SectionTag.id = "Fourniture";
-newMain.appendChild(SectionTag);
 
-console.log(newMain);
+SectionTag.id = "Fourniture";
+SectionTag.className = "Content";
+newMain.appendChild(SectionTag);
+b.appendChild(newMain);
+// Variable -> Balise Main Déclaration
 
 // Variable - Fonction - > APi Déclaration
 
@@ -48,18 +53,17 @@ function afficherArticle(article) {
     let ImageTag = document.createElement("img");
     let figcaptionTag = document.createElement("figcaption");
     let paragrapheTag = document.createElement("p");
-    let paragraphe2Tag = document.createElement("p");
 
     // Appel - Variable et Fonction - > Id
 
     articleTag.id = article._id;
+    articleTag.className = "Article";
 
     // Créer un élément style
 
     // Appel - Variable et Fonction - > Name + Description Figcaption
 
     titleTag.textContent = article.name;
-    figcaptionTag.textContent = article.description;
 
     // Appel - Variable et Fonction - > Titre h2 + Figure
     SectionTag.appendChild(articleTag);
@@ -69,17 +73,18 @@ function afficherArticle(article) {
     // Appel - Variable et Fonction - >  Image + Figcaption
 
     ImageTag.src = article.imageUrl;
+    DivTag.className = "Div-Article";
     figureTag.appendChild(DivTag);
     DivTag.appendChild(ImageTag);
     figureTag.appendChild(figcaptionTag);
 
     // Appel - Variable et Fonction - > Price
 
-    paragrapheTag.textContent = article.price;
-    articleTag.appendChild(paragrapheTag);
+    let Price = article.price;
 
-    // Appel - Variable et Fonction - > varnish
+    // on affiche une devise avec le style "currency"
 
-    paragraphe2Tag.textContent = article.varnish;
-    articleTag.appendChild(paragraphe2Tag);
+    new Intl.NumberFormat("de-DE", { style: "currency", currency: "EUR" }).format(Price);
+    paragrapheTag.textContent = Price;
+    figcaptionTag.appendChild(paragrapheTag);
 }
