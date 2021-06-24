@@ -73,6 +73,10 @@ function afficherArticle(article) {
     DivTag.appendChild(ImageTag);
     figureTag.appendChild(figcaptionTag);
 
+    // Appel - Variable et Fonction - > description
+
+    figcaptionTag.textContent = article.description;
+
     // Déclaration - Variable et constante - > Price
 
     let Price = article.price;
@@ -89,4 +93,12 @@ function afficherArticle(article) {
 
     paragrapheTag.textContent = Price2;
     figcaptionTag.appendChild(paragrapheTag);
+
+    // Appel- Personnalisation - > Varnish
+
+    let Personnalisation = article.varnish;
+
+    url.hash = "varnish";
+    console.log(url.href);
+    article.varnish = "http://localhost:3000/api/furniture";
 }
