@@ -8,7 +8,7 @@ b.appendChild(newMain);
 DivLogo.className = "Logo";
 newMain.appendChild(h1Tag);
 h1Tag.textContent = "Catalogue : Meubles en chêne";
-ImageLogo.src = "Orinoco.png";
+ImageLogo.src = "images/Orinoco.png";
 newMain.appendChild(DivLogo);
 DivLogo.appendChild(ImageLogo);
 

@@ -49,6 +49,11 @@ function afficherArticle(article) {
     let figcaptionTag = document.createElement("figcaption");
     let paragrapheTag = document.createElement("p");
 
+    // Appel - Liens -> Id produit - > Id
+
+    const link = document.createElement("a");
+    link.setAttribute("href", "produit.html?test=" + responseProduct._id);
+
     // Appel - Variable et Fonction - > Id
 
     articleTag.id = article._id;
