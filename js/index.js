@@ -48,6 +48,7 @@ function afficherArticle(article) {
     let ImageTag = document.createElement("img");
     let figcaptionTag = document.createElement("figcaption");
     let paragrapheTag = document.createElement("p");
+    let LiensTag = document.createElement("a");
 
     // Appel - Variable et Fonction - > Id
 
@@ -60,8 +61,16 @@ function afficherArticle(article) {
 
     titleTag.textContent = article.name;
 
+    // Appel - Liens -> Id produit - > Id
+
+    LiensTag.setAttribute("href", "produit.html?id=" + article._id);
+
+    // Appel - Liens <a> -> Page Index + Classe <a>.
     // Appel - Variable et Fonction - > Titre h2 + Figure
-    SectionTag.appendChild(articleTag);
+
+    LiensTag.className = "Liens";
+    SectionTag.appendChild(LiensTag);
+    LiensTag.appendChild(articleTag);
     articleTag.appendChild(titleTag);
     articleTag.appendChild(figureTag);
 
