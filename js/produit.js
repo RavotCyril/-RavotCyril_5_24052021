@@ -61,6 +61,7 @@ function afficherArticle(article) {
     titleTag.textContent = article.name;
 
     // Appel - Variable et Fonction - > Titre h2 + Figure
+
     SectionTag.appendChild(articleTag);
     articleTag.appendChild(titleTag);
     articleTag.appendChild(figureTag);
@@ -93,14 +94,6 @@ function afficherArticle(article) {
 
     paragrapheTag.textContent = Price2;
     figcaptionTag.appendChild(paragrapheTag);
-
-    // Appel- Personnalisation - > Varnish
-
-    let Personnalisation = article.varnish;
-
-    url.hash = "varnish";
-    console.log(url.href);
-    article.varnish = "http://localhost:3000/api/furniture";
 }
 // Permet de récupérer l'?id= des paramatres de l'URL, l'identifiant
 
@@ -109,3 +102,21 @@ function getId() {
     const id = param.replace("?id=", "");
     return id;
 }
+
+let BoutonPersonnalisation = document.querySelector("input");
+let selection = document.querySelector("p");
+BoutonPersonnalisation.addEventListener("click", updateBoutonPersonnalisation);
+
+function updateBoutonPersonnalisation() {
+    if (BoutonPersonnalisation.value === "Démarrer la machine") {
+        BoutonPersonnalisation.value = "Arrêter la machine";
+        selection.textContent = "La machine est démarrée !";
+    } else {
+        BoutonPersonnalisation.value = "Démarrer la machine";
+        selection.textContent = "La machine est arrêtée.";
+    }
+    BoutonPersonnalisation = article.varnish;
+    articleTag.appendChild(BoutonPersonnalisation);
+}
+// Appel- personnalisation - > Varnish
+BoutonPersonnalisation();
