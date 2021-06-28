@@ -1,32 +1,32 @@
-let b = document.body;
-let newMain = document.createElement("Main");
-let DivLogo = document.createElement("div");
-let ImageLogo = document.createElement("img");
-let h1Tag = document.createElement("h1");
-
-b.appendChild(newMain);
-DivLogo.className = "Logo";
-newMain.appendChild(h1Tag);
-h1Tag.textContent = "Catalogue : Meubles en chêne";
-ImageLogo.src = "images/Orinoco.png";
-newMain.appendChild(DivLogo);
-DivLogo.appendChild(ImageLogo);
-
-// Variable -> Balise Main Déclaration
-
-// Variable - Fonction - > APi Déclaration
-let SectionTag = document.createElement("section");
-
 (async function() {
+    let b = document.body;
+    let newMain = document.createElement("Main");
+    let DivLogo = document.createElement("div");
+    let ImageLogo = document.createElement("img");
+    let h1Tag = document.createElement("h1");
+
+    b.appendChild(newMain);
+    DivLogo.className = "Logo";
+    newMain.appendChild(h1Tag);
+    h1Tag.textContent = "Catalogue : Meubles en chêne";
+    ImageLogo.src = "images/Orinoco.png";
+    newMain.appendChild(DivLogo);
+    DivLogo.appendChild(ImageLogo);
+
+    // Variable -> Balise Main Déclaration
+
+    // Variable - Fonction - > APi Déclaration
+    let sectionTag = document.createElement("section");
+
     const articles = await getArticles();
     //console.log(articles);
     for (let i in articles) {
         console.log(articles[i]);
-        afficherArticle(articles[i]);
+        afficherArticle(sectionTag, articles[i]);
     }
-    SectionTag.id = "Fourniture";
-    SectionTag.className = "Content";
-    newMain.appendChild(SectionTag);
+    sectionTag.id = "Fourniture";
+    sectionTag.className = "Content";
+    newMain.appendChild(sectionTag);
     b.appendChild(newMain);
 })();
 
@@ -40,7 +40,7 @@ async function getArticles() {
 }
 // Déclaration - Variable et Fonction - > Articles + H2 : Object, Id , Name, Prix, Description, ...
 
-function afficherArticle(article) {
+function afficherArticle(sectionTag, article) {
     let articleTag = document.createElement("article");
     let titleTag = document.createElement("h2");
     let figureTag = document.createElement("figure");
@@ -69,7 +69,7 @@ function afficherArticle(article) {
     // Appel - Variable et Fonction - > Titre h2 + Figure
 
     LiensTag.className = "Liens";
-    SectionTag.appendChild(LiensTag);
+    sectionTag.appendChild(LiensTag);
     LiensTag.appendChild(articleTag);
     articleTag.appendChild(titleTag);
     articleTag.appendChild(figureTag);

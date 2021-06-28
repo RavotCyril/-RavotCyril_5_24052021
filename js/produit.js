@@ -18,21 +18,20 @@ DivLogo.appendChild(ImageLogo);
 let SectionTag = document.createElement("section");
 
 (async function() {
-    const articles = await getArticles();
+    let idproduit = getId();
+    const articles = await getArticles(idproduit);
     //console.log(articles);
-    for (let i in articles) {
-        console.log(articles[i]);
-        afficherArticle(articles[i]);
-    }
+
+    afficherArticle(articles);
     SectionTag.id = "Fourniture";
     SectionTag.className = "Content";
     newMain.appendChild(SectionTag);
     b.appendChild(newMain);
 })();
 
-async function getArticles() {
+async function getArticles(id) {
     try {
-        let res = await fetch("http://localhost:3000/api/furniture");
+        let res = await fetch("http://localhost:3000/api/furniture/" + id);
         return await res.json();
     } catch (error) {
         alert(error);
@@ -95,7 +94,7 @@ function afficherArticle(article) {
     paragrapheTag.textContent = Price2;
     figcaptionTag.appendChild(paragrapheTag);
 }
-// Permet de récupérer l'?id= des paramatres de l'URL, l'identifiant
+// Permet de récupérer l'?id= des paramètres de l'URL, l'identifiant
 
 function getId() {
     const param = window.location.search;
