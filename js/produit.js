@@ -1,33 +1,41 @@
-let b = document.body;
-let newMain = document.createElement("Main");
-let DivLogo = document.createElement("div");
-let ImageLogo = document.createElement("img");
-let h1Tag = document.createElement("h1");
-
-b.appendChild(newMain);
-DivLogo.className = "Logo";
-newMain.appendChild(h1Tag);
-h1Tag.textContent = "Catalogue : Meubles en chêne";
-ImageLogo.src = "Orinoco.png";
-newMain.appendChild(DivLogo);
-DivLogo.appendChild(ImageLogo);
-
-// Variable -> Balise Main Déclaration
-
-// Variable - Fonction - > APi Déclaration
-let SectionTag = document.createElement("section");
-
 (async function() {
+    let b = document.body;
+    let newMain = document.createElement("Main");
+    let DivLogo = document.createElement("div");
+    let ImageLogo = document.createElement("img");
+    let h1Tag = document.createElement("h1");
+
+    b.appendChild(newMain);
+    DivLogo.className = "Logo";
+    newMain.appendChild(h1Tag);
+    h1Tag.textContent = "Catalogue : Meubles en chêne";
+    ImageLogo.src = "images/Orinoco.png";
+    newMain.appendChild(DivLogo);
+    DivLogo.appendChild(ImageLogo);
+
+    // Variable -> Balise Main Déclaration
+
+    // Variable - Fonction - > APi Déclaration
+    let sectionTag = document.createElement("section");
+
     let idproduit = getId();
-    const articles = await getArticles(idproduit);
+    const article = await getArticles(idproduit);
     //console.log(articles);
 
-    afficherArticle(articles);
-    SectionTag.id = "Fourniture";
-    SectionTag.className = "Content";
-    newMain.appendChild(SectionTag);
+    afficherArticle(sectionTag, article);
+    sectionTag.id = "Fourniture";
+    sectionTag.className = "Content";
+    newMain.appendChild(sectionTag);
     b.appendChild(newMain);
 })();
+
+// Permet de récupérer l'?id= des paramètres de l'URL, l'identifiant
+
+function getId() {
+    const param = window.location.search;
+    const id = param.replace("?id=", "");
+    return id;
+}
 
 async function getArticles(id) {
     try {
@@ -39,7 +47,7 @@ async function getArticles(id) {
 }
 // Déclaration - Variable et Fonction - > Articles + H2 : Object, Id , Name, Prix, Description, ...
 
-function afficherArticle(article) {
+function afficherArticle(sectionTag, article) {
     let articleTag = document.createElement("article");
     let titleTag = document.createElement("h2");
     let figureTag = document.createElement("figure");
@@ -61,7 +69,7 @@ function afficherArticle(article) {
 
     // Appel - Variable et Fonction - > Titre h2 + Figure
 
-    SectionTag.appendChild(articleTag);
+    sectionTag.appendChild(articleTag);
     articleTag.appendChild(titleTag);
     articleTag.appendChild(figureTag);
 
@@ -93,29 +101,46 @@ function afficherArticle(article) {
 
     paragrapheTag.textContent = Price2;
     figcaptionTag.appendChild(paragrapheTag);
-}
-// Permet de récupérer l'?id= des paramètres de l'URL, l'identifiant
 
-function getId() {
-    const param = window.location.search;
-    const id = param.replace("?id=", "");
-    return id;
-}
+    // Permet de créer les variables et la fonction du  bouton panier
 
-let BoutonPersonnalisation = document.querySelector("input");
-let selection = document.querySelector("p");
-BoutonPersonnalisation.addEventListener("click", updateBoutonPersonnalisation);
+    let BouttonTag = document.createElement("form");
+    let InputTag = document.createElement("input");
+    let selection = document.createElement("p");
 
-function updateBoutonPersonnalisation() {
-    if (BoutonPersonnalisation.value === "Démarrer la machine") {
-        BoutonPersonnalisation.value = "Arrêter la machine";
-        selection.textContent = "La machine est démarrée !";
-    } else {
-        BoutonPersonnalisation.value = "Démarrer la machine";
-        selection.textContent = "La machine est arrêtée.";
+    articleTag.appendChild(BouttonTag);
+    BouttonTag.appendChild(InputTag);
+
+    BouttonTag.className = "Boutton-Produit";
+    InputTag.typeName = "submit";
+    InputTag.valueName = "Panier";
+    selection.textContent = "Panier";
+
+    InputTag.addEventListener("click", updateInputTag);
+
+    function updateInputTag() {
+        if (InputTag.value === "Page panier ouverte") {} else {
+            InputTag.value = "Page panier ouverte";
+        }
     }
-    BoutonPersonnalisation = article.varnish;
-    articleTag.appendChild(BoutonPersonnalisation);
+
+    // Appel- personnalisation - Select > Varnish
+    let labelTag = document.createElement("label");
+    let selectTag = document.createElement("select");
+    figcaptionTag.appendChild(labelTag);
+    figcaptionTag.appendChild(selectTag);
+    labelTag.forName = "Meuble-select";
+    labelTag.textContent = "Choisir la couleur";
+    labelTag.className = "Personnalisation";
+    selectTag.name = "Meuble";
+    selectTag.id = "Meuble-Select";
+
+    // console.log(varnish);
+    for (let i in article.varnish) {
+        console.log(article.varnish[i]);
+        let optionTag = document.createElement("option");
+        selectTag.appendChild(optionTag);
+        optionTag.value = article.varnish[i];
+        optionTag.text = article.varnish[i];
+    }
 }
-// Appel- personnalisation - > Varnish
-BoutonPersonnalisation();

@@ -13,6 +13,10 @@ body
     font-family: "Roboto Regular", sans-serif;
 }
 
+.Boutton-Produit {
+    text-align: right;
+}
+
 h1 {
     text-align: center;
     margin: 20px 0px;
@@ -48,4 +52,8 @@ h1 {
     height: 100%;
     object-fit: cover;
     object-position: center;
+}
+
+.Personnalisation {
+    color: blue;
 }
