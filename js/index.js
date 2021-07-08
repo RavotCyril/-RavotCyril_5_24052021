@@ -100,23 +100,3 @@ function afficherArticle(sectionTag, article) {
     paragrapheTag.textContent = Price2;
     figcaptionTag.appendChild(paragrapheTag);
 }
-// Permet de créer les variables et la fonction du  bouton panier
-
-let BouttonTag = document.createElement("form");
-let InputTag = document.createElement("input");
-let selection = document.createElement("p");
-
-DivLogo.appendChild(BouttonTag);
-BouttonTag.appendChild(InputTag);
-
-BouttonTag.className = "Boutton-Produit";
-InputTag.typeName = "button";
-InputTag.valueName = "Panier";
-
-InputTag.addEventListener("click", updateInputTag);
-
-function updateInputTag() {
-    if (InputTag.value === "Page panier ouverte") {} else {
-        InputTag.value = "Page panier ouverte";
-    }
-}

@@ -54,7 +54,8 @@ function afficherArticle(sectionTag, article) {
     let DivTag = document.createElement("div");
     let ImageTag = document.createElement("img");
     let figcaptionTag = document.createElement("figcaption");
-    let paragrapheTag = document.createElement("p");
+    let prixTag = document.createElement("p");
+    let DescriptionTag = document.createElement("p");
 
     // Appel - Variable et Fonction - > Id
 
@@ -83,7 +84,9 @@ function afficherArticle(sectionTag, article) {
 
     // Appel - Variable et Fonction - > description
 
-    figcaptionTag.textContent = article.description;
+    figcaptionTag.appendChild(DescriptionTag);
+    DescriptionTag.className = "Produit-Figcaption-Description";
+    DescriptionTag.textContent = article.description;
 
     // Déclaration - Variable et constante - > Price
 
@@ -99,32 +102,12 @@ function afficherArticle(sectionTag, article) {
 
     // Appel- constante - > Price
 
-    paragrapheTag.textContent = Price2;
-    figcaptionTag.appendChild(paragrapheTag);
-
-    // Permet de créer les variables et la fonction du  bouton panier
-
-    let BouttonTag = document.createElement("form");
-    let InputTag = document.createElement("input");
-    let selection = document.createElement("p");
-
-    articleTag.appendChild(BouttonTag);
-    BouttonTag.appendChild(InputTag);
-
-    BouttonTag.className = "Boutton-Produit";
-    InputTag.typeName = "submit";
-    InputTag.valueName = "Panier";
-    selection.textContent = "Panier";
-
-    InputTag.addEventListener("click", updateInputTag);
-
-    function updateInputTag() {
-        if (InputTag.value === "Page panier ouverte") {} else {
-            InputTag.value = "Page panier ouverte";
-        }
-    }
+    prixTag.textContent = Price2;
+    prixTag.className = "Prix";
+    figcaptionTag.appendChild(prixTag);
 
     // Appel- personnalisation - Select > Varnish
+
     let labelTag = document.createElement("label");
     let selectTag = document.createElement("select");
     figcaptionTag.appendChild(labelTag);
@@ -142,5 +125,24 @@ function afficherArticle(sectionTag, article) {
         selectTag.appendChild(optionTag);
         optionTag.value = article.varnish[i];
         optionTag.text = article.varnish[i];
+    }
+    // Permet de créer les variables et la fonction du  bouton panier
+
+    let BouttonTag = document.createElement("form");
+    let InputTag = document.createElement("input");
+
+    articleTag.appendChild(BouttonTag);
+    BouttonTag.appendChild(InputTag);
+
+    BouttonTag.className = "form";
+    InputTag.className = "Boutton-Produit";
+    InputTag.type = "submit";
+    InputTag.value = "Ajouter au Panier";
+    InputTag.addEventListener("click", updateInputTag);
+
+    function updateInputTag() {
+        if (InputTag.value === "Page panier ouverte") {} else {
+            InputTag.value = "Page panier ouverte";
+        }
     }
 }

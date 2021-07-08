@@ -13,10 +13,6 @@ body
     font-family: "Roboto Regular", sans-serif;
 }
 
-.Boutton-Produit {
-    text-align: right;
-}
-
 h1 {
     text-align: center;
     margin: 20px 0px;
@@ -54,6 +50,43 @@ h1 {
     object-position: center;
 }
 
+
+/*Css -> Page-Produit Figcaption-Description */
+
+.Produit-Figcaption-Description {
+    font-size: 1.2rem;
+}
+
+
+/*Css -> Paragraphe prix */
+
+.Prix {
+    font-size: 1.2rem;
+}
+
+
+/*Css -> Selec- produit */
+
 .Personnalisation {
     color: blue;
+    font-size: 1.2rem;
+    padding: 15px;
+}
+
+
+/*Css -> Form - Boutton-Produit */
+
+.form {
+    text-align: center;
+}
+
+
+/*Css ->  Boutton-Produit */
+
+.Boutton-Produit {
+    background: rgb(0, 174, 255);
+    padding: 20px;
+    font-size: 1.2rem;
+    border-radius: 40px;
+    overflow: hidden;
 }
