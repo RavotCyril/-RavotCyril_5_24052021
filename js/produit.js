@@ -141,8 +141,14 @@ function afficherArticle(sectionTag, article) {
     InputTag.addEventListener("click", updateInputTag);
 
     function updateInputTag() {
-        if (InputTag.value === "Page panier ouverte") {} else {
-            InputTag.value = "Page panier ouverte";
+        if (remplissageStockage === "panier.html") {} else {
+            remplissageStockage = "produit.html";
         }
+    }
+
+    function remplissageStockage() {
+        localStorage.setItem("bgcolor", "red");
+        localStorage.setItem("font", "Helvetica");
+        localStorage.setItem("image", "myCat.png");
     }
 }

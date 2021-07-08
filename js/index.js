@@ -1,10 +1,17 @@
 let DivLogo = document.createElement("div");
 
+// Variable -> Déclaration  -> Balise body-Main-Logo-Nav-Titre-Article... - Html de la page.
+
 (async function() {
     let b = document.body;
     let newMain = document.createElement("Main");
     let ImageLogo = document.createElement("img");
     let h1Tag = document.createElement("h1");
+    let Nav = document.createElement("nav");
+    let aPanier = document.createElement("a");
+    let aCommande = document.createElement("a");
+    let hrefPanier = document.createElement("href");
+    let hrefCommande = document.createElement("href");
 
     b.appendChild(newMain);
     DivLogo.className = "Logo";
@@ -13,8 +20,16 @@ let DivLogo = document.createElement("div");
     ImageLogo.src = "images/Orinoco.png";
     newMain.appendChild(DivLogo);
     DivLogo.appendChild(ImageLogo);
-
-    // Variable -> Balise Main Déclaration
+    DivLogo.appendChild(Nav);
+    Nav.className = "Navigation-Panier-Commande";
+    Nav.appendChild(aPanier);
+    aPanier.textContent = "Panier";
+    aPanier.onclick = hrefPanier;
+    hrefPanier = "panier.html";
+    Nav.appendChild(aCommande);
+    aCommande.textContent = "Commande";
+    aCommande = hrefCommande;
+    hrefCommande = "confirmation-de-commande.html";
 
     // Variable - Fonction - > APi Déclaration
     let sectionTag = document.createElement("section");
