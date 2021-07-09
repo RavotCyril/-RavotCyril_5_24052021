@@ -13,8 +13,6 @@
     newMain.appendChild(DivLogo);
     DivLogo.appendChild(ImageLogo);
 
-    // Variable -> Balise Main Déclaration
-
     // Variable - Fonction - > APi Déclaration
     let sectionTag = document.createElement("section");
 

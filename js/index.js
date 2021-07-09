@@ -1,17 +1,16 @@
-let DivLogo = document.createElement("div");
-
-// Variable -> Déclaration  -> Balise body-Main-Logo-Nav-Titre-Article... - Html de la page.
-
+// Variable -> Déclaration  -> Balise body-Main-Logo-Nav-Liens-Titre-Article-... - Html de la page.
 (async function() {
     let b = document.body;
     let newMain = document.createElement("Main");
+    let DivLogo = document.createElement("div");
     let ImageLogo = document.createElement("img");
     let h1Tag = document.createElement("h1");
     let Nav = document.createElement("nav");
+    let Ul = document.createElement("ul");
+    let liPanier = document.createElement("li");
+    let liCommande = document.createElement("li");
     let aPanier = document.createElement("a");
     let aCommande = document.createElement("a");
-    let hrefPanier = document.createElement("href");
-    let hrefCommande = document.createElement("href");
 
     b.appendChild(newMain);
     DivLogo.className = "Logo";
@@ -22,14 +21,18 @@ let DivLogo = document.createElement("div");
     DivLogo.appendChild(ImageLogo);
     DivLogo.appendChild(Nav);
     Nav.className = "Navigation-Panier-Commande";
-    Nav.appendChild(aPanier);
+    Nav.appendChild(Ul);
+    Ul.className = "Nav-Liste";
+    Ul.appendChild(liPanier);
+    Ul.appendChild(liCommande);
+    liPanier.appendChild(aPanier);
+    liCommande.appendChild(aCommande);
     aPanier.textContent = "Panier";
-    aPanier.onclick = hrefPanier;
-    hrefPanier = "panier.html";
-    Nav.appendChild(aCommande);
+    liPanier.className = "Panier-Commande";
+    aPanier.setAttribute("href", "panier.html");
     aCommande.textContent = "Commande";
-    aCommande = hrefCommande;
-    hrefCommande = "confirmation-de-commande.html";
+    liCommande.className = "Panier-Commande";
+    aCommande.setAttribute("href", "confirmation-de-commande.html");
 
     // Variable - Fonction - > APi Déclaration
     let sectionTag = document.createElement("section");
