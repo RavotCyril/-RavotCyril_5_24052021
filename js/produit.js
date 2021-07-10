@@ -4,6 +4,12 @@
     let DivLogo = document.createElement("div");
     let ImageLogo = document.createElement("img");
     let h1Tag = document.createElement("h1");
+    let Nav = document.createElement("nav");
+    let Ul = document.createElement("ul");
+    let liPanier = document.createElement("li");
+    let liCommande = document.createElement("li");
+    let aPanier = document.createElement("a");
+    let aCommande = document.createElement("a");
 
     b.appendChild(newMain);
     DivLogo.className = "Logo";
@@ -12,6 +18,20 @@
     ImageLogo.src = "images/Orinoco.png";
     newMain.appendChild(DivLogo);
     DivLogo.appendChild(ImageLogo);
+    DivLogo.appendChild(Nav);
+    Nav.className = "Navigation-Panier-Commande";
+    Nav.appendChild(Ul);
+    Ul.className = "Nav-Liste";
+    Ul.appendChild(liPanier);
+    Ul.appendChild(liCommande);
+    liPanier.appendChild(aPanier);
+    liCommande.appendChild(aCommande);
+    aPanier.textContent = "Panier";
+    liPanier.className = "Panier-Commande";
+    aPanier.setAttribute("href", "panier.html");
+    aCommande.textContent = "Commande";
+    liCommande.className = "Panier-Commande";
+    aCommande.setAttribute("href", "confirmation-de-commande.html");
 
     // Variable - Fonction - > APi Déclaration
     let sectionTag = document.createElement("section");
@@ -116,9 +136,8 @@ function afficherArticle(sectionTag, article) {
     selectTag.name = "Meuble";
     selectTag.id = "Meuble-Select";
 
-    // console.log(varnish);
     for (let i in article.varnish) {
-        console.log(article.varnish[i]);
+        // console.log(article.varnish[i]);
         let optionTag = document.createElement("option");
         selectTag.appendChild(optionTag);
         optionTag.value = article.varnish[i];
@@ -145,8 +164,54 @@ function afficherArticle(sectionTag, article) {
     }
 
     function remplissageStockage() {
+        let bgcolor = localStorage.getItem("bgcolor");
+        let font = localStorage.getItem("font");
+        let image = localStorage.getItem("image");
+
         localStorage.setItem("bgcolor", "red");
         localStorage.setItem("font", "Helvetica");
         localStorage.setItem("image", "myCat.png");
+
+        bgcolor();
+        font();
+        image();
+        let monobjet = {
+            propriete1: "valeur1",
+            propriete2: "valeur2",
+        };
+        let monobjet_json = JSON.stringify(monobjet);
+        localStorage.setItem("objet", monobjet_json);
+    }
+    // Détection des données saisies
+
+    if (typeof localStorage != "undefined") {
+        if ("message" in localStorage) {
+            alert("Message récupéré");
+            document.getElementById("message").value =
+                localStorage.getItem("message");
+        }
+    } else {
+        alert("localStorage n'est pas supporté");
     }
 }
+//     // Détection
+//     if (typeof localStorage != "undefined") {
+//         // Récupération de la valeur dans web storage
+//         var nbvisites = localStorage.getItem("visites");
+//         // Vérification de la présence du compteur
+//         if (nbvisites != null) {
+//             // Si oui, on convertit en nombre entier la chaîne de texte qui fut stockée
+//             nbvisites = parseInt(nbvisites);
+//         } else {
+//             nbvisites = 1;
+//         }
+//         // Incrémentation
+//         nbvisites++;
+//         // Stockage à nouveau en attendant la prochaine visite...
+//         localStorage.setItem("visites", nbvisites);
+//         // Affichage dans la page
+//         document.getElementById("visites").innerHTML = nbvisites;
+//     } else {
+//         alert("localStorage n'est pas supporté");
+//     }
+//     localStorage.clear();
