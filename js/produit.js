@@ -162,56 +162,23 @@ function afficherArticle(sectionTag, article) {
             remplissageStockage = "produit.html";
         }
     }
+    // Ajoute le Produit dans le Panier avec la couleur sélectionné par l'utilisateur.
 
-    function remplissageStockage() {
-        let bgcolor = localStorage.getItem("bgcolor");
-        let font = localStorage.getItem("font");
-        let image = localStorage.getItem("image");
-
-        localStorage.setItem("bgcolor", "red");
-        localStorage.setItem("font", "Helvetica");
-        localStorage.setItem("image", "myCat.png");
-
-        bgcolor();
-        font();
-        image();
-        let monobjet = {
-            propriete1: "valeur1",
-            propriete2: "valeur2",
-        };
-        let monobjet_json = JSON.stringify(monobjet);
-        localStorage.setItem("objet", monobjet_json);
-    }
-    // Détection des données saisies
-
-    if (typeof localStorage != "undefined") {
-        if ("message" in localStorage) {
-            alert("Message récupéré");
-            document.getElementById("message").value =
-                localStorage.getItem("message");
+    function remplissageStockage(CouleurSelected) {
+        let produitSelectionnePanier = Json.parse(
+            localStorage.getItem("produitSelectionnePanier")
+        );
+        if (produitSelectionnePanier === undefined) {
+            produitSelectionnePanier = [];
         }
-    } else {
-        alert("localStorage n'est pas supporté");
+
+        //  Produit sélectionné et ajouté au local Storage.
+
+        let produit = new Product(id, CouleurSelected);
+
+        produitSelectionnePanier.push(produit);
+        localStorage.setItem(
+            "produitSelectionnePanier",
+            JSON.stringify(produitSelectionnePanier)
+        );
     }
-}
-//     // Détection
-//     if (typeof localStorage != "undefined") {
-//         // Récupération de la valeur dans web storage
-//         var nbvisites = localStorage.getItem("visites");
-//         // Vérification de la présence du compteur
-//         if (nbvisites != null) {
-//             // Si oui, on convertit en nombre entier la chaîne de texte qui fut stockée
-//             nbvisites = parseInt(nbvisites);
-//         } else {
-//             nbvisites = 1;
-//         }
-//         // Incrémentation
-//         nbvisites++;
-//         // Stockage à nouveau en attendant la prochaine visite...
-//         localStorage.setItem("visites", nbvisites);
-//         // Affichage dans la page
-//         document.getElementById("visites").innerHTML = nbvisites;
-//     } else {
-//         alert("localStorage n'est pas supporté");
-//     }
-//     localStorage.clear();
