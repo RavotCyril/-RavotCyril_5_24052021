@@ -151,7 +151,7 @@ function afficherArticle(sectionTag, article) {
     articleTag.appendChild(BouttonTag);
     BouttonTag.appendChild(InputTag);
 
-    BouttonTag.className = "form";
+    BouttonTag.className = "Form-Produit";
     InputTag.className = "Boutton-Produit";
     InputTag.type = "submit";
     InputTag.value = "Ajouter au Panier";
@@ -164,21 +164,22 @@ function afficherArticle(sectionTag, article) {
     }
     // Ajoute le Produit dans le Panier avec la couleur sélectionné par l'utilisateur.
 
-    function remplissageStockage(CouleurSelected) {
-        let produitSelectionnePanier = Json.parse(
-            localStorage.getItem("produitSelectionnePanier")
+    function remplissageStockage(vernisSelected) {
+        let vernisSelectionnePanier = Json.parse(
+            localStorage.getItem("vernisSelectionnePanier")
         );
-        if (produitSelectionnePanier === undefined) {
-            produitSelectionnePanier = [];
+        if (vernisSelectionnePanier === undefined) {
+            vernisSelectionnePanier = [];
         }
 
-        //  Produit sélectionné et ajouté au local Storage.
+        //  vernis sélectionné et ajouté au local Storage.
 
-        let produit = new Product(id, CouleurSelected);
+        let vernis = new Product(id, vernisSelected);
 
-        produitSelectionnePanier.push(produit);
+        vernisSelectionnePanier.push(vernis);
         localStorage.setItem(
-            "produitSelectionnePanier",
-            JSON.stringify(produitSelectionnePanier)
+            "vernisSelectionnePanier",
+            JSON.stringify(vernisSelectionnePanier)
         );
     }
+}
