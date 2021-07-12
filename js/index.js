@@ -87,7 +87,7 @@
         afficherArticle(sectionTag, articles[i]);
     }
     sectionTag.id = "Fourniture";
-    sectionTag.className = "row Content";
+    sectionTag.className = "Content";
     newMain.appendChild(sectionTag);
     b.appendChild(newMain);
 })();
@@ -136,12 +136,12 @@ function afficherArticle(sectionTag, article) {
     LiensTag.appendChild(articleTag);
     titleTag.className = "my-5";
     articleTag.appendChild(titleTag);
-    figureTag.className = " col-1-md my-3";
     articleTag.appendChild(figureTag);
 
     // Appel - Variable et Fonction - >  Image + Figcaption
 
     imageTag.src = article.imageUrl;
+    DivTag.className = "Div-Article";
     figureTag.appendChild(DivTag);
     DivTag.appendChild(imageTag);
     figureTag.appendChild(figcaptionTag);

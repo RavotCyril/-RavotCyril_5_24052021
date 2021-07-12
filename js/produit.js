@@ -192,14 +192,24 @@ function afficherArticle(sectionTag, article) {
 
     BouttonTag.className = "Form-Produit";
     InputTag.className = "Boutton-Produit";
-    InputTag.type = "submit";
+    InputTag.type = "button";
     InputTag.value = "Ajouter au Panier";
     InputTag.addEventListener("click", updateInputTag);
 
     function updateInputTag() {
-        if (remplissageStockage === "panier.html") {} else {
-            remplissageStockage = "produit.html";
-        }
+        //if (remplissageStockage === "panier.html") {} else {
+        //    remplissageStockage = "produit.html";
+        //}
+        console.log(article._id, "1");
+        //faire un getItem
+        //if article existant dans le panier
+        //modifier la quantité
+        //sinon
+        //ajouter un nouvel dans le panier
+
+        var cartContent = {};
+        cartContent[article._id] = "1";
+        localStorage.setItem("panier", JSON.stringify(cartContent));
     }
     // Personnalisation -> Ajoute le Produit dans le Panier avec la couleur sélectionné par l'utilisateur.
 

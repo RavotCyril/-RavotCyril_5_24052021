@@ -71,8 +71,6 @@
     inputFirstNameTag.placeholder = "Entrer un Prénom";
     inputFirstNameTag.name = "First-Name";
     inputFirstNameTag.type = "First-Name";
-    inputFirstNameTag.value = "Prénom Validé !";
-    formFirstNameTag.textContent = "Prénom";
     LabelFirstName.htmlFor = "First-Name";
     sectionTag.appendChild(DivFirstNameTag);
     DivFirstNameTag.appendChild(formFirstNameTag);
@@ -87,8 +85,6 @@
     inputLastNameTag.placeholder = "Entrer un Nom";
     inputLastNameTag.name = "LastName";
     inputLastNameTag.type = "LastName";
-    inputLastNameTag.value = "Nom Validé !";
-    formLastNameTag.textContent = "Nom";
     LabelLastName.htmlFor = "Last-Name";
     sectionTag.appendChild(DivLastNameTag);
     DivLastNameTag.appendChild(formLastNameTag);
@@ -103,8 +99,6 @@
     inputAdresseTag.placeholder = "Entrer une Adresse";
     inputAdresseTag.name = "Adresse";
     inputAdresseTag.type = "Adresse";
-    inputAdresseTag.value = "Adresse Validé !";
-    formAddressTag.textContent = "Adresse";
     LabelAdress.htmlFor = "Adresse";
     sectionTag.appendChild(DivAddressTag);
     DivAddressTag.appendChild(formAddressTag);
@@ -119,8 +113,6 @@
     inputCityTag.placeholder = "Entrer Une Ville";
     inputCityTag.name = "Ville";
     inputCityTag.type = "Ville";
-    inputCityTag.value = "Ville Validé !";
-    formCityTag.textContent = "Ville";
     LabelCity.htmlFor = "Ville";
     sectionTag.appendChild(DivCityTag);
     DivCityTag.appendChild(formCityTag);
@@ -135,8 +127,6 @@
     inputEmailTag.placeholder = "Entrer un email";
     inputEmailTag.name = "Email";
     inputEmailTag.type = "Email";
-    inputEmailTag.value = "Adresse Mail Validé !";
-    formEmailTag.textContent = "Adresse Email";
     LabelEmail.htmlFor = "Email";
     formEmailTag.appendChild(LabelEmail);
     sectionTag.appendChild(DivEmailTag);
