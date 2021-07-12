@@ -25,19 +25,20 @@ h1 {
 .Navigation-Panier-Commande a {
     text-decoration: none;
     color: black;
-    font-size: 1.2rem;
+    font-size: 1.8rem;
     padding: 0px 20px 0px 0px;
 }
 
-.Nav-Liste {
+.Navigation-Panier-Commande a:hover {
+    color: blue;
+}
+
+
+/* .Nav-Liste {
     display: flex;
     justify-content: end;
     list-style: none;
-}
-
-.Panier-Commande a:hover {
-    color: blue;
-}
+} */
 
 .Liens {
     text-decoration: none;

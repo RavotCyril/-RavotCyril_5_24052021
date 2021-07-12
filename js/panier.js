@@ -1,10 +1,16 @@
 // Variable -> Déclaration  -> Balise body-Main-Logo-Nav-Liens-Titre-Article-... - Html de la page.
 (async function() {
+    // Déclaration de toutes les variables de la page HTML
+
     let b = document.body;
-    let newMain = document.createElement("Main");
+    let header = document.createElement("header");
     let DivLogo = document.createElement("div");
     let ImageLogo = document.createElement("img");
+
+    let newMain = document.createElement("Main");
+    let sectionTag = document.createElement("section");
     let h1Tag = document.createElement("h1");
+    let pTag = document.createElement("p");
 
     let DivFirstNameTag = document.createElement("div");
     let formFirstNameTag = document.createElement("form");
@@ -30,55 +36,87 @@
     let formValidationCommandeTag = document.createElement("form");
     let ButtonValidationCommandeTag = document.createElement("input");
 
-    newMain.className = "container";
+    // Appel de toutes les variables pour créer les balises HTML
+
+    header.className = "container-fluid";
+    newMain.className = "container-fluid";
+    b.appendChild(header);
     b.appendChild(newMain);
-    DivLogo.className = "Logo";
-    newMain.appendChild(DivLogo);
+    DivLogo.className = "row";
+    header.appendChild(DivLogo);
+    ImageLogo.className = "col-6";
     ImageLogo.src = "images/Orinoco.png";
     DivLogo.appendChild(ImageLogo);
-    h1Tag.textContent = "Panier : Détails";
-    newMain.appendChild(h1Tag);
 
-    DivFirstNameTag.className = "row";
-    formFirstNameTag.className = "col-12 col-lg-4";
+    sectionTag.className = "row";
+    h1Tag.className = "col-12 col-lg-12 my-4 text-center";
+    pTag.className = "font-weight-bolder my-4 text-center";
+    h1Tag.textContent = "Panier : Détails";
+    newMain.appendChild(sectionTag);
+    sectionTag.appendChild(h1Tag);
+    sectionTag.appendChild(pTag);
+    pTag.textContent =
+        "Veuillez remplir ce formulaire pour valider votre commande";
+
+    // Formulaire Prénom
+
+    DivFirstNameTag.className = "form-group";
+    formFirstNameTag.className = "col-12 col-lg-12 text-center";
+    inputFirstNameTag.className = "my-1 mx-2";
     formFirstNameTag.textContent = "Prénom";
-    newMain.appendChild(DivFirstNameTag);
+    sectionTag.appendChild(DivFirstNameTag);
     DivFirstNameTag.appendChild(formFirstNameTag);
     formFirstNameTag.appendChild(inputFirstNameTag);
 
-    DivLastNameTag.className = "row";
-    formLastNameTag.className = "col-12 col-lg-4";
+    // Formulaire Nom
+
+    DivLastNameTag.className = "form-group";
+    formLastNameTag.className = "col-12 col-lg-12 text-center";
+    inputLastNameTag.className = "my-1 mx-2";
     formLastNameTag.textContent = "Nom";
-    newMain.appendChild(DivLastNameTag);
+    sectionTag.appendChild(DivLastNameTag);
     DivLastNameTag.appendChild(formLastNameTag);
     formLastNameTag.appendChild(inputLastNameTag);
 
-    DivAddressTag.className = "row";
-    formAddressTag.className = "col-12 col-lg-4";
+    // Formulaire Adresse
+
+    DivAddressTag.className = "form-group";
+    formAddressTag.className = "col-12 col-lg-12 text-center";
+    inputAdresseTag.className = "my-3 mx-2";
     formAddressTag.textContent = "Adresse";
-    newMain.appendChild(DivAddressTag);
+    sectionTag.appendChild(DivAddressTag);
     DivAddressTag.appendChild(formAddressTag);
     formAddressTag.appendChild(inputAdresseTag);
 
-    DivCityTag.className = "row";
-    formCityTag.className = "col-12 col-lg-4";
+    // Formulaire Ville
+
+    DivCityTag.className = "form-group";
+    formCityTag.className = "col-12 col-lg-12 text-center";
+    inputCityTag.className = "my-1 mx-2";
     formCityTag.textContent = "Ville";
-    newMain.appendChild(DivCityTag);
+    sectionTag.appendChild(DivCityTag);
     DivCityTag.appendChild(formCityTag);
     formCityTag.appendChild(inputCityTag);
 
-    DivEmailTag.className = "row";
-    formEmailTag.className = "col-12 col-lg-4";
+    // Formulaire  Email
+
+    DivEmailTag.className = "form-group";
+    formEmailTag.className = "col-12 col-lg-12 text-center";
+    inputEmailTag.className = "my-1 mx-2";
     formEmailTag.textContent = "Adresse Email";
-    newMain.appendChild(DivEmailTag);
+    sectionTag.appendChild(DivEmailTag);
     DivEmailTag.appendChild(formEmailTag);
     formEmailTag.appendChild(inputEmailTag);
 
-    DivValidationCommandeTag.className = "row";
-    formValidationCommandeTag.className = "col-12 col-lg-4";
+    // Page Panier -> Boutton Validation Commande
+
+    DivValidationCommandeTag.className = "form-group";
+    formValidationCommandeTag.className =
+        "btn btn-secondary my-5 mx-2 col-12 col-lg-12 text-center";
+    ButtonValidationCommandeTag.className = "my-1 mx-1";
     ButtonValidationCommandeTag.type = "submit";
     ButtonValidationCommandeTag.value = "Validation Commande";
-    newMain.appendChild(DivValidationCommandeTag);
+    sectionTag.appendChild(DivValidationCommandeTag);
     DivValidationCommandeTag.appendChild(formValidationCommandeTag);
     formValidationCommandeTag.appendChild(ButtonValidationCommandeTag);
 })();

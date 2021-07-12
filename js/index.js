@@ -1,40 +1,83 @@
 // Variable -> Déclaration  -> Balise body-Main-Logo-Nav-Liens-Titre-Article-... - Html de la page.
 (async function() {
+    // Déclaration de toutes les variables de la page HTML
+
     let b = document.body;
+    let header = document.createElement("header");
     let newMain = document.createElement("Main");
     let DivLogo = document.createElement("div");
-    let ImageLogo = document.createElement("img");
+    let imageLogo = document.createElement("img");
     let h1Tag = document.createElement("h1");
     let Nav = document.createElement("nav");
+    let div = document.createElement("div");
     let Ul = document.createElement("ul");
     let liPanier = document.createElement("li");
     let liCommande = document.createElement("li");
+    let pPanierTag = document.createElement("p");
     let aPanier = document.createElement("a");
+    let pCommandeTag = document.createElement("p");
     let aCommande = document.createElement("a");
+    let buttonNav = document.createElement("button");
+    let spanNav = document.createElement("span");
 
+    //--------------------- Appel de toutes les variables pour créer les balises HTML----------------------------------------------
+
+    //  Header - h1 - Div-Logo - Nav - Logo - Main
+
+    header.className = "container-fluid";
+    newMain.className = "container-fluid";
+    b.appendChild(header);
     b.appendChild(newMain);
-    DivLogo.className = "Logo";
-    newMain.appendChild(h1Tag);
     h1Tag.textContent = "Catalogue : Meubles en chêne";
-    ImageLogo.src = "images/Orinoco.png";
-    newMain.appendChild(DivLogo);
-    DivLogo.appendChild(ImageLogo);
+    DivLogo.className = "row";
+    imageLogo.className = "col-3";
+    imageLogo.src = "images/Orinoco.png";
+    header.appendChild(h1Tag);
+    header.appendChild(DivLogo);
+    Nav.className = "navbar navbar-expand-md bg-dark navbar-dark";
     DivLogo.appendChild(Nav);
-    Nav.className = "Navigation-Panier-Commande";
-    Nav.appendChild(Ul);
-    Ul.className = "Nav-Liste";
+    Nav.appendChild(imageLogo);
+
+    // Navigation - div - ul - Li - Liens a.
+    // Navigation- Bouton-Menu  Liens Panier - commande + Bouton responsive avec taille de petite taille.
+
+    buttonNav.className = "navbar-toggler";
+    buttonNav.type = "button";
+    buttonNav.setAttribute("data-toggle", "collapse");
+    buttonNav.setAttribute("data-target", "#Visibilite");
+    spanNav.className = "navbar-toggler-icon";
+    Nav.appendChild(buttonNav);
+    buttonNav.appendChild(spanNav);
+
+    div.id = "Visibilite";
+    div.className = "collapse navbar-collapse d-flex justify-content-end";
+    Nav.appendChild(div);
+    div.appendChild(Ul);
+    Ul.className = "navbar-nav";
     Ul.appendChild(liPanier);
     Ul.appendChild(liCommande);
-    liPanier.appendChild(aPanier);
-    liCommande.appendChild(aCommande);
+    liPanier.appendChild(pPanierTag);
+    pPanierTag.className = "text-light";
+    pPanierTag.appendChild(aPanier);
+    liCommande.appendChild(pCommandeTag);
+    pCommandeTag.className = "text-light";
+    pCommandeTag.appendChild(aCommande);
+
+    // Navigation Liens a : Panier - commande + Bouton responsive avec taille de petite taille.
+
     aPanier.textContent = "Panier";
-    liPanier.className = "Panier-Commande";
+    aPanier.className = "text-primary text-decoration-none m-3";
+    liPanier.className = "Navigation-Panier-Commande nav-item ";
     aPanier.setAttribute("href", "panier.html");
     aCommande.textContent = "Commande";
-    liCommande.className = "Panier-Commande";
+    aCommande.className = "text-primary text-decoration-none m-3";
+    liCommande.className = "Navigation-Panier-Commande nav-item";
     aCommande.setAttribute("href", "confirmation-de-commande.html");
 
+    //---------------------- Fin Appel de toutes les variables pour créer les balises HTML---------------------------------------------
+
     // Variable - Fonction - > APi Déclaration
+
     let sectionTag = document.createElement("section");
 
     const articles = await getArticles();
@@ -48,6 +91,7 @@
     newMain.appendChild(sectionTag);
     b.appendChild(newMain);
 })();
+// Fonction pour appeller les articles de L'API.
 
 async function getArticles() {
     try {
@@ -64,7 +108,7 @@ function afficherArticle(sectionTag, article) {
     let titleTag = document.createElement("h2");
     let figureTag = document.createElement("figure");
     let DivTag = document.createElement("div");
-    let ImageTag = document.createElement("img");
+    let imageTag = document.createElement("img");
     let figcaptionTag = document.createElement("figcaption");
     let paragrapheTag = document.createElement("p");
     let LiensTag = document.createElement("a");
@@ -95,10 +139,10 @@ function afficherArticle(sectionTag, article) {
 
     // Appel - Variable et Fonction - >  Image + Figcaption
 
-    ImageTag.src = article.imageUrl;
+    imageTag.src = article.imageUrl;
     DivTag.className = "Div-Article";
     figureTag.appendChild(DivTag);
-    DivTag.appendChild(ImageTag);
+    DivTag.appendChild(imageTag);
     figureTag.appendChild(figcaptionTag);
 
     // Déclaration - Variable et constante - > Price
