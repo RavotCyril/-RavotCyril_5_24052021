@@ -201,7 +201,7 @@ function afficherArticle(sectionTag, article) {
             remplissageStockage = "produit.html";
         }
     }
-    // Ajoute le Produit dans le Panier avec la couleur sélectionné par l'utilisateur.
+    // Personnalisation -> Ajoute le Produit dans le Panier avec la couleur sélectionné par l'utilisateur.
 
     function remplissageStockage(vernisSelected) {
         let vernisSelectionnePanier = Json.parse(
@@ -211,7 +211,7 @@ function afficherArticle(sectionTag, article) {
             vernisSelectionnePanier = [];
         }
 
-        //  vernis sélectionné et ajouté au local Storage.
+        //  Vernis sélectionné et ajouté au local Storage.
 
         let vernis = new Product(id, vernisSelected);
 
