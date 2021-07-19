@@ -17,6 +17,7 @@
     //---------------------- Fin Appel de toutes les variables pour créer les balises HTML---------------------------------------------
 
     // Variable - Fonction - > APi Déclaration
+
     let sectionTag = document.createElement("section");
 
     let idproduit = getId();
@@ -30,7 +31,7 @@
     b.appendChild(newMain);
 })();
 
-// Permet de récupérer l'?id= des paramètres de l'URL, l'identifiant
+// Methode Get Permet de récupérer l'?id= des paramètres de l'URL, l'identifiant
 
 function getId() {
     const param = window.location.search;
@@ -140,51 +141,68 @@ function afficherArticle(sectionTag, article) {
     InputTag.value = "Ajouter au Panier";
     InputTag.addEventListener("click", updateInputTag);
 
+    // Permet de créer la récupération de L'iD selectionné sur la page catalogue et la quantité dans le panier.  Clef / Valeur. Get Item. 
+
     function updateInputTag() {
-        //if (remplissageStockage === "panier.html") {} else {
-        //    remplissageStockage = "produit.html";
-        //}
-        console.log(article._id, "1");
-        //faire un getItem
-        //if article existant dans le panier
-        //modifier la quantité
-        //sinon
-        //ajouter un nouvel dans le panier
-
-        var cartContent = {};
-        cartContent[article._id] = "1";
-        localStorage.setItem("panier", JSON.stringify(cartContent));
-    }
-    // Personnalisation -> Ajoute le Produit dans le Panier avec la couleur sélectionné par l'utilisateur.
-
-    function remplissageStockage(vernisSelected) {
-        let vernisSelectionnePanier = Json.parse(
-            localStorage.getItem("vernisSelectionnePanier")
-        );
-        if (vernisSelectionnePanier === undefined) {
-            vernisSelectionnePanier = [];
+        if (remplissageStockage === "panier.html") {} else {
+            remplissageStockage = "produit.html";
         }
+        console.log(article._id, "1");
 
-        //  Vernis sélectionné et ajouté au local Storage.
+        function RecupererIdQuantite() {
+            let crossTable = localStorage.getItem('5be9cc611c9d440000c1421e');
+            let coffeeTable = localStorage.getItem('5beaadda1c9d440000a57d98');
+            let diningTable = localStorage.getItem('5beaae361c9d440000a57d99');
+            let bench = localStorage.getItem('5beaaf2e1c9d440000a57d9a');
+            let vintageChair = localStorage.getItem('5beab2061c9d440000a57d9b');
 
-        let vernis = new Product(id, vernisSelected);
+            document.getElementById('5be9cc611c9d440000c1421e').value = crossTable;
+            document.getElementById('5beaadda1c9d440000a57d98').value = coffeeTable;
+            document.getElementById('5beaae361c9d440000a57d99').value = diningTable;
+            document.getElementById('5beaaf2e1c9d440000a57d9a').value = bench;
+            document.getElementById('5beab2061c9d440000a57d9b').value = vintageChair;
+        }
+        // Response  Html Request Fetch
 
-        vernisSelectionnePanier.push(vernis);
-        localStorage.setItem(
-            "vernisSelectionnePanier",
-            JSON.stringify(vernisSelectionnePanier)
-        );
-    }
-}
+        myRequest = new Request("Ajouté un produit supplémentaire", RecupererIdQuantite);
 
-function t() {
-    "A" === t.currentTarget.tagName && t.preventDefault();
-    let n = g(this),
-        e = _.getSelectorFromElement(this),
-        i = [].slice.call(document.querySelectorAll(e));
-    g(i).each(function() {
-        let t = g(this),
-            e = t.data(dt) ? "toggle" : n.data();
-        wt._jQueryInterface.call(t, e);
-    });
-}
+        fetch(myRequest, RecupererIdQuantite)
+            .then(function(response) {
+                return response;
+            })
+            .catch((err) => console.log(err));
+
+
+        // Event Bouton Menu - Disparaitre - Apparaitre.
+
+        function t() {
+            "A" === t.currentTarget.tagName && t.preventDefault();
+            let n = g(this),
+                e = _.getSelectorFromElement(this),
+                i = [].slice.call(document.querySelectorAll(e));
+            g(i).each(function() {
+                let t = g(this),
+                    e = t.data(dt) ? "toggle" : n.data();
+                wt._jQueryInterface.call(t, e);
+            });
+        }
+        // // Personnalisation -> Ajoute le Produit dans le Panier avec la couleur sélectionné par l'utilisateur.
+
+        // RecupererIdQuantite(vernisSelected) {
+        //     let vernisSelectionnePanier = Json.parse(
+        //         localStorage.getItem("vernisSelectionnePanier")
+        //     );
+        //     if (vernisSelectionnePanier === undefined) {
+        //         vernisSelectionnePanier = [];
+        //     }
+
+        //     //  Vernis sélectionné et ajouté au local Storage.
+
+        //     let vernis = new Product(id, vernisSelected);
+
+        //     vernisSelectionnePanier.push(vernis);
+        //     localStorage.setItem(
+        //         "vernisSelectionnePanier",
+        //         JSON.stringify(vernisSelectionnePanier)
+        //     );
+        // }

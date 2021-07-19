@@ -62,6 +62,14 @@
     pTag.textContent =
         "Veuillez remplir ce formulaire pour valider votre commande";
 
+    //     // ------------------------------------------------------------------------------ Required-----------------------
+    // for (const validation of document
+    //         .getElementById("First-Name")
+    //         .querySelectorAll("[required]")) {
+    //     if (!validation.reportValidity()) {
+    //         return;
+    //     }
+    // }
     // Formulaire Prénom
 
     DivFirstNameTag.className = "row";
@@ -70,11 +78,13 @@
     inputFirstNameTag.id = "First-Name";
     inputFirstNameTag.placeholder = "Entrer un Prénom";
     inputFirstNameTag.name = "First-Name";
-    inputFirstNameTag.type = "First-Name";
+    inputFirstNameTag.type = "text";
     LabelFirstName.htmlFor = "First-Name";
+    LabelFirstName.name = "First-Name";
     sectionTag.appendChild(DivFirstNameTag);
     DivFirstNameTag.appendChild(formFirstNameTag);
     formFirstNameTag.appendChild(inputFirstNameTag);
+    inputFirstNameTag.appendChild(LabelFirstName);
 
     // Formulaire Nom
 
@@ -84,11 +94,13 @@
     inputLastNameTag.id = "LastName";
     inputLastNameTag.placeholder = "Entrer un Nom";
     inputLastNameTag.name = "LastName";
-    inputLastNameTag.type = "LastName";
-    LabelLastName.htmlFor = "Last-Name";
+    inputLastNameTag.type = "text";
+    inputLastNameTag.attributes = "required";
+    LabelLastName.htmlFor = "LastName";
     sectionTag.appendChild(DivLastNameTag);
     DivLastNameTag.appendChild(formLastNameTag);
     formLastNameTag.appendChild(inputLastNameTag);
+    inputLastNameTag.appendChild(LabelLastName);
 
     // Formulaire Adresse
 
@@ -98,11 +110,12 @@
     inputAdresseTag.id = "Adresse";
     inputAdresseTag.placeholder = "Entrer une Adresse";
     inputAdresseTag.name = "Adresse";
-    inputAdresseTag.type = "Adresse";
+    inputAdresseTag.type = "text";
     LabelAdress.htmlFor = "Adresse";
     sectionTag.appendChild(DivAddressTag);
     DivAddressTag.appendChild(formAddressTag);
     formAddressTag.appendChild(inputAdresseTag);
+    inputAdresseTag.appendChild(LabelAdress);
 
     // Formulaire Ville
 
@@ -112,11 +125,12 @@
     inputCityTag.id = "Ville";
     inputCityTag.placeholder = "Entrer Une Ville";
     inputCityTag.name = "Ville";
-    inputCityTag.type = "Ville";
+    inputCityTag.type = "text";
     LabelCity.htmlFor = "Ville";
     sectionTag.appendChild(DivCityTag);
     DivCityTag.appendChild(formCityTag);
     formCityTag.appendChild(inputCityTag);
+    inputCityTag.appendChild(LabelCity);
 
     // Formulaire  Email
 
@@ -132,6 +146,7 @@
     sectionTag.appendChild(DivEmailTag);
     DivEmailTag.appendChild(formEmailTag);
     formEmailTag.appendChild(inputEmailTag);
+    inputEmailTag.appendChild(LabelEmail);
 
     // Page Panier -> Boutton Validation Commande
 
@@ -146,37 +161,19 @@
     formValidationCommandeTag.appendChild(ButtonValidationCommandeTag);
 })();
 
-window.addEventListener("load", function() {
-    function sendData() {
-        let XHR = new XMLHttpRequest();
+// Methode Post Permet d'envoyer les données saisies dans le formulaire.
 
-        // Liez l'objet FormData et l'élément form
-        let FD = new FormData(form);
+function postForm() {
+    const param = window.location.search;
+    const form = param.replace("?form=", "");
+    return form;
+}
 
-        // Définissez ce qui se passe si la soumission s'est opérée avec succès
-        XHR.addEventListener("load", function(event) {
-            alert(event.target.responseText);
-        });
-
-        // Definissez ce qui se passe en cas d'erreur
-        XHR.addEventListener("error", function(event) {
-            alert("Oups! Quelque chose s'est mal passé.");
-        });
-
-        // Configurez la requête
-        XHR.open("POST", "https://example.com/cors.php");
-
-        // Les données envoyées sont ce que l'utilisateur a mis dans le formulaire
-        XHR.send(FD);
+async function postInput(form) {
+    try {
+        let res = await fetch("http://localhost:3000/api/furniture/" + form);
+        return await res.json();
+    } catch (error) {
+        alert(error);
     }
-
-    // Accédez à l'élément form …
-    let form = document.getElementById("IdCommande");
-
-    // … et prenez en charge l'événement submit.
-    form.addEventListener("submit", function(event) {
-        event.preventDefault();
-
-        sendData();
-    });
-});
+}

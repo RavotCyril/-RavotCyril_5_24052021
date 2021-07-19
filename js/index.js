@@ -104,6 +104,7 @@ function afficherArticle(sectionTag, article) {
     paragrapheTag.textContent = Price2;
     figcaptionTag.appendChild(paragrapheTag);
 }
+// Event Bouton Menu - Disparaitre - Apparaitre.
 
 function t() {
     "A" === t.currentTarget.tagName && t.preventDefault();
