@@ -1,113 +1,144 @@
-@font-face
-/* Police des 4 pages  " La Page Index " */
-
-{
-    font-family: "Roboto Regular";
-    src: url("/font/Roboto-Regular.ttf") format("truetype");
-}
-
-body
-/* Police des 5 pages  " La Page Index  " */
-
-{
-    font-family: "Roboto Regular", sans-serif;
-    font-size: 1.5rem;
-}
-
-h1 {
-    text-align: center;
-    margin: 20px 0px;
-}
-
-.Logo {
-    text-align: center;
-}
-
-.Navigation-Panier-Commande a {
-    text-decoration: none;
-    color: black;
-    font-size: 1.8rem;
-    padding: 0px 20px 0px 0px;
-}
-
-.Navigation-Panier-Commande a:hover {
-    color: blue;
-}
-
-
-/* .Nav-Liste {
+    @font-face
+    /* Police des 4 pages  " La Page Index " */
+    
+    {
+        font-family: "Roboto Regular";
+        src: url("/font/Roboto-Regular.ttf") format("truetype");
+    }
+    
+    body
+    /* Police des 5 pages  " La Page Index  " */
+    
+    {
+        font-family: "Roboto Regular", sans-serif;
+        font-size: 1.5rem;
+    }
+    
+    h1 {
+        text-align: center;
+        margin: 20px 0px;
+    }
+    
+    .navbar-brand img {
+        width: 748px;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+    
+    .Navigation-Panier-Commande a {
+        text-decoration: none;
+        color: black;
+        font-size: 1.8rem;
+        padding: 0px 20px 0px 0px;
+    }
+    
+    .Navigation-Panier-Commande a:hover {
+        color: blue;
+    }
+    /* .Nav-Liste {
     display: flex;
     justify-content: end;
     list-style: none;
 } */
-
-.Liens {
-    text-decoration: none;
-    color: black;
-}
-
-.Article {
-    text-align: center;
-}
-
-.Content {
-    background: burlywood;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-}
-
-.Div-Article {
-    height: 360px;
-    overflow: hidden;
-}
-
-.Div-Article img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-}
-
-
-/*Css -> Page-Produit Figcaption-Description */
-
-.Produit-Figcaption-Description {
-    font-size: 1.2rem;
-}
-
-
-/*Css -> Paragraphe prix */
-
-.Prix {
-    font-size: 1.2rem;
-}
-
-
-/*Css -> Selec- produit */
-
-.Personnalisation {
-    color: blue;
-    font-size: 1.2rem;
-    padding: 15px 15px 15px 125px;
-}
-
-
-/*Css -> Form - Boutton-Produit */
-
-.Form-Produit {
-    text-align: center;
-    padding-bottom: 25px;
-}
-
-
-/*Css ->  Boutton-Produit */
-
-.Boutton-Produit {
-    background: rgb(0, 174, 255);
-    padding: 20px;
-    font-size: 1.2rem;
-    border-radius: 40px;
-    overflow: hidden;
-    cursor: pointer;
-}
+    
+    .Liens {
+        text-decoration: none;
+        color: black;
+    }
+    
+    .Article {
+        text-align: center;
+    }
+    
+    .Content {
+        background: burlywood;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+    
+    .Div-Article {
+        height: 360px;
+        overflow: hidden;
+    }
+    
+    .Div-Article img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+    /*Css -> Page-Produit Figcaption-Description */
+    
+    .Produit-Figcaption-Description {
+        font-size: 1.2rem;
+    }
+    /*Css -> Paragraphe prix */
+    
+    .Prix {
+        font-size: 1.2rem;
+    }
+    /*Css -> Selec- produit */
+    
+    .Personnalisation {
+        color: blue;
+        font-size: 1.2rem;
+        padding: 15px 15px 15px 125px;
+    }
+    /*Css -> Form - Boutton-Produit */
+    
+    .Form-Produit {
+        text-align: center;
+        padding-bottom: 25px;
+    }
+    /*Css ->  Boutton-Produit */
+    
+    .Boutton-Produit {
+        background: rgb(0, 174, 255);
+        padding: 20px;
+        font-size: 1.2rem;
+        border-radius: 40px;
+        overflow: hidden;
+        cursor: pointer;
+    }
+    
+    @media screen and (min-width:769px) and (max-width:1089px) {
+        /* styles pour tablettes*/
+        .navbar-brand img {
+            width: 75%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+    }
+    
+    @media screen and (min-width:415px) and (max-width:768px) {
+        /* styles pour mobile paysage*/
+        .navbar-brand img {
+            width: 75%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+        .Div-Article {
+            height: 240px;
+            overflow: hidden;
+        }
+    }
+    
+    @media screen and (max-width: 414px)
+    /* styles pour mobile paysage*/
+    
+    {
+        .navbar-brand img {
+            width: 75%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+        .Div-Article {
+            height: 200px;
+            overflow: hidden;
+        }
+    }
