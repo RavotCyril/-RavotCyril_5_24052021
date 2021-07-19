@@ -77,6 +77,7 @@
     inputFirstNameTag.className = "my-4 mx-2";
     inputFirstNameTag.id = "First-Name";
     inputFirstNameTag.placeholder = "Entrer un Prénom";
+    inputFirstNameTag.setAttribute("required", "");
     inputFirstNameTag.name = "First-Name";
     inputFirstNameTag.type = "text";
     LabelFirstName.htmlFor = "First-Name";

@@ -140,69 +140,62 @@ function afficherArticle(sectionTag, article) {
     InputTag.type = "button";
     InputTag.value = "Ajouter au Panier";
     InputTag.addEventListener("click", updateInputTag);
+}
+// Permet de créer la récupération de L'iD selectionné sur la page catalogue et la quantité dans le panier.  Clef / Valeur. Get Item.
 
-    // Permet de créer la récupération de L'iD selectionné sur la page catalogue et la quantité dans le panier.  Clef / Valeur. Get Item. 
-
-    function updateInputTag() {
-        if (remplissageStockage === "panier.html") {} else {
-            remplissageStockage = "produit.html";
+function updateInputTag() {
+    console.log(article._id, "1");
+    let cart = JSON.parse(localStorage.getItem("cart"));
+    var oldArticle = 0;
+    //cart => {"article1" : qty, "article2" :  qty, "article3" : qty....}
+    if (cart != undefined) {
+        for (var key in cart) {
+            if (key == article._id) {
+                var value = parseInt(cart[key]);
+                value += 1;
+                cart[key] = value;
+                oldArticle = 1;
+            }
         }
-        console.log(article._id, "1");
-
-        function RecupererIdQuantite() {
-            let crossTable = localStorage.getItem('5be9cc611c9d440000c1421e');
-            let coffeeTable = localStorage.getItem('5beaadda1c9d440000a57d98');
-            let diningTable = localStorage.getItem('5beaae361c9d440000a57d99');
-            let bench = localStorage.getItem('5beaaf2e1c9d440000a57d9a');
-            let vintageChair = localStorage.getItem('5beab2061c9d440000a57d9b');
-
-            document.getElementById('5be9cc611c9d440000c1421e').value = crossTable;
-            document.getElementById('5beaadda1c9d440000a57d98').value = coffeeTable;
-            document.getElementById('5beaae361c9d440000a57d99').value = diningTable;
-            document.getElementById('5beaaf2e1c9d440000a57d9a').value = bench;
-            document.getElementById('5beab2061c9d440000a57d9b').value = vintageChair;
+        if (oldArticle == 0) {
+            cart[article._id] = "1";
         }
-        // Response  Html Request Fetch
+        localStorage.setItem("cart", JSON.stringify(cart));
+    } else {
+        localStorage.setItem("cart", JSON.stringify({ article._id: "1" }));
+    }
+    // Response  Html Request Fetch
 
-        myRequest = new Request("Ajouté un produit supplémentaire", RecupererIdQuantite);
+}
+// Event Bouton Menu - Disparaitre - Apparaitre.
 
-        fetch(myRequest, RecupererIdQuantite)
-            .then(function(response) {
-                return response;
-            })
-            .catch((err) => console.log(err));
+function t() {
+    "A" === t.currentTarget.tagName && t.preventDefault();
+    let n = g(this),
+        e = _.getSelectorFromElement(this),
+        i = [].slice.call(document.querySelectorAll(e));
+    g(i).each(function() {
+        let t = g(this),
+            e = t.data(dt) ? "toggle" : n.data();
+        wt._jQueryInterface.call(t, e);
+    });
+}
+// // Personnalisation -> Ajoute le Produit dans le Panier avec la couleur sélectionné par l'utilisateur.
 
+// RecupererIdQuantite(vernisSelected) {
+//     let vernisSelectionnePanier = Json.parse(
+//         localStorage.getItem("vernisSelectionnePanier")
+//     );
+//     if (vernisSelectionnePanier === undefined) {
+//         vernisSelectionnePanier = [];
+//     }
 
-        // Event Bouton Menu - Disparaitre - Apparaitre.
+//     //  Vernis sélectionné et ajouté au local Storage.
 
-        function t() {
-            "A" === t.currentTarget.tagName && t.preventDefault();
-            let n = g(this),
-                e = _.getSelectorFromElement(this),
-                i = [].slice.call(document.querySelectorAll(e));
-            g(i).each(function() {
-                let t = g(this),
-                    e = t.data(dt) ? "toggle" : n.data();
-                wt._jQueryInterface.call(t, e);
-            });
-        }
-        // // Personnalisation -> Ajoute le Produit dans le Panier avec la couleur sélectionné par l'utilisateur.
+//     let vernis = new Product(id, vernisSelected);
 
-        // RecupererIdQuantite(vernisSelected) {
-        //     let vernisSelectionnePanier = Json.parse(
-        //         localStorage.getItem("vernisSelectionnePanier")
-        //     );
-        //     if (vernisSelectionnePanier === undefined) {
-        //         vernisSelectionnePanier = [];
-        //     }
-
-        //     //  Vernis sélectionné et ajouté au local Storage.
-
-        //     let vernis = new Product(id, vernisSelected);
-
-        //     vernisSelectionnePanier.push(vernis);
-        //     localStorage.setItem(
-        //         "vernisSelectionnePanier",
-        //         JSON.stringify(vernisSelectionnePanier)
-        //     );
-        // }
+//     vernisSelectionnePanier.push(vernis);
+//     localStorage.setItem(
+//         "vernisSelectionnePanier",
+//         JSON.stringify(vernisSelectionnePanier)
+//     );
