@@ -21,26 +21,10 @@
     
     .navbar-brand img {
         width: 748px;
-        height: 100%;
+        height: auto;
         object-fit: cover;
         object-position: center;
     }
-    
-    .Navigation-Panier-Commande a {
-        text-decoration: none;
-        color: black;
-        font-size: 1.8rem;
-        padding: 0px 20px 0px 0px;
-    }
-    
-    .Navigation-Panier-Commande a:hover {
-        color: blue;
-    }
-    /* .Nav-Liste {
-    display: flex;
-    justify-content: end;
-    list-style: none;
-} */
     
     .Liens {
         text-decoration: none;
@@ -64,7 +48,7 @@
     }
     
     .Div-Article {
-        height: 360px;
+        height: 425px;
         overflow: hidden;
     }
     
@@ -110,24 +94,37 @@
     
     @media screen and (min-width:769px) and (max-width:1089px) {
         /* styles pour tablettes*/
+        .navbar-brand {
+            width: 50%;
+        }
         .navbar-brand img {
-            width: 75%;
-            height: 100%;
+            width: 90%;
+            height: auto;
             object-fit: cover;
             object-position: center;
+        }
+        .Div-Article {
+            height: 425px;
+            overflow: hidden;
+        }
+        .Visibilite navbar-collapse {
+            height: 80px;
         }
     }
     
     @media screen and (min-width:415px) and (max-width:768px) {
         /* styles pour mobile paysage*/
+        .navbar-brand {
+            width: 50%;
+        }
         .navbar-brand img {
             width: 75%;
-            height: 100%;
+            height: auto;
             object-fit: cover;
             object-position: center;
         }
         .Div-Article {
-            height: 240px;
+            height: 400px;
             overflow: hidden;
         }
     }
@@ -136,11 +133,19 @@
     /* styles pour mobile paysage*/
     
     {
+        .navbar-brand {
+            width: 50%;
+            margin: 0px;
+        }
         .navbar-brand img {
             width: 75%;
-            height: 100%;
+            height: auto;
             object-fit: cover;
             object-position: center;
+        }
+        .navbar-toggler {
+            font-size: 0.8rem;
+            padding: 2px 6px;
         }
         .Div-Article {
             height: 200px;

@@ -38,7 +38,7 @@
 
     let DivValidationCommandeTag = document.createElement("div");
     let formValidationCommandeTag = document.createElement("form");
-    let ButtonValidationCommandeTag = document.createElement("input");
+    let inputButtonValidationCommandeTag = document.createElement("input");
 
     // Appel de toutes les variables pour créer les balises HTML
 
@@ -94,6 +94,7 @@
     inputLastNameTag.className = "my-4 mx-2";
     inputLastNameTag.id = "LastName";
     inputLastNameTag.placeholder = "Entrer un Nom";
+    inputLastNameTag.setAttribute("required", "");
     inputLastNameTag.name = "LastName";
     inputLastNameTag.type = "text";
     inputLastNameTag.attributes = "required";
@@ -110,6 +111,7 @@
     inputAdresseTag.className = "my-4 mx-2";
     inputAdresseTag.id = "Adresse";
     inputAdresseTag.placeholder = "Entrer une Adresse";
+    inputAdresseTag.setAttribute("required", "");
     inputAdresseTag.name = "Adresse";
     inputAdresseTag.type = "text";
     LabelAdress.htmlFor = "Adresse";
@@ -125,6 +127,7 @@
     inputCityTag.className = "my-4 mx-2";
     inputCityTag.id = "Ville";
     inputCityTag.placeholder = "Entrer Une Ville";
+    inputCityTag.setAttribute("required", "");
     inputCityTag.name = "Ville";
     inputCityTag.type = "text";
     LabelCity.htmlFor = "Ville";
@@ -140,6 +143,7 @@
     inputEmailTag.className = "my-4 mx-2";
     inputEmailTag.id = "Email";
     inputEmailTag.placeholder = "Entrer un email";
+    inputEmailTag.setAttribute("required", "");
     inputEmailTag.name = "Email";
     inputEmailTag.type = "Email";
     LabelEmail.htmlFor = "Email";
@@ -154,12 +158,14 @@
     DivValidationCommandeTag.className = "form-group mx-auto  text-center";
     formValidationCommandeTag.className = " col-2mx-auto text-center";
     formValidationCommandeTag.id = "IdCommande";
-    ButtonValidationCommandeTag.className = "my-5 mx-3";
-    ButtonValidationCommandeTag.type = "submit";
-    ButtonValidationCommandeTag.value = "Validation Commande";
+    inputButtonValidationCommandeTag.className = "my-5 mx-3";
+    inputButtonValidationCommandeTag.setAttribute("required", "");
+    inputButtonValidationCommandeTag.setAttribute("formaction", "confirmation-de-commande.html");
+    inputButtonValidationCommandeTag.type = "submit";
+    inputButtonValidationCommandeTag.value = "Validation Commande";
     sectionTag.appendChild(DivValidationCommandeTag);
     DivValidationCommandeTag.appendChild(formValidationCommandeTag);
-    formValidationCommandeTag.appendChild(ButtonValidationCommandeTag);
+    formValidationCommandeTag.appendChild(inputButtonValidationCommandeTag);
 })();
 
 // Methode Post Permet d'envoyer les données saisies dans le formulaire.

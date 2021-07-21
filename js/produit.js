@@ -147,7 +147,7 @@ function updateInputTag() {
     console.log(article._id, "1");
     let cart = JSON.parse(localStorage.getItem("cart"));
     var oldArticle = 0;
-    //cart => {"article1" : qty, "article2" :  qty, "article3" : qty....}
+    cart({ "article1": 0, "article2": 0, "article3": 5, "article4": 0, "article5": 0 });
     if (cart != undefined) {
         for (var key in cart) {
             if (key == article._id) {
@@ -162,40 +162,6 @@ function updateInputTag() {
         }
         localStorage.setItem("cart", JSON.stringify(cart));
     } else {
-        localStorage.setItem("cart", JSON.stringify({ article._id: "1" }));
+        localStorage.setItem("cart", JSON.stringify({ "article._id": 1 }));
     }
-    // Response  Html Request Fetch
-
 }
-// Event Bouton Menu - Disparaitre - Apparaitre.
-
-function t() {
-    "A" === t.currentTarget.tagName && t.preventDefault();
-    let n = g(this),
-        e = _.getSelectorFromElement(this),
-        i = [].slice.call(document.querySelectorAll(e));
-    g(i).each(function() {
-        let t = g(this),
-            e = t.data(dt) ? "toggle" : n.data();
-        wt._jQueryInterface.call(t, e);
-    });
-}
-// // Personnalisation -> Ajoute le Produit dans le Panier avec la couleur sélectionné par l'utilisateur.
-
-// RecupererIdQuantite(vernisSelected) {
-//     let vernisSelectionnePanier = Json.parse(
-//         localStorage.getItem("vernisSelectionnePanier")
-//     );
-//     if (vernisSelectionnePanier === undefined) {
-//         vernisSelectionnePanier = [];
-//     }
-
-//     //  Vernis sélectionné et ajouté au local Storage.
-
-//     let vernis = new Product(id, vernisSelected);
-
-//     vernisSelectionnePanier.push(vernis);
-//     localStorage.setItem(
-//         "vernisSelectionnePanier",
-//         JSON.stringify(vernisSelectionnePanier)
-//     );
