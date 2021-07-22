@@ -2,9 +2,9 @@
     // Déclaration de toutes les variables de la page HTML
 
     let b = document.body;
+    document.querySelector("header");
     let newMain = document.createElement("Main");
     let h1Tag = document.createElement("h1");
-    document.querySelector("header");
 
     //--------------------- Appel de toutes les variables pour créer les balises HTML----------------------------------------------
 
@@ -53,11 +53,11 @@ function afficherArticle(sectionTag, article) {
     let articleTag = document.createElement("article");
     let titleTag = document.createElement("h2");
     let figureTag = document.createElement("figure");
-    let DivTag = document.createElement("div");
-    let ImageTag = document.createElement("img");
+    let divImageTag = document.createElement("div");
+    let imageTag = document.createElement("img");
     let figcaptionTag = document.createElement("figcaption");
     let prixTag = document.createElement("p");
-    let DescriptionTag = document.createElement("p");
+    let descriptionTag = document.createElement("p");
 
     // Appel - Variable et Fonction - > Id
 
@@ -78,47 +78,53 @@ function afficherArticle(sectionTag, article) {
 
     // Appel - Variable et Fonction - >  Image + Figcaption
 
-    ImageTag.src = article.imageUrl;
-    DivTag.className = "Div-Article";
-    figureTag.appendChild(DivTag);
-    DivTag.appendChild(ImageTag);
+    imageTag.src = article.imageUrl;
+    divImageTag.className = "Div-Image";
+    figureTag.appendChild(divImageTag);
+    divImageTag.appendChild(imageTag);
     figureTag.appendChild(figcaptionTag);
 
     // Appel - Variable et Fonction - > description
 
-    figcaptionTag.appendChild(DescriptionTag);
-    DescriptionTag.className = "Produit-Figcaption-Description";
-    DescriptionTag.textContent = article.description;
+    descriptionTag.className = "Produit-Figcaption-Description";
+    descriptionTag.textContent = article.description;
+    figcaptionTag.appendChild(descriptionTag);
+
 
     // Déclaration - Variable et constante - > Price
 
-    let Price = article.price;
+    let price = article.price;
 
     // on affiche une devise avec le style "currency"  et  on se limite ici à deux chiffres  l'euro et les centimes.
 
-    let Price2 = new Intl.NumberFormat("fr-FR", {
+    let price2 = new Intl.NumberFormat("fr-FR", {
         style: "currency",
         currency: "EUR",
         minimumFractionDigits: "0",
-    }).format(Math.round(Price / 100));
+    }).format(Math.round(price / 100));
 
-    // Appel- constante - > Price
+    // Appel - > Price
 
-    prixTag.textContent = Price2;
+    prixTag.textContent = price2;
     prixTag.className = "Prix";
     figcaptionTag.appendChild(prixTag);
 
     // Appel- personnalisation - Select > Varnish
 
+    let spanLabelSelect = document.createElement("span");
     let labelTag = document.createElement("label");
     let selectTag = document.createElement("select");
-    figcaptionTag.appendChild(labelTag);
-    figcaptionTag.appendChild(selectTag);
     labelTag.forName = "Meuble-select";
     labelTag.textContent = "Choisir la couleur";
     labelTag.className = "Personnalisation";
     selectTag.name = "Meuble";
     selectTag.id = "Meuble-Select";
+    selectTag.className = "Taille-Select";
+    spanLabelSelect.className = "Taille-Span"
+    figcaptionTag.appendChild(spanLabelSelect);
+    spanLabelSelect.appendChild(labelTag);
+    spanLabelSelect.appendChild(selectTag);
+
 
     for (let i in article.varnish) {
         // console.log(article.varnish[i]);
@@ -129,17 +135,15 @@ function afficherArticle(sectionTag, article) {
     }
     // Permet de créer les variables et la fonction du  bouton panier
 
-    let BouttonTag = document.createElement("form");
-    let InputTag = document.createElement("input");
-
-    articleTag.appendChild(BouttonTag);
-    BouttonTag.appendChild(InputTag);
-
-    BouttonTag.className = "Form-Produit";
-    InputTag.className = "Boutton-Produit";
-    InputTag.type = "button";
-    InputTag.value = "Ajouter au Panier";
-    InputTag.addEventListener("click", updateInputTag);
+    let bouttonTag = document.createElement("form");
+    let inputTag = document.createElement("input");
+    bouttonTag.className = "Form-Produit";
+    inputTag.className = "Boutton-Produit";
+    inputTag.type = "button";
+    inputTag.value = "Ajouter au Panier";
+    articleTag.appendChild(bouttonTag);
+    bouttonTag.appendChild(inputTag);
+    inputTag.addEventListener("click", updateInputTag);
 }
 // Permet de créer la récupération de L'iD selectionné sur la page catalogue et la quantité dans le panier.  Clef / Valeur. Get Item.
 

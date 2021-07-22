@@ -3,9 +3,9 @@
     // Déclaration de toutes les variables de la page HTML
 
     let b = document.body;
+    document.querySelector("header");
     let newMain = document.createElement("Main");
     let h1Tag = document.createElement("h1");
-    document.querySelector("header");
 
     //--------------------- Appel de toutes les variables pour créer les balises HTML----------------------------------------------
 
@@ -48,11 +48,11 @@ function afficherArticle(sectionTag, article) {
     let articleTag = document.createElement("article");
     let titleTag = document.createElement("h2");
     let figureTag = document.createElement("figure");
-    let DivTag = document.createElement("div");
+    let divTag = document.createElement("div");
     let imageTag = document.createElement("img");
     let figcaptionTag = document.createElement("figcaption");
-    let paragrapheTag = document.createElement("p");
-    let LiensTag = document.createElement("a");
+    let prixTag = document.createElement("p");
+    let liensTag = document.createElement("a");
 
     // Appel - Variable et Fonction - > Id
 
@@ -67,14 +67,14 @@ function afficherArticle(sectionTag, article) {
 
     // Appel - Liens -> Id produit - > Id
 
-    LiensTag.setAttribute("href", "produit.html?id=" + article._id);
+    liensTag.setAttribute("href", "produit.html?id=" + article._id);
 
     // Appel - Liens <a> -> Page Index + Classe <a>.
     // Appel - Variable et Fonction - > Titre h2 + Figure
 
-    LiensTag.className = "Liens";
-    sectionTag.appendChild(LiensTag);
-    LiensTag.appendChild(articleTag);
+    liensTag.className = "Liens";
+    sectionTag.appendChild(liensTag);
+    liensTag.appendChild(articleTag);
     titleTag.className = "my-5";
     articleTag.appendChild(titleTag);
     articleTag.appendChild(figureTag);
@@ -82,25 +82,26 @@ function afficherArticle(sectionTag, article) {
     // Appel - Variable et Fonction - >  Image + Figcaption
 
     imageTag.src = article.imageUrl;
-    DivTag.className = "Div-Article";
-    figureTag.appendChild(DivTag);
-    DivTag.appendChild(imageTag);
+    divTag.className = "Div-Article";
+    figureTag.appendChild(divTag);
+    divTag.appendChild(imageTag);
     figureTag.appendChild(figcaptionTag);
 
-    // Déclaration - Variable et constante - > Price
+    // Déclaration - Variable - > Price
 
-    let Price = article.price;
+    let price = article.price;
 
     // on affiche une devise avec le style "currency"  et  on se limite ici à deux chiffres  l'euro et les centimes.
 
-    let Price2 = new Intl.NumberFormat("fr-FR", {
+    let price2 = new Intl.NumberFormat("fr-FR", {
         style: "currency",
         currency: "EUR",
         minimumFractionDigits: "0",
-    }).format(Math.round(Price / 100));
+    }).format(Math.round(price / 100));
 
-    // Appel- constante - > Price
+    // Appel - > Price
 
-    paragrapheTag.textContent = Price2;
-    figcaptionTag.appendChild(paragrapheTag);
+    prixTag.textContent = price2;
+    prixTag.className = "Prix";
+    figcaptionTag.appendChild(prixTag);
 }
