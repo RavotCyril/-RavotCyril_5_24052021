@@ -195,9 +195,11 @@
             height: 200px;
             overflow: hidden;
         }
+        /* Class pour modifier la taille de la largeur ( width ) des  Inputs */
         .Largeur-Input {
             font-size: 1.0rem;
         }
+        /* Class pour modifier la largeur (width) des bouttons des  Inputs */
         .Boutton-Largeur-Input {
             font-size: 1.0rem;
         }
