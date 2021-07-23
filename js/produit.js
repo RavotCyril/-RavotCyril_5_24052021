@@ -21,10 +21,9 @@
     let sectionTag = document.createElement("section");
     let idproduit = getId();
     const article = await getArticles(idproduit);
-
     //console.log(articles);
 
-    afficherArticles(sectionTag, article);
+    afficherArticle(sectionTag, article);
     sectionTag.id = "Fourniture";
     sectionTag.className = "Content";
     newMain.appendChild(sectionTag);
