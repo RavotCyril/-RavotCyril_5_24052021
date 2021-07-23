@@ -48,7 +48,7 @@ function afficherArticle(sectionTag, article) {
     let articleTag = document.createElement("article");
     let titleTag = document.createElement("h2");
     let figureTag = document.createElement("figure");
-    let divTag = document.createElement("div");
+    let divImageTag = document.createElement("div");
     let imageTag = document.createElement("img");
     let figcaptionTag = document.createElement("figcaption");
     let prixTag = document.createElement("p");
@@ -82,9 +82,9 @@ function afficherArticle(sectionTag, article) {
     // Appel - Variable et Fonction - >  Image + Figcaption
 
     imageTag.src = article.imageUrl;
-    divTag.className = "Div-Article";
-    figureTag.appendChild(divTag);
-    divTag.appendChild(imageTag);
+    divImageTag.className = "Div-Image";
+    figureTag.appendChild(divImageTag);
+    divImageTag.appendChild(imageTag);
     figureTag.appendChild(figcaptionTag);
 
     // Déclaration - Variable - > Price

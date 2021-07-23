@@ -17,7 +17,7 @@
     let divLastNameTag = document.createElement("div");
     let formLastNameTag = document.createElement("form");
     let inputLastNameTag = document.createElement("input");
-    let LabelLastName = document.createElement("label");
+    let labelLastName = document.createElement("label");
 
     let divAddressTag = document.createElement("div");
     let formAddressTag = document.createElement("form");
@@ -73,10 +73,10 @@
     inputFirstNameTag.type = "text";
     labelFirstName.htmlFor = "First-Name";
     labelFirstName.name = "First-Name";
-    sectionTag.appendChild(DivFirstNameTag);
+    sectionTag.appendChild(divFirstNameTag);
     divFirstNameTag.appendChild(formFirstNameTag);
     formFirstNameTag.appendChild(inputFirstNameTag);
-    inputFirstNameTag.appendChild(LabelFirstName);
+    inputFirstNameTag.appendChild(labelFirstName);
 
     // Formulaire Nom
 
@@ -89,7 +89,7 @@
     inputLastNameTag.name = "LastName";
     inputLastNameTag.type = "text";
     inputLastNameTag.attributes = "required";
-    LabelLastName.htmlFor = "LastName";
+    labelLastName.htmlFor = "LastName";
     sectionTag.appendChild(divLastNameTag);
     divLastNameTag.appendChild(formLastNameTag);
     formLastNameTag.appendChild(inputLastNameTag);

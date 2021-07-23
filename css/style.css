@@ -50,6 +50,10 @@
         box-shadow: 0px 0px 20px 7px black;
         background: white;
     }
+    
+    .Article figure {
+        margin: 0px;
+    }
     /* Class des Liens Page Index*/
     
     .Liens {
