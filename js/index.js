@@ -3,9 +3,9 @@
     // Déclaration de toutes les variables de la page HTML
 
     let b = document.body;
-    document.querySelector("header");
     let newMain = document.createElement("Main");
     let h1Tag = document.createElement("h1");
+    document.querySelector("header");
 
     //--------------------- Appel de toutes les variables pour créer les balises HTML----------------------------------------------
 

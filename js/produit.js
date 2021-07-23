@@ -2,9 +2,10 @@
     // Déclaration de toutes les variables de la page HTML
 
     let b = document.body;
-    document.querySelector("header");
     let newMain = document.createElement("Main");
     let h1Tag = document.createElement("h1");
+    document.querySelector("header");
+
 
     //--------------------- Appel de toutes les variables pour créer les balises HTML----------------------------------------------
 
@@ -21,10 +22,9 @@
     let sectionTag = document.createElement("section");
     let idproduit = getId();
     const article = await getArticles(idproduit);
-
     //console.log(articles);
 
-    afficherArticles(sectionTag, article);
+    afficherArticle(sectionTag, article);
     sectionTag.id = "Fourniture";
     sectionTag.className = "Content";
     newMain.appendChild(sectionTag);
@@ -86,9 +86,9 @@ function afficherArticle(sectionTag, article) {
 
     // Appel - Variable et Fonction - > description
 
+    figcaptionTag.appendChild(descriptionTag);
     descriptionTag.className = "Produit-Figcaption-Description";
     descriptionTag.textContent = article.description;
-    figcaptionTag.appendChild(descriptionTag);
 
 
     // Déclaration - Variable et constante - > Price
@@ -114,6 +114,9 @@ function afficherArticle(sectionTag, article) {
     let spanLabelSelect = document.createElement("span");
     let labelTag = document.createElement("label");
     let selectTag = document.createElement("select");
+    figcaptionTag.appendChild(spanLabelSelect);
+    spanLabelSelect.appendChild(labelTag);
+    spanLabelSelect.appendChild(selectTag);
     labelTag.forName = "Meuble-select";
     labelTag.textContent = "Choisir la couleur";
     labelTag.className = "Personnalisation";
@@ -121,9 +124,7 @@ function afficherArticle(sectionTag, article) {
     selectTag.id = "Meuble-Select";
     selectTag.className = "Taille-Select";
     spanLabelSelect.className = "Taille-Span"
-    figcaptionTag.appendChild(spanLabelSelect);
-    spanLabelSelect.appendChild(labelTag);
-    spanLabelSelect.appendChild(selectTag);
+
 
 
     for (let i in article.varnish) {
