@@ -166,8 +166,7 @@
     formValidationCommandeTag.id = "IdCommande";
     inputButtonValidationCommandeTag.className = "Boutton-Largeur-Input my-5 mx-3";
     inputButtonValidationCommandeTag.setAttribute("required", "");
-    inputButtonValidationCommandeTag.setAttribute("formaction", "confirmation-de-commande.html");
-    inputButtonValidationCommandeTag.type = "submit";
+    inputButtonValidationCommandeTag.type = "button";
     inputButtonValidationCommandeTag.value = "Validation Commande";
     sectionTag.appendChild(divValidationCommandeTag);
     divValidationCommandeTag.appendChild(formValidationCommandeTag);

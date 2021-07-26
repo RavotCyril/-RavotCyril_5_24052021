@@ -144,29 +144,30 @@ function afficherArticle(sectionTag, article) {
     inputTag.value = "Ajouter au Panier";
     articleTag.appendChild(bouttonTag);
     bouttonTag.appendChild(inputTag);
-    inputTag.addEventListener("click", updateInputTag);
+    inputTag.addEventListener("click", function() {
+        console.log(article._id, "1");
+        console.log("toto");
+        let cart = JSON.parse(localStorage.getItem("cart"));
+        console.log(cart);
+        let oldArticle = 0;
+        if (cart !== null) {
+            for (let key in cart) {
+                if (key == article._id) {
+                    let value = parseInt(cart[article._id]);
+                    value += 1;
+                    cart[key] = value;
+                    oldArticle = 1;
+                }
+            }
+            if (oldArticle == 0) {
+                cart[article._id] = "1";
+            }
+            localStorage.setItem("cart", JSON.stringify(cart));
+        } else {
+            let cart = {};
+            cart[article._id] = "1";
+            localStorage.setItem("cart", JSON.stringify(cart));
+        }
+    });
 }
 // Permet de créer la récupération de L'iD selectionné sur la page catalogue et la quantité dans le panier.  Clef / Valeur. Get Item.
-
-function updateInputTag(article) {
-    // console.log(article._id, "1");
-    let cart = JSON.parse(localStorage.getItem("cart"));
-    let oldArticle = 0;
-    cart => ({ "article._id": 1, "article._id": 2, "article._id": 3, "article._id": 4, "article._id": 5 });
-    if (cart != undefined) {
-        for (let key in cart) {
-            if (key == article._id) {
-                let value = parseInt(cart[article._id]);
-                value += 1;
-                cart[key] = value;
-                oldArticle = 1;
-            }
-        }
-        if (oldArticle == 0) {
-            cart[article._id] = "1";
-        }
-        localStorage.setItem("cart", JSON.stringify(cart));
-    } else {
-        localStorage.setItem("cart", JSON.stringify(cart));
-    }
-}
