@@ -24,6 +24,18 @@
     h2 {
         margin: 5px;
     }
+    /* Classe pour le détails du panier  Page-Panier  */
+    
+    .Article-Panier-Détails {
+        display: flex;
+        justify-content: space-between;
+        border: 1px solid black;
+        height: 200px;
+        margin: 0px 1%;
+        padding: 0px 3%;
+        width: 98%;
+        font-size: 1.2rem;
+    }
     /* Afficher la marque ou le nom du site avec Bootstrap. Ici j'affiche l'image du logo ORINOCO */
     
     .navbar-brand img {
@@ -32,7 +44,7 @@
         object-fit: cover;
         object-position: center;
     }
-    /* Class de la section Page Index-Produit */
+    /* Classe de la section Page Index-Produit */
     
     .Content {
         background: #774634;
@@ -40,7 +52,7 @@
         flex-wrap: wrap;
         justify-content: space-around;
     }
-    /* Class des articles Page Index-Produit*/
+    /* Classe des articles Page Index-Produit*/
     
     .Article {
         text-align: center;
@@ -54,19 +66,19 @@
     .Article figure {
         margin: 0px;
     }
-    /* Class des Liens Page Index*/
+    /* Classe des Liens Page Index*/
     
     .Liens {
         text-decoration: none;
         color: black;
     }
-    /* Class des div des Images des articles*/
+    /* Classe des div des Images des articles*/
     
     .Div-Image {
         height: 425px;
         overflow: hidden;
     }
-    /* Class des Images des articles*/
+    /* Classe des Images des articles*/
     
     .Div-Image img {
         width: 100%;
@@ -133,8 +145,19 @@
         color: burlywood;
     }
     
-    @media screen and (min-width:769px) and (max-width:1089px) {
-        /* styles pour tablettes*/
+    @media screen and (min-width:769px) and (max-width:1089px)
+    /* styles pour tablettes*/
+    
+    {
+        .Article-Panier-Détails {
+            display: flex;
+            border: 1px solid black;
+            height: 200px;
+            margin: 0px 1%;
+            padding: 0px 3%;
+            width: 98%;
+            font-size: 0.9rem;
+        }
         .navbar-brand {
             width: 50%;
         }
@@ -153,8 +176,23 @@
         }
     }
     
-    @media screen and (min-width:415px) and (max-width:768px) {
-        /* styles pour mobile paysage + Portrait*/
+    @media screen and (min-width:415px) and (max-width:768px)
+    /* styles pour mobile paysage + Portrait*/
+    
+    {
+        .Article-Panier-Détails {
+            display: flex;
+            border: 1px solid black;
+            height: 200px;
+            margin: 0px;
+            padding: 0px 2%;
+            width: 100%;
+            font-size: 0.7rem;
+            text-align: center;
+        }
+        .Article-Panier-Détails p {
+            padding-right: 5px;
+        }
         .navbar-brand {
             width: 50%;
         }
@@ -175,6 +213,18 @@
     /* styles pour mobile petit écran paysage+Portrait*/
     
     {
+        .Article-Panier-Détails {
+            display: flex;
+            border: 1px solid black;
+            height: 200px;
+            margin: 0px;
+            padding: 0px 2%;
+            width: 100%;
+            font-size: 0.5rem;
+        }
+        .Article-Panier-Détails p {
+            padding-right: 5px;
+        }
         .navbar-brand {
             width: 50%;
             margin: 0px;
@@ -190,16 +240,16 @@
             font-size: 0.8rem;
             padding: 2px 6px;
         }
-        /* Class des Images des articles*/
+        /* Classe des Images des articles*/
         .Div-Image {
             height: 200px;
             overflow: hidden;
         }
-        /* Class pour modifier la taille de la largeur ( width ) des  Inputs */
+        /* Classe pour modifier la taille de la largeur ( width ) des  Inputs */
         .Largeur-Input {
             font-size: 1.0rem;
         }
-        /* Class pour modifier la largeur (width) des bouttons des  Inputs */
+        /* Classe pour modifier la largeur (width) des bouttons des  Inputs */
         .Boutton-Largeur-Input {
             font-size: 1.0rem;
         }

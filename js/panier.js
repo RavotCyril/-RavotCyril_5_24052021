@@ -6,7 +6,12 @@
     document.querySelector("header");
     let newMain = document.createElement("Main");
     let sectionTag = document.createElement("section");
+    let articleTag = document.createElement("article");
     let h1Tag = document.createElement("h1");
+    let produitSelectionne = document.createElement("p");
+    let vernisSelectionne = document.createElement("p");
+    let prixDuProduitSelectionne = document.createElement("p");
+    let prixTotalDuPanier = document.createElement("p");
     let pTag = document.createElement("p");
 
     let divFirstNameTag = document.createElement("div");
@@ -45,11 +50,21 @@
 
 
     sectionTag.className = "row";
-    h1Tag.className = "col-122 my-4 text-center";
+    h1Tag.className = "col-12 my-4 text-center";
     pTag.className = "font-weight-bolder my-4 text-center";
     h1Tag.textContent = "Panier : Détails";
+    produitSelectionne.textContent = "Produit Selectionné";
+    vernisSelectionne.textContent = "Vernis Selectionné";
+    prixDuProduitSelectionne.textContent = "Prix Du Produit Selectionné";
+    prixTotalDuPanier.textContent = "Prix Total Du Panier";
+    articleTag.className = "col-12 Article-Panier-Détails";
     newMain.appendChild(sectionTag);
     sectionTag.appendChild(h1Tag);
+    sectionTag.appendChild(articleTag);
+    articleTag.appendChild(produitSelectionne);
+    articleTag.appendChild(vernisSelectionne);
+    articleTag.appendChild(prixDuProduitSelectionne);
+    articleTag.appendChild(prixTotalDuPanier);
     sectionTag.appendChild(pTag);
     pTag.textContent = "Veuillez remplir ce formulaire pour valider votre commande";
 
@@ -147,7 +162,7 @@
     // Page Panier -> Boutton Validation Commande
 
     divValidationCommandeTag.className = "form-group mx-auto  text-center";
-    formValidationCommandeTag.className = "col-2mx-auto text-center";
+    formValidationCommandeTag.className = "col-2 mx-auto text-center";
     formValidationCommandeTag.id = "IdCommande";
     inputButtonValidationCommandeTag.className = "Boutton-Largeur-Input my-5 mx-3";
     inputButtonValidationCommandeTag.setAttribute("required", "");

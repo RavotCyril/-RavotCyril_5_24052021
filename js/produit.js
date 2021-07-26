@@ -148,15 +148,15 @@ function afficherArticle(sectionTag, article) {
 }
 // Permet de créer la récupération de L'iD selectionné sur la page catalogue et la quantité dans le panier.  Clef / Valeur. Get Item.
 
-function updateInputTag() {
-    console.log(article._id, "1");
+function updateInputTag(article) {
+    // console.log(article._id, "1");
     let cart = JSON.parse(localStorage.getItem("cart"));
-    var oldArticle = 0;
-    cart({ "article1": 0, "article2": 0, "article3": 5, "article4": 0, "article5": 0 });
+    let oldArticle = 0;
+    cart => ({ "article._id": 1, "article._id": 2, "article._id": 3, "article._id": 4, "article._id": 5 });
     if (cart != undefined) {
-        for (var key in cart) {
+        for (let key in cart) {
             if (key == article._id) {
-                var value = parseInt(cart[key]);
+                let value = parseInt(cart[article._id]);
                 value += 1;
                 cart[key] = value;
                 oldArticle = 1;
@@ -167,6 +167,6 @@ function updateInputTag() {
         }
         localStorage.setItem("cart", JSON.stringify(cart));
     } else {
-        localStorage.setItem("cart", JSON.stringify({ "article._id": 1 }));
+        localStorage.setItem("cart", JSON.stringify(cart));
     }
 }
