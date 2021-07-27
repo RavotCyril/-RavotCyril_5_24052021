@@ -43,6 +43,7 @@
     let formValidationCommandeTag = document.createElement("form");
     let inputButtonValidationCommandeTag = document.createElement("input");
 
+
     // Appel de toutes les variables pour créer les balises HTML
 
     newMain.className = "container-fluid";
@@ -58,26 +59,7 @@
     prixDuProduitSelectionne.textContent = "Prix Du Produit Selectionné";
     prixTotalDuPanier.textContent = "Prix Total Du Panier";
     articleTag.className = "col-12 Article-Panier-Détails";
-    newMain.appendChild(sectionTag);
-    sectionTag.appendChild(h1Tag);
-    sectionTag.appendChild(articleTag);
-    articleTag.appendChild(produitSelectionne);
-    articleTag.appendChild(vernisSelectionne);
-    articleTag.appendChild(prixDuProduitSelectionne);
-    articleTag.appendChild(prixTotalDuPanier);
-    sectionTag.appendChild(pTag);
     pTag.textContent = "Veuillez remplir ce formulaire pour valider votre commande";
-
-    //     // ------------------------------------------------------------------------------ Required-----------------------
-    // for (const validation of document
-    //         .getElementById("First-Name")
-    //         .querySelectorAll("[required]")) {
-    //     if (!validation.reportValidity()) {
-    //         return;
-    //     }
-    // }
-    // Formulaire Prénom
-
     divFirstNameTag.className = "row";
     formFirstNameTag.className = "col-12 mx-auto text-center";
     inputFirstNameTag.className = "Largeur-Input my-4 mx-2";
@@ -86,8 +68,28 @@
     inputFirstNameTag.setAttribute("required", "");
     inputFirstNameTag.name = "First-Name";
     inputFirstNameTag.type = "text";
+
+    /* Fonction qui permet de valider les données saisies dans le formulaire selon le type de données demandés. 
+    Prénom, Nom, Code postal, Mail ... 
+    */
+    inputFirstNameTag.onkeypress(function numbersonly(event) {
+        let unicode = event.charCode ? event.charCode : event.keyCode
+        if (unicode != 8) { //if the key isn't the backspace key (which we should allow)
+            if (unicode < 48 || unicode > 57) //if not a number
+                return false //disable key press
+        }
+    });
+    console.log(inputFirstNameTag);
     labelFirstName.htmlFor = "First-Name";
     labelFirstName.name = "First-Name";
+    newMain.appendChild(sectionTag);
+    sectionTag.appendChild(h1Tag);
+    sectionTag.appendChild(articleTag);
+    articleTag.appendChild(produitSelectionne);
+    articleTag.appendChild(vernisSelectionne);
+    articleTag.appendChild(prixDuProduitSelectionne);
+    articleTag.appendChild(prixTotalDuPanier);
+    sectionTag.appendChild(pTag);
     sectionTag.appendChild(divFirstNameTag);
     divFirstNameTag.appendChild(formFirstNameTag);
     formFirstNameTag.appendChild(inputFirstNameTag);
@@ -171,21 +173,9 @@
     sectionTag.appendChild(divValidationCommandeTag);
     divValidationCommandeTag.appendChild(formValidationCommandeTag);
     formValidationCommandeTag.appendChild(inputButtonValidationCommandeTag);
+
+
+
 })();
 
 // Methode Post Permet d'envoyer les données saisies dans le formulaire.
-
-function postForm() {
-    const param = window.location.search;
-    const form = param.replace("?form=", "");
-    return form;
-}
-
-async function postInput(form) {
-    try {
-        let res = await fetch("http://localhost:3000/api/furniture/" + form);
-        return await res.json();
-    } catch (error) {
-        alert(error);
-    }
-}

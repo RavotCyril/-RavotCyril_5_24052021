@@ -144,6 +144,8 @@ function afficherArticle(sectionTag, article) {
     inputTag.value = "Ajouter au Panier";
     articleTag.appendChild(bouttonTag);
     bouttonTag.appendChild(inputTag);
+
+    // Permet de créer la récupération de L'iD selectionné sur la page catalogue et la quantité dans le panier.  Clef / Valeur. Get Item.
     inputTag.addEventListener("click", function() {
         console.log(article._id, "1");
         console.log("toto");
@@ -170,4 +172,3 @@ function afficherArticle(sectionTag, article) {
         }
     });
 }
-// Permet de créer la récupération de L'iD selectionné sur la page catalogue et la quantité dans le panier.  Clef / Valeur. Get Item.
