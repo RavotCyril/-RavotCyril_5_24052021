@@ -14,28 +14,20 @@
     let prixTotalDuPanier = document.createElement("p");
     let pTag = document.createElement("p");
 
-    let divFirstNameTag = document.createElement("div");
-    let formFirstNameTag = document.createElement("form");
+    let divContactTag = document.createElement("div");
+    let formContactTag = document.createElement("form");
     let inputFirstNameTag = document.createElement("input");
     let labelFirstName = document.createElement("label");
 
-    let divLastNameTag = document.createElement("div");
-    let formLastNameTag = document.createElement("form");
     let inputLastNameTag = document.createElement("input");
     let labelLastName = document.createElement("label");
 
-    let divAddressTag = document.createElement("div");
-    let formAddressTag = document.createElement("form");
     let inputAdresseTag = document.createElement("input");
     let labelAdress = document.createElement("label");
 
-    let divCityTag = document.createElement("div");
-    let formCityTag = document.createElement("form");
     let inputCityTag = document.createElement("input");
     let labelCity = document.createElement("label");
 
-    let divEmailTag = document.createElement("div");
-    let formEmailTag = document.createElement("form");
     let inputEmailTag = document.createElement("input");
     let labelEmail = document.createElement("label");
 
@@ -60,8 +52,8 @@
     prixTotalDuPanier.textContent = "Prix Total Du Panier";
     articleTag.className = "col-12 Article-Panier-Détails";
     pTag.textContent = "Veuillez remplir ce formulaire pour valider votre commande";
-    divFirstNameTag.className = "row";
-    formFirstNameTag.className = "col-12 mx-auto text-center";
+    formContactTag.id = "Contact";
+    formContactTag.className = "col-4 mx-auto text-center";
     inputFirstNameTag.className = "Largeur-Input my-4 mx-2";
     inputFirstNameTag.id = "First-Name";
     inputFirstNameTag.placeholder = "Entrer un Prénom";
@@ -78,15 +70,12 @@
     articleTag.appendChild(prixDuProduitSelectionne);
     articleTag.appendChild(prixTotalDuPanier);
     sectionTag.appendChild(pTag);
-    sectionTag.appendChild(divFirstNameTag);
-    divFirstNameTag.appendChild(formFirstNameTag);
-    formFirstNameTag.appendChild(inputFirstNameTag);
+    sectionTag.appendChild(formContactTag);
+    formContactTag.appendChild(inputFirstNameTag);
     inputFirstNameTag.appendChild(labelFirstName);
 
     // Formulaire Nom
 
-    divLastNameTag.className = "row";
-    formLastNameTag.className = "col-12 mx-auto text-center";
     inputLastNameTag.className = "Largeur-Input my-4 mx-2";
     inputLastNameTag.id = "LastName";
     inputLastNameTag.placeholder = "Entrer un Nom";
@@ -95,15 +84,11 @@
     inputLastNameTag.type = "text";
     inputLastNameTag.attributes = "required";
     labelLastName.htmlFor = "LastName";
-    sectionTag.appendChild(divLastNameTag);
-    divLastNameTag.appendChild(formLastNameTag);
-    formLastNameTag.appendChild(inputLastNameTag);
+    formContactTag.appendChild(inputLastNameTag);
     inputLastNameTag.appendChild(labelLastName);
 
     // Formulaire Adresse
 
-    divAddressTag.className = "row";
-    formAddressTag.className = "col-12 mx-auto text-center";
     inputAdresseTag.className = "Largeur-Input my-4 mx-2";
     inputAdresseTag.id = "Adresse";
     inputAdresseTag.placeholder = "Entrer une Adresse";
@@ -111,15 +96,11 @@
     inputAdresseTag.name = "Adresse";
     inputAdresseTag.type = "text";
     labelAdress.htmlFor = "Adresse";
-    sectionTag.appendChild(divAddressTag);
-    divAddressTag.appendChild(formAddressTag);
-    formAddressTag.appendChild(inputAdresseTag);
+    formContactTag.appendChild(inputAdresseTag);
     inputAdresseTag.appendChild(labelAdress);
 
     // Formulaire Ville
 
-    divCityTag.className = "row";
-    formCityTag.className = "col-12 mx-auto text-center";
     inputCityTag.className = "Largeur-Input my-4 mx-2";
     inputCityTag.id = "Ville";
     inputCityTag.placeholder = "Entrer Une Ville";
@@ -127,15 +108,11 @@
     inputCityTag.name = "Ville";
     inputCityTag.type = "text";
     labelCity.htmlFor = "Ville";
-    sectionTag.appendChild(divCityTag);
-    divCityTag.appendChild(formCityTag);
-    formCityTag.appendChild(inputCityTag);
+    formContactTag.appendChild(inputCityTag);
     inputCityTag.appendChild(labelCity);
 
     // Formulaire  Email
 
-    divEmailTag.className = "row";
-    formEmailTag.className = "col-12 mx-auto text-center";
     inputEmailTag.className = "Largeur-Input my-4 mx-2";
     inputEmailTag.id = "Email";
     inputEmailTag.placeholder = "Entrer un email";
@@ -143,10 +120,7 @@
     inputEmailTag.name = "Email";
     inputEmailTag.type = "Email";
     labelEmail.htmlFor = "Email";
-    formEmailTag.appendChild(labelEmail);
-    sectionTag.appendChild(divEmailTag);
-    divEmailTag.appendChild(formEmailTag);
-    formEmailTag.appendChild(inputEmailTag);
+    formContactTag.appendChild(inputEmailTag);
     inputEmailTag.appendChild(labelEmail);
 
     // Page Panier -> Boutton Validation Commande
@@ -163,12 +137,30 @@
     formValidationCommandeTag.appendChild(inputButtonValidationCommandeTag);
 
 
-
-})();
-
-// Methode Post Permet d'envoyer les données saisies dans le formulaire.
-
-
-/* Fonction qui permet de valider les données saisies dans le formulaire selon le type de données demandés. 
+    /* Fonction qui permet de valider les données saisies dans le formulaire selon le type de données demandés. 
    Prénom, Nom, Code postal, Mail ... 
    */
+
+    /* Fonction qui permet de valider les données saisies dans le formulaire selon le type de données demandés. 
+   Prénom, Nom, Code postal, Mail ... 
+   */
+    document.getElementsByTagName("Contact").addEventListener("submit", function(e) {
+        let erreur;
+        let inputs = document.getElementsByTagName("input");
+
+        for (let i = 0; i < inputs.length; i++) {
+            if (!inputs[i].value) {
+                erreur = "Veuillez remplir tous les champs demandés du formulaire Contact"
+            }
+        }
+        if (erreur) {
+            e.preventDefault();
+            document.getElementByTaName("erreur").innerHTML = erreur;
+            return false;
+        } else {
+            alter("Formulaire validé et envoyé !");
+        }
+
+    });
+})();
+// Methode Post Permet d'envoyer les données saisies dans le formulaire.
