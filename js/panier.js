@@ -68,18 +68,6 @@
     inputFirstNameTag.setAttribute("required", "");
     inputFirstNameTag.name = "First-Name";
     inputFirstNameTag.type = "text";
-
-    /* Fonction qui permet de valider les données saisies dans le formulaire selon le type de données demandés. 
-    Prénom, Nom, Code postal, Mail ... 
-    */
-    inputFirstNameTag.onkeypress(function numbersonly(event) {
-        let unicode = event.charCode ? event.charCode : event.keyCode
-        if (unicode != 8) { //if the key isn't the backspace key (which we should allow)
-            if (unicode < 48 || unicode > 57) //if not a number
-                return false //disable key press
-        }
-    });
-    console.log(inputFirstNameTag);
     labelFirstName.htmlFor = "First-Name";
     labelFirstName.name = "First-Name";
     newMain.appendChild(sectionTag);
@@ -179,3 +167,8 @@
 })();
 
 // Methode Post Permet d'envoyer les données saisies dans le formulaire.
+
+
+/* Fonction qui permet de valider les données saisies dans le formulaire selon le type de données demandés. 
+   Prénom, Nom, Code postal, Mail ... 
+   */
