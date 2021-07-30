@@ -9,14 +9,14 @@
     let articleTag = document.createElement("article");
     let h1Tag = document.createElement("h1");
     let produitSelectionne = document.createElement("p");
-    let vernisSelectionne = document.createElement("p");
+    let quantiteSelectionne = document.createElement("p");
     let prixDuProduitSelectionne = document.createElement("p");
     let prixTotalDuPanier = document.createElement("p");
     let pTag = document.createElement("p");
 
-    let divContactTag = document.createElement("div");
     let formContactTag = document.createElement("form");
     let inputFirstNameTag = document.createElement("input");
+    let prenomManquant = document.createElement("span");
     let labelFirstName = document.createElement("label");
 
     let inputLastNameTag = document.createElement("input");
@@ -31,8 +31,6 @@
     let inputEmailTag = document.createElement("input");
     let labelEmail = document.createElement("label");
 
-    let divValidationCommandeTag = document.createElement("div");
-    let formValidationCommandeTag = document.createElement("form");
     let inputButtonValidationCommandeTag = document.createElement("input");
 
 
@@ -47,17 +45,23 @@
     pTag.className = "font-weight-bolder my-4 text-center";
     h1Tag.textContent = "Panier : Détails";
     produitSelectionne.textContent = "Produit Selectionné";
-    vernisSelectionne.textContent = "Vernis Selectionné";
+    quantiteSelectionne.textContent = "Quantité Selectionné";
     prixDuProduitSelectionne.textContent = "Prix Du Produit Selectionné";
     prixTotalDuPanier.textContent = "Prix Total Du Panier";
     articleTag.className = "col-12 Article-Panier-Détails";
     pTag.textContent = "Veuillez remplir ce formulaire pour valider votre commande";
+
+    // Formulaire Prénom 
+
     formContactTag.id = "Contact";
+    formContactTag.setAttribute("method", "post");
+    formContactTag.setAttribute("action", "confirmation-de-commande.html");
     formContactTag.className = "col-4 mx-auto text-center";
     inputFirstNameTag.className = "Largeur-Input my-4 mx-2";
     inputFirstNameTag.id = "First-Name";
     inputFirstNameTag.placeholder = "Entrer un Prénom";
     inputFirstNameTag.setAttribute("required", "");
+    // inputFirstNameTag.setAttribute("onkeyup", "return limitlength(this, 20)");
     inputFirstNameTag.name = "First-Name";
     inputFirstNameTag.type = "text";
     labelFirstName.htmlFor = "First-Name";
@@ -66,7 +70,7 @@
     sectionTag.appendChild(h1Tag);
     sectionTag.appendChild(articleTag);
     articleTag.appendChild(produitSelectionne);
-    articleTag.appendChild(vernisSelectionne);
+    articleTag.appendChild(quantiteSelectionne);
     articleTag.appendChild(prixDuProduitSelectionne);
     articleTag.appendChild(prixTotalDuPanier);
     sectionTag.appendChild(pTag);
@@ -125,42 +129,44 @@
 
     // Page Panier -> Boutton Validation Commande
 
-    divValidationCommandeTag.className = "form-group mx-auto  text-center";
-    formValidationCommandeTag.className = "col-2 mx-auto text-center";
-    formValidationCommandeTag.id = "IdCommande";
+    inputButtonValidationCommandeTag.id = "Validation Commande";
     inputButtonValidationCommandeTag.className = "Boutton-Largeur-Input my-5 mx-3";
     inputButtonValidationCommandeTag.setAttribute("required", "");
+    inputButtonValidationCommandeTag.setAttribute("maxlength", "20");
     inputButtonValidationCommandeTag.type = "button";
     inputButtonValidationCommandeTag.value = "Validation Commande";
-    sectionTag.appendChild(divValidationCommandeTag);
-    divValidationCommandeTag.appendChild(formValidationCommandeTag);
-    formValidationCommandeTag.appendChild(inputButtonValidationCommandeTag);
+    formContactTag.appendChild(inputButtonValidationCommandeTag);
 
 
     /* Fonction qui permet de valider les données saisies dans le formulaire selon le type de données demandés. 
    Prénom, Nom, Code postal, Mail ... 
    */
 
-    /* Fonction qui permet de valider les données saisies dans le formulaire selon le type de données demandés. 
-   Prénom, Nom, Code postal, Mail ... 
-   */
-    document.getElementsByTagName("Contact").addEventListener("submit", function(e) {
-        let erreur;
-        let inputs = document.getElementsByTagName("input");
+    inputFirstNameTag.id = "First-Name";
+    prenomManquant.id = "PrenomManquant";
+    let prenomValid = /^[a-zA-ZéèîïÉÈÎÏ][a-zéèêàçîï]+([-'\s][a-zA-ZéèîïÉÈÎÏ][a-zéèêàçîï]+)?$/;
 
-        for (let i = 0; i < inputs.length; i++) {
-            if (!inputs[i].value) {
-                erreur = "Veuillez remplir tous les champs demandés du formulaire Contact"
-            }
-        }
-        if (erreur) {
-            e.preventDefault();
-            document.getElementByTaName("erreur").innerHTML = erreur;
-            return false;
-        } else {
-            alter("Formulaire validé et envoyé !");
-        }
+    formContactTag.addEventListener('click', validation);
 
-    });
+    function validation(event) {
+        //Si le champ est vide
+        if (inputFirstNameTag.validity.valueMissing) {
+            event.preventDefault();
+            prenomManquant.textContent = 'Prénom manquant';
+            prenomManquant.style.color = 'red';
+            //Si le format de données est incorrect ( Valeur exigés écrite dans un format différent ( autre lettres  )
+        } else if (prenomValid.test(inputFirstNameTag.value) == false) {
+            event.preventDefault();
+            prenomManquant.textContent = 'Format incorrect';
+            prenomManquant.style.color = 'orange';
+        } else {}
+    }
+    // inputFirstNameTag.onkeyup(function limitlength(obj, length) {
+    //     let maxlength = length
+    //     if (obj.value.length > maxlength)
+    //         obj.value = obj.value.substring(0, maxlength)
+    // })
 })();
+
+
 // Methode Post Permet d'envoyer les données saisies dans le formulaire.
