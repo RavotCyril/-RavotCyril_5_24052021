@@ -56,8 +56,8 @@
     formContactTag.id = "Contact";
     formContactTag.setAttribute("method", "post");
     formContactTag.setAttribute("action", "confirmation-de-commande.html");
-    formContactTag.className = "col-4 mx-auto text-center";
-    inputFirstNameTag.className = "Largeur-Input my-4 mx-2";
+    formContactTag.className = "col-sm-4 col-md-6 mx-auto text-center";
+    inputFirstNameTag.className = "Largeur-Input col-12 my-4 mx-auto";
     inputFirstNameTag.id = "First-Name";
     inputFirstNameTag.placeholder = "Entrer un Prénom";
     inputFirstNameTag.setAttribute("required", "");
@@ -76,11 +76,12 @@
     sectionTag.appendChild(pTag);
     sectionTag.appendChild(formContactTag);
     formContactTag.appendChild(inputFirstNameTag);
+    formContactTag.appendChild(prenomManquant);
     inputFirstNameTag.appendChild(labelFirstName);
 
     // Formulaire Nom
 
-    inputLastNameTag.className = "Largeur-Input my-4 mx-2";
+    inputLastNameTag.className = "Largeur-Input col-12 my-4 mx-auto";
     inputLastNameTag.id = "LastName";
     inputLastNameTag.placeholder = "Entrer un Nom";
     inputLastNameTag.setAttribute("required", "");
@@ -93,7 +94,7 @@
 
     // Formulaire Adresse
 
-    inputAdresseTag.className = "Largeur-Input my-4 mx-2";
+    inputAdresseTag.className = "Largeur-Input col-12 my-4 mx-auto";
     inputAdresseTag.id = "Adresse";
     inputAdresseTag.placeholder = "Entrer une Adresse";
     inputAdresseTag.setAttribute("required", "");
@@ -105,7 +106,7 @@
 
     // Formulaire Ville
 
-    inputCityTag.className = "Largeur-Input my-4 mx-2";
+    inputCityTag.className = "Largeur-Input col-12 my-4 mx-auto";
     inputCityTag.id = "Ville";
     inputCityTag.placeholder = "Entrer Une Ville";
     inputCityTag.setAttribute("required", "");
@@ -117,7 +118,7 @@
 
     // Formulaire  Email
 
-    inputEmailTag.className = "Largeur-Input my-4 mx-2";
+    inputEmailTag.className = "Largeur-Input col-12 my-4 mx-auto";
     inputEmailTag.id = "Email";
     inputEmailTag.placeholder = "Entrer un email";
     inputEmailTag.setAttribute("required", "");
@@ -146,7 +147,7 @@
     prenomManquant.id = "PrenomManquant";
     let prenomValid = /^[a-zA-ZéèîïÉÈÎÏ][a-zéèêàçîï]+([-'\s][a-zA-ZéèîïÉÈÎÏ][a-zéèêàçîï]+)?$/;
 
-    formContactTag.addEventListener('click', validation);
+    inputButtonValidationCommandeTag.addEventListener('click', validation);
 
     function validation(event) {
         //Si le champ est vide
@@ -158,8 +159,12 @@
         } else if (prenomValid.test(inputFirstNameTag.value) == false) {
             event.preventDefault();
             prenomManquant.textContent = 'Format incorrect';
-            prenomManquant.style.color = 'orange';
-        } else {}
+            prenomManquant.style.color = 'orange';;
+        } else if (inputLastNameTag.validity.valueMissing) {
+            event.preventDefault();
+            prenomManquant.textContent = 'Nom manquant';
+            prenomManquant.style.color = 'red';
+        }
     }
     // inputFirstNameTag.onkeyup(function limitlength(obj, length) {
     //     let maxlength = length
