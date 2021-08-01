@@ -88,6 +88,10 @@
     }
     /*Css -> Page-Produit Figcaption-Description */
     
+    .Input-Page-Panier::placeholder {
+        color: red;
+    }
+    
     .Produit-Figcaption-Description {
         font-size: 1.2rem;
         margin: 5px;
