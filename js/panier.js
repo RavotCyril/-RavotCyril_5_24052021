@@ -17,12 +17,12 @@
     let formContactTag = document.createElement("form");
     let inputFirstNameTag = document.createElement("input");
     let firstNameValid = document.createElement("span");
-    let errorFirstNameMiss = document.createElement("span");
+    firstNameValid.className = 'inputFirstNameTag-container';
     let labelFirstName = document.createElement("label");
 
     let inputLastNameTag = document.createElement("input");
     let lastNameValid = document.createElement("span");
-    let errorLastNameMiss = document.createElement("span");
+    lastNameValid.className = 'inputLastNameTag-container';
     let labelLastName = document.createElement("label");
 
     let inputAdresseTag = document.createElement("input");
@@ -88,7 +88,7 @@
     formContactTag.appendChild(labelFirstName);
     formContactTag.appendChild(inputFirstNameTag);
     formContactTag.appendChild(firstNameValid);
-    formContactTag.appendChild(errorFirstNameMiss);
+    //formContactTag.appendChild(errorFirstNameMiss);
 
     // Formulaire Nom
 
@@ -102,7 +102,6 @@
     formContactTag.appendChild(labelLastName);
     formContactTag.appendChild(inputLastNameTag);
     formContactTag.appendChild(lastNameValid);
-    formContactTag.appendChild(errorLastNameMiss);
 
     // Formulaire Adresse
 
@@ -156,17 +155,18 @@
     formContactTag.appendChild(inputButtonValidationCommandeTag);
 
     const inputs = document.querySelectorAll('input[type="text"], input[type="email"]');
+    console.log(inputs);
 
     const errorDisplay = (tag, message, valid) => {
         const container = document.querySelector("." + tag + "-container");
-        const span = document.querySelector("." + tag + "-container > span");
+        //const span = document.querySelector("." + tag + "-container > span");
 
         if (!valid) {
             container.classList.add("error");
-            span.textContent = message;
+            container.textContent = message;
         } else {
             container.classList.remove("error");
-            span.textContent = message;
+            container.textContent = message;
         }
     };
     const inputFirstNameTagChecker = (value) => {
@@ -235,22 +235,22 @@
 
     inputs.forEach((input) => {
         input.addEventListener("input", (e) => {
-
+            console.log(e.target.id);
             switch (e.target.id) {
 
-                case "inputFirstNameTag":
+                case "First-Name":
                     inputFirstNameTagChecker(e.target.value);
                     break;
-                case "inputLastNameTag":
+                case "LastName":
                     inputLastNameTagChecker(e.target.value);
                     break;
-                case "InputAdresseTag":
+                case "Adresse":
                     inputAdresseTagChecker(e.target.value);
                     break;
-                case "inputCityTag":
+                case "Ville":
                     inputCityTagChecker(e.target.value);
                     break;
-                case "inputEmailTag":
+                case "Email":
                     inputEmailTagChecker(e.target.value);
                     break;
             }
@@ -277,8 +277,22 @@
             alert("veuillez remplir correctement les champs");
         }
     });
-
+    // Permet de créer la récupération et l'affichage des produits ajoutés au panier via la page produit.  Clef / Valeur. set Item.
+    // Inversement de la syntaxe par rapport à la page produit pour la lecture, 
+    // la syntaxe JSON.parse() reforme l’objet à partir de la chaîne linéarise et l'affiche sur la page.
+    //  Transforme le Json en objet java Script.
 })();
+
+// articleTag.textContent = localStorage.cart
+
+// let cart = localStorage.getItem('cart');
+//         Storage.prototype.getObject = function(cart) {
+//             let value = this.getItem(cart);
+//             return value && JSON.parse(value);
+//         }
+//         console.log('cart: ', JSON.parse(cart));
+
+// Permet de créer la méthode Post. Pour envoyer les données du formulaire à la page Confirmation de commande.
 
 // let json = {
 //     json: JSON.stringify({

@@ -146,6 +146,10 @@ function afficherArticle(sectionTag, article) {
     bouttonTag.appendChild(inputTag);
 
     // Permet de créer la récupération de L'iD selectionné sur la page catalogue et la quantité dans le panier.  Clef / Valeur. Get Item.
+    // Pour mémoriser des valeurs complexes et l'afficher, on utilisera le format JSON (JavaScript Objet Notation)  JSON.Parse.
+    // on sérialise (ou linéarise)
+    //  l’objet avec la syntaxe JSON.stringify().Cette opération transforme l’objet en JSON (une chaîne de caractères dans le panier.)
+
     inputTag.addEventListener("click", function() {
         console.log(article._id, "1");
         let cart = JSON.parse(localStorage.getItem("cart"));
@@ -169,5 +173,6 @@ function afficherArticle(sectionTag, article) {
             cart[article._id] = "1";
             localStorage.setItem("cart", JSON.stringify(cart));
         }
+        données = cart
     });
 }
