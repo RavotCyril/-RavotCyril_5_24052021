@@ -85,10 +85,10 @@
     inputFirstNameTag.type = "text";
     labelFirstName.htmlFor = "First-Name";
     labelFirstName.name = "First-Name";
+    formContactTag.appendChild(labelFirstName);
+    formContactTag.appendChild(inputFirstNameTag);
     formContactTag.appendChild(firstNameValid);
     formContactTag.appendChild(errorFirstNameMiss);
-    formContactTag.appendChild(inputFirstNameTag);
-    formContactTag.appendChild(labelFirstName);
 
     // Formulaire Nom
 
@@ -99,10 +99,10 @@
     inputLastNameTag.name = "LastName";
     inputLastNameTag.type = "text";
     labelLastName.htmlFor = "LastName";
+    formContactTag.appendChild(labelLastName);
+    formContactTag.appendChild(inputLastNameTag);
     formContactTag.appendChild(lastNameValid);
     formContactTag.appendChild(errorLastNameMiss);
-    formContactTag.appendChild(inputLastNameTag);
-    formContactTag.appendChild(labelLastName);
 
     // Formulaire Adresse
 
@@ -113,10 +113,10 @@
     inputAdresseTag.name = "Adresse";
     inputAdresseTag.type = "text";
     labelAdress.htmlFor = "Adresse";
+    formContactTag.appendChild(labelAdress);
+    formContactTag.appendChild(inputAdresseTag);
     formContactTag.appendChild(adresseValid);
     formContactTag.appendChild(errorAdresseMiss);
-    formContactTag.appendChild(inputAdresseTag);
-    formContactTag.appendChild(labelAdress);
 
     // Formulaire Ville
 
@@ -127,10 +127,10 @@
     inputCityTag.name = "Ville";
     inputCityTag.type = "text";
     labelCity.htmlFor = "Ville";
+    formContactTag.appendChild(labelCity);
+    formContactTag.appendChild(inputCityTag);
     formContactTag.appendChild(cityValid);
     formContactTag.appendChild(errorCityMiss);
-    formContactTag.appendChild(inputCityTag);
-    formContactTag.appendChild(labelCity);
 
     // Formulaire  Email
 
@@ -141,128 +141,125 @@
     inputEmailTag.name = "Email";
     inputEmailTag.type = "Email";
     labelEmail.htmlFor = "Email";
+    formContactTag.appendChild(labelEmail);
+    formContactTag.appendChild(inputEmailTag);
     formContactTag.appendChild(emailValid);
     formContactTag.appendChild(errorEmailMiss);
-    formContactTag.appendChild(inputEmailTag);
-    formContactTag.appendChild(labelEmail);
 
     // Page Panier -> Boutton Validation Commande
 
     inputButtonValidationCommandeTag.id = "Validation Commande";
     inputButtonValidationCommandeTag.className = "Boutton-Largeur-Input my-5 mx-3";
     inputButtonValidationCommandeTag.setAttribute("required", "");
-    inputButtonValidationCommandeTag.setAttribute("maxlength", "20");
     inputButtonValidationCommandeTag.type = "submit";
     inputButtonValidationCommandeTag.value = "Validation Commande";
     formContactTag.appendChild(inputButtonValidationCommandeTag);
 
+    const inputs = document.querySelectorAll('input[type="text"], input[type="email"]');
 
-    /* Création des Variable qui permettent de vérifier les inputs
-    Fonction qui permet de valider les données saisies dans le formulaire selon le type de données demandés. 
-   Prénom, Nom, Code postal, Mail ... 
-   */
+    const errorDisplay = (tag, message, valid) => {
+        const container = document.querySelector("." + tag + "-container");
+        const span = document.querySelector("." + tag + "-container > span");
 
-    //  formContactTag.addEventListener('click', validation);
-    // function validation(event) {
-    //     let myRegex = /^[a-zA-ZéèîïÉÈÎÏ][a-zéèêàçîï]+([-'\s][a-zA-ZéèîïÉÈÎÏ][a-zéèêàçîï]+)?$/;
+        if (!valid) {
+            container.classList.add("error");
+            span.textContent = message;
+        } else {
+            container.classList.remove("error");
+            span.textContent = message;
+        }
+    };
+    const inputFirstNameTagChecker = (value) => {
+        if (value.length > 0 && (value.length < 3 || value.length > 20)) {
+            errorDisplay("inputFirstNameTag", "Prénom non validé le prénom doit faire entre 3 et 20 caractères");
+            inputFirstNameTag = null;
+        } else if (!value.match(/^[a-zA-Z0-9_.-]*$/)) {
+            errorDisplay("inputFirstNameTag", "Le prénom ne doit pas contenir de caractères spéciaux");
+            inputFirstNameTag = null;
+        } else {
+            errorDisplay("inputFirstNameTag", "", true);
+            inputFirstNameTag = value;
+        }
+    }
+    const inputLastNameTagChecker = (value) => {
+        if (value.length > 0 && (value.length < 3 || value.length > 20)) {
+            errorDisplay("inputLastNameTag", "Prénom non validé le prénom doit faire entre 3 et 20 caractères");
+            inputLastNameTag = null;
+        } else if (!value.match(/^[a-zA-Z0-9_.-]*$/)) {
+            errorDisplay("inputFirstNameTag", "Le prénom ne doit pas contenir de caractères spéciaux");
+            inputLastNameTag = null;
+        } else {
+            errorDisplay("inputLastNameTag", "", true);
+            inputLastNameTag = value;
+        }
+    }
+    const inputAdresseTagChecker = (value) => {
+        if (value.length > 0 && (value.length < 3 || value.length > 20)) {
+            errorDisplay("inputAdresseTag", "Prénom non validé le prénom doit faire entre 3 et 20 caractères");
+            inputAdresseTag = null;
+        } else if (!value.match(/^[a-zA-Z0-9_.-]*$/)) {
+            errorDisplay(
+                "inputAdresseTag", "Le prénom ne doit pas contenir de caractères spéciaux");
+            inputAdresseTag = null;
+        } else {
+            errorDisplay("inputAdresseTag", "", true);
+            inputAdresseTag = value;
+        }
+    }
 
-    //     //Si le champ est remplis et validé avec les données requis.
-    //     if (inputFirstNameTag.validity.valid) {
-    //         firstNameValid.textContent = 'Prénom Ok';
-    //         firstNameValid.style.color = 'green';
+    const inputCityTagChecker = (value) => {
+        if (value.length > 0 && (value.length < 3 || value.length > 20)) {
+            errorDisplay("inputCityTag", "Prénom non validé le prénom doit faire entre 3 et 20 caractères");
+            inputCityTag = null;
+        } else if (!value.match(/^[a-zA-Z0-9_.-]*$/)) {
+            errorDisplay("inputCityTag", "Le prénom ne doit pas contenir de caractères spéciaux");
+            inputCityTag = null;
+        } else {
+            errorDisplay("inputCityTag", "", true);
+            inputCityTag = value;
+        }
+    }
 
-    //         //Sinon le champ est complété mais avec des mauvais caractères.
+    const inputEmailTagChecker = (value) => {
+        if (!value.match(/^[\w_-]+@[\w-]+\.[a-z]{2,4}$/i)) {
+            errorDisplay("inputEmailTag", "Le mail n'est pas valide");
+            inputEmailTag = null;
+        } else {
+            errorDisplay("inputEmailTag", "", true);
+            inputEmailTag = value;
+        }
+    };
+    /* Avec l'input du bouton Validation Commande faire une fonction 
+               Qui contrôle si tout les inputs (champs) du formulaire ont bien été validés partout 
+               Pour ensuite pouvoir cliquer sur le bouton validation Commande et envoyer le formulaire.*/
 
-    //     } else if (myRegex.test(inputFirstNameTag.value) == false) {
+    inputs.forEach((input) => {
+        input.addEventListener("input", (e) => {
 
-    //         errorFirstNameMiss.textContent = 'Format Incorrect';
-    //         errorFirstNameMiss.style.color = 'orange';
-    //         event.preventDefault();
+            switch (e.target.id) {
 
-    //     }
-    //     //Si le champ est remplis et validé avec les données requis.
-    //     if (inputLastNameTag.validity.valid) {
-
-    //         lastNameValid.textContent = 'Nom Ok';
-    //         lastNameValid.style.color = 'green';
-
-    //         //Sinon le champ est complété mais avec des mauvais caractères.
-
-    //     } else if (myRegex.test(inputLastNameTag.value) == false) {
-
-    //         errorLastNameMiss.textContent = 'Format Incorrect';
-    //         errorLastNameMiss.style.color = 'orange';
-    //         event.preventDefault();
-
-    //     }
-    //     //Si le champ est remplis et validé avec les données requis.
-    //     if (inputAdresseTag.validity.valid) {
-
-    //         adresseValid.textContent = 'Adresse Ok';
-    //         adresseValid.style.color = 'green';
-
-    //         //Sinon le champ est complété mais avec des mauvais caractères.
-    //     } else if (myRegex.test(inputAdresseTag.value) == false) {
-
-    //         errorAdresseMiss.textContent = 'Format Incorrect';
-    //         errorAdresseMiss.style.color = 'orange';
-    //         event.preventDefault();
-
-    //     }
-    //     //Si le champ est remplis et validé avec les données requis.
-    //     if (inputCityTag.validity.valid) {
-
-    //         cityValid.textContent = 'Ville Ok';
-    //         cityValid.style.color = 'green';
-
-    //         //Sinon le champ est complété mais avec des mauvais caractères.
-
-    //     } else if (myRegex.test(inputAdresseTag.value) == false) {
-
-    //         errorCityMiss.textContent = 'Format Incorrect';
-    //         errorCityMiss.style.color = 'orange';
-    //         event.preventDefault();
-
-    //     }
-    //     // Email Si le champ est remplis avec des lettres ou chiffres avant l'@ et après l'@ 
-    //     // Et suivis d'un point et de 2 à 4 caractères comme .fr  ou .com
-    //     // Si le mail n'est pas validé  Erreur d'affichage ( Format incorrecte )
-    //     // Autre Error d'affichage si le champ email est vide (Vrai) 
-
-    //     const emailChecker = (value) => {
-    //         if (!value.match(/^[\w_-]+@[\w-]+\.[a-z]{2,4}$/i)) {
-    //             errorDisplay("email", "Le mail n'est pas valide");
-    //             email = null;
-    //         } else {
-    //             errorDisplay("email", "", true);
-    //             email = value;
-    //         }
-
-    //         //Si le champ est remplis et validé avec les données requis.
-    //         if (emailChecker.test(inputAdresseTag.value) == true) {
-
-    //             emailValid.textContent = 'Email ok';
-    //             emailValid.style.color = 'green';
-    //             emailValid.style.display = 'flex';
-    //             emailValid.style.justifyContent = 'center';
-
-    //             //Sinon le champ est complété mais avec des mauvais caractères.
-    //         } else if (emailChecker.test(inputAdresseTag.value) == false) {
-
-    //             errorEmailMiss.textContent = 'Format Incorrect';
-    //             errorEmailMiss.style.color = 'orange';
-    //             errorEmailMiss.style.display = 'flex';
-    //             errorEmailMiss.style.justifyContent = 'center';
-    //             event.preventDefault();
-    //         }
-    //     };
-    const inputs = document.querySelectorAll(
-        'input[type="text"], input[type="password"]'
-    );
+                case "inputFirstNameTag":
+                    inputFirstNameTagChecker(e.target.value);
+                    break;
+                case "inputLastNameTag":
+                    inputLastNameTagChecker(e.target.value);
+                    break;
+                case "InputAdresseTag":
+                    inputAdresseTagChecker(e.target.value);
+                    break;
+                case "inputCityTag":
+                    inputCityTagChecker(e.target.value);
+                    break;
+                case "inputEmailTag":
+                    inputEmailTagChecker(e.target.value);
+                    break;
+            }
+        });
+    });
     formContactTag.addEventListener("submit", (e) => {
         e.preventDefault();
 
-        if (inputFirstNameTag && inputLastNameTag && inputAdresseTag && inputCityTag && inputEmailTag && confirmPass) {
+        if (inputFirstNameTag && inputLastNameTag && inputAdresseTag && inputCityTag && inputEmailTag) {
             const data = {
                 inputFirstNameTag,
                 inputLastNameTag,
@@ -274,60 +271,39 @@
 
             inputs.forEach((input) => (input.value = ""));
 
-            inputFirstNameTag = null;
-            inputLastNameTag = null;
-            inputAdresseTag = null;
-            inputCityTag = null;
-            inputEmailTag = null;
 
             alert("Inscription validée !");
         } else {
             alert("veuillez remplir correctement les champs");
         }
     });
-    /* Avec l'input du bouton Validation Commande faire une fonction 
-    Qui contrôle si tout les inputs (champs) du formulaire ont bien été validés partout 
-    Pour ensuite pouvoir cliquer sur le bouton validation Commande et envoyer le formulaire.*/
 
-    inputs.forEach((input) => {
-        input.addEventListener("input", (e) => {
-            switch (e.target.id) {
-                case "prénom":
-                    inputFirstNameTag(e.target.value);
-                    break;
-                case "Nom":
-                    inputLastNameTag(e.target.value);
-                    break;
-                case "Adresse":
-                    inputAdresseTag(e.target.value);
-                    break;
-                case "Ville":
-                    inputCityTag(e.target.value);
-                    break;
-                case "email":
-                    emailChecker(e.target.value);
-                    break;
-                case "confirm":
-                    inputButtonValidationCommandeTag(e.target.value);
-                    break;
-                default:
-                    nul;
-            }
-        });
-    });
 })();
 
-// let payload = {
-//     a: 1,
-//     b: 2
+// let json = {
+//     json: JSON.stringify({
+//         a: 1,
+//         b: 2
+//     }),
+//     delay: 3
 // };
-
-// let data = new FormData();
-// data.append("json", JSON.stringify(payload));
-
-// fetch("/echo/json/", {
-//         method: "POST",
-//         body: data
+// fetch('/echo/json/', {
+//         method: 'post',
+//         headers: {
+//             'Accept': 'application/json, text/plain, */*',
+//             'Content-Type': 'application/json'
+//         },
+//         body: 'json=' + encodeURIComponent(JSON.stringify(json.json)) + '&delay=' + json.delay
 //     })
-//     .then(function validation(res) { return res.json(); })
-//     .then(function validation(data) { alert(JSON.stringify(data)) })
+//     .then(function(response) {
+//         return response.json();
+//     })
+//     .then(function(result) {
+//         alert(result);
+//     })
+//     .catch(function(error) {
+//         console.log('Request failed', error);
+//     });
+
+//             errorEmailMiss.style.display = 'flex';
+//             errorEmailMiss.style.justifyContent = 'center';
