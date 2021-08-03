@@ -86,11 +86,21 @@
         object-fit: cover;
         object-position: center;
     }
-    /*Css -> Page-Produit Figcaption-Description */
+    /* Classe des Errors Inputs*/
     
-    .Input-Page-Panier::placeholder {
+    .ClassErrorInputFirstNameTag,
+    .ClassErrorInputLastNameTag,
+    .ClassErrorInputAdresseTag,
+    .ClassErrorInputCityTag,
+    .ClassErrorInputMailTag {
         color: red;
     }
+    /* Classe des Valids Inputs*/
+    
+    input:valid {
+        border: 1px solid green
+    }
+    /*Css -> Page-Produit Figcaption-Description */
     
     .Produit-Figcaption-Description {
         font-size: 1.2rem;

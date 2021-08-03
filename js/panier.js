@@ -17,27 +17,22 @@
     let formContactTag = document.createElement("form");
     let inputFirstNameTag = document.createElement("input");
     let firstNameValid = document.createElement("span");
-    firstNameValid.className = 'inputFirstNameTag-container';
     let labelFirstName = document.createElement("label");
 
     let inputLastNameTag = document.createElement("input");
     let lastNameValid = document.createElement("span");
-    lastNameValid.className = 'inputLastNameTag-container';
     let labelLastName = document.createElement("label");
 
     let inputAdresseTag = document.createElement("input");
     let adresseValid = document.createElement("span");
-    let errorAdresseMiss = document.createElement("span");
     let labelAdress = document.createElement("label");
 
     let inputCityTag = document.createElement("input");
     let cityValid = document.createElement("span");
-    let errorCityMiss = document.createElement("span");
     let labelCity = document.createElement("label");
 
     let inputEmailTag = document.createElement("input");
     let emailValid = document.createElement("span");
-    let errorEmailMiss = document.createElement("span");
     let labelEmail = document.createElement("label");
 
     let inputButtonValidationCommandeTag = document.createElement("input");
@@ -45,6 +40,11 @@
 
     // Appel des classes- Boostrap- TextContent- Id des balises html qui construise le squelette de la page.
 
+    firstNameValid.className = 'ClassErrorInputFirstNameTag';
+    lastNameValid.className = 'ClassErrorInputLastNameTag';
+    adresseValid.className = 'ClassErrorInputAdresseTag';
+    cityValid.className = 'ClassErrorInputCityTag';
+    emailValid.className = 'ClassErrorInputMailTag';
     newMain.className = "container-fluid";
     b.appendChild(newMain);
     sectionTag.className = "row";
@@ -88,7 +88,6 @@
     formContactTag.appendChild(labelFirstName);
     formContactTag.appendChild(inputFirstNameTag);
     formContactTag.appendChild(firstNameValid);
-    //formContactTag.appendChild(errorFirstNameMiss);
 
     // Formulaire Nom
 
@@ -115,7 +114,6 @@
     formContactTag.appendChild(labelAdress);
     formContactTag.appendChild(inputAdresseTag);
     formContactTag.appendChild(adresseValid);
-    formContactTag.appendChild(errorAdresseMiss);
 
     // Formulaire Ville
 
@@ -129,7 +127,6 @@
     formContactTag.appendChild(labelCity);
     formContactTag.appendChild(inputCityTag);
     formContactTag.appendChild(cityValid);
-    formContactTag.appendChild(errorCityMiss);
 
     // Formulaire  Email
 
@@ -143,7 +140,6 @@
     formContactTag.appendChild(labelEmail);
     formContactTag.appendChild(inputEmailTag);
     formContactTag.appendChild(emailValid);
-    formContactTag.appendChild(errorEmailMiss);
 
     // Page Panier -> Boutton Validation Commande
 
@@ -158,8 +154,7 @@
     console.log(inputs);
 
     const errorDisplay = (tag, message, valid) => {
-        const container = document.querySelector("." + tag + "-container");
-        //const span = document.querySelector("." + tag + "-container > span");
+        const container = document.querySelector("." + tag);
 
         if (!valid) {
             container.classList.add("error");
@@ -169,66 +164,68 @@
             container.textContent = message;
         }
     };
+
     const inputFirstNameTagChecker = (value) => {
+
         if (value.length > 0 && (value.length < 3 || value.length > 20)) {
-            errorDisplay("inputFirstNameTag", "Prénom non validé le prénom doit faire entre 3 et 20 caractères");
+            errorDisplay("ClassErrorInputFirstNameTag", "Prénom non validé le prénom doit faire entre 3 et 20 caractères");
             inputFirstNameTag = null;
         } else if (!value.match(/^[a-zA-Z0-9_.-]*$/)) {
-            errorDisplay("inputFirstNameTag", "Le prénom ne doit pas contenir de caractères spéciaux");
+            errorDisplay("ClassErrorInputFirstNameTag", "Le prénom ne doit pas contenir de caractères spéciaux");
             inputFirstNameTag = null;
         } else {
-            errorDisplay("inputFirstNameTag", "", true);
+            errorDisplay("ClassErrorInputFirstNameTag", "", true);
             inputFirstNameTag = value;
         }
-    }
+    };
     const inputLastNameTagChecker = (value) => {
         if (value.length > 0 && (value.length < 3 || value.length > 20)) {
-            errorDisplay("inputLastNameTag", "Prénom non validé le prénom doit faire entre 3 et 20 caractères");
+            errorDisplay("ClassErrorInputLastNameTag", "Nom non validé le nom doit faire entre 3 et 20 caractères");
             inputLastNameTag = null;
         } else if (!value.match(/^[a-zA-Z0-9_.-]*$/)) {
-            errorDisplay("inputFirstNameTag", "Le prénom ne doit pas contenir de caractères spéciaux");
+            errorDisplay("ClassErrorInputLastNameTag", "Le nom ne doit pas contenir de caractères spéciaux");
             inputLastNameTag = null;
         } else {
-            errorDisplay("inputLastNameTag", "", true);
+            errorDisplay("ClassErrorInputLastNameTag", "", true);
             inputLastNameTag = value;
         }
     }
     const inputAdresseTagChecker = (value) => {
-        if (value.length > 0 && (value.length < 3 || value.length > 20)) {
-            errorDisplay("inputAdresseTag", "Prénom non validé le prénom doit faire entre 3 et 20 caractères");
+        if (value.length > 0 && (value.length < 5 || value.length > 30)) {
+            errorDisplay("ClassErrorInputAdresseTag", "Adresse non validé l'adresse doit faire entre 5 et 30 caractères");
             inputAdresseTag = null;
         } else if (!value.match(/^[a-zA-Z0-9_.-]*$/)) {
-            errorDisplay(
-                "inputAdresseTag", "Le prénom ne doit pas contenir de caractères spéciaux");
+            errorDisplay("ClassErrorInputAdresseTag", "L'adresse doit posséder des espaces ");
             inputAdresseTag = null;
         } else {
-            errorDisplay("inputAdresseTag", "", true);
+            errorDisplay("ClassErrorInputAdresseTag", "", true);
             inputAdresseTag = value;
         }
     }
 
     const inputCityTagChecker = (value) => {
         if (value.length > 0 && (value.length < 3 || value.length > 20)) {
-            errorDisplay("inputCityTag", "Prénom non validé le prénom doit faire entre 3 et 20 caractères");
+            errorDisplay("ClassErrorInputCityTag", "Ville non validé la ville doit faire entre 3 et 20 caractères");
             inputCityTag = null;
         } else if (!value.match(/^[a-zA-Z0-9_.-]*$/)) {
-            errorDisplay("inputCityTag", "Le prénom ne doit pas contenir de caractères spéciaux");
+            errorDisplay("ClassErrorInputCityTag", "La ville ne doit pas contenir de caractères spéciaux");
             inputCityTag = null;
         } else {
-            errorDisplay("inputCityTag", "", true);
+            errorDisplay("ClassErrorInputCityTag", "", true);
             inputCityTag = value;
         }
     }
 
     const inputEmailTagChecker = (value) => {
         if (!value.match(/^[\w_-]+@[\w-]+\.[a-z]{2,4}$/i)) {
-            errorDisplay("inputEmailTag", "Le mail n'est pas valide");
+            errorDisplay("ClassErrorInputMailTag", "Le mail n'est pas validé il manque l'un des caractères indspensable suivant: @ ou .fr ou le .com");
             inputEmailTag = null;
         } else {
-            errorDisplay("inputEmailTag", "", true);
+            errorDisplay("ClassErrorInputMailTag", "", true);
             inputEmailTag = value;
         }
     };
+
     /* Avec l'input du bouton Validation Commande faire une fonction 
                Qui contrôle si tout les inputs (champs) du formulaire ont bien été validés partout 
                Pour ensuite pouvoir cliquer sur le bouton validation Commande et envoyer le formulaire.*/
@@ -318,6 +315,3 @@
 //     .catch(function(error) {
 //         console.log('Request failed', error);
 //     });
-
-//             errorEmailMiss.style.display = 'flex';
-//             errorEmailMiss.style.justifyContent = 'center';
