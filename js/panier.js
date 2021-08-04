@@ -247,7 +247,7 @@
     }
 
     const inputEmailTagChecker = (value) => {
-        if (!value.match(/^[\w_-]+@[\w-]+\.[a-z]{2,4}$/i)) {
+        if (!value.match(/[a-z]+@[\w-]+\.[a-z]{2,4}$/i)) {
             errorTag("ClassErrorInputMailTag", "Le mail n'est pas validé il manque l'un des caractères indspensable suivant: @ ou .fr ou le .com");
             inputEmailTag.style.outline = "1px solid red";
             inputEmailTag.style.border = "1px solid red";
