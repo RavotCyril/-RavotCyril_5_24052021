@@ -87,19 +87,6 @@
         object-position: center;
     }
     /* Classe des Errors Inputs*/
-    
-    .ClassErrorInputFirstNameTag,
-    .ClassErrorInputLastNameTag,
-    .ClassErrorInputAdresseTag,
-    .ClassErrorInputCityTag,
-    .ClassErrorInputMailTag {
-        color: red;
-    }
-    /* Classe des Valids Inputs*/
-    
-    input:valid {
-        border: 1px solid green
-    }
     /*Css -> Page-Produit Figcaption-Description */
     
     .Produit-Figcaption-Description {

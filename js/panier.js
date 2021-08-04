@@ -153,10 +153,10 @@
     const inputs = document.querySelectorAll('input[type="text"], input[type="email"]');
     console.log(inputs);
 
-    const errorDisplay = (tag, message, valid) => {
+    const errorTag = (tag, message, invalid) => {
         const container = document.querySelector("." + tag);
 
-        if (!valid) {
+        if (invalid) {
             container.classList.add("error");
             container.textContent = message;
         } else {
@@ -164,64 +164,97 @@
             container.textContent = message;
         }
     };
+    const validTag = (tag, message, valid) => {
+        const container = document.querySelector("." + tag);
 
+        if (valid) {
+            container.classList.add("valid");
+            container.textContent = message;
+        } else {
+            container.classList.remove("invalid");
+            container.textContent = message;
+        }
+    };
     const inputFirstNameTagChecker = (value) => {
-
         if (value.length > 0 && (value.length < 3 || value.length > 20)) {
-            errorDisplay("ClassErrorInputFirstNameTag", "Prénom non validé le prénom doit faire entre 3 et 20 caractères");
-            inputFirstNameTag = null;
+            errorTag("ClassErrorInputFirstNameTag", "Prénom non validé le prénom doit faire entre 3 et 20 caractères");
+            inputFirstNameTag.style.outline = "1px solid red";
+            inputFirstNameTag.style.border = "1px solid red";
+            firstNameValid.style.color = "red";
+            // firstNameValid.style.border = "-internal-light-dark(rgb(118, 118, 118)"; validity.valid	
         } else if (!value.match(/^[a-zA-Z0-9_.-]*$/)) {
-            errorDisplay("ClassErrorInputFirstNameTag", "Le prénom ne doit pas contenir de caractères spéciaux");
+            errorTag("ClassErrorInputFirstNameTag", "Le prénom ne doit pas contenir de caractères spéciaux");
             inputFirstNameTag = null;
         } else {
-            errorDisplay("ClassErrorInputFirstNameTag", "", true);
+            validTag("ClassErrorInputFirstNameTag", "Prénom validé", true);
+            inputFirstNameTag.style.outline = "1px solid green";
+            inputFirstNameTag.style.border = "1px solid green";
+            firstNameValid.style.color = "green";
             inputFirstNameTag = value;
         }
     };
     const inputLastNameTagChecker = (value) => {
         if (value.length > 0 && (value.length < 3 || value.length > 20)) {
-            errorDisplay("ClassErrorInputLastNameTag", "Nom non validé le nom doit faire entre 3 et 20 caractères");
-            inputLastNameTag = null;
+            errorTag("ClassErrorInputLastNameTag", "Nom non validé le nom doit faire entre 3 et 20 caractères");
+            inputLastNameTag.style.outline = "1px solid red";
+            inputLastNameTag.style.border = "1px solid red";
+            lastNameValid.style.color = "red";
         } else if (!value.match(/^[a-zA-Z0-9_.-]*$/)) {
-            errorDisplay("ClassErrorInputLastNameTag", "Le nom ne doit pas contenir de caractères spéciaux");
+            errorTag("ClassErrorInputLastNameTag", "Le nom ne doit pas contenir de caractères spéciaux");
             inputLastNameTag = null;
         } else {
-            errorDisplay("ClassErrorInputLastNameTag", "", true);
+            validTag("ClassErrorInputLastNameTag", "Nom validé", true);
+            inputLastNameTag.style.outline = "1px solid green";
+            inputLastNameTag.style.border = "1px solid green";
+            lastNameValid.style.color = "green";
             inputLastNameTag = value;
         }
     }
     const inputAdresseTagChecker = (value) => {
         if (value.length > 0 && (value.length < 5 || value.length > 30)) {
-            errorDisplay("ClassErrorInputAdresseTag", "Adresse non validé l'adresse doit faire entre 5 et 30 caractères");
-            inputAdresseTag = null;
-        } else if (!value.match(/^[a-zA-Z0-9_.-]*$/)) {
-            errorDisplay("ClassErrorInputAdresseTag", "L'adresse doit posséder des espaces ");
-            inputAdresseTag = null;
+            errorTag("ClassErrorInputAdresseTag", "Adresse non validé l'adresse doit faire entre 5 et 30 caractères");
+            inputAdresseTag.style.outline = "1px solid red";
+            inputAdresseTag.style.border = "1px solid red";
+            adresseValid.style.color = "red";
         } else {
-            errorDisplay("ClassErrorInputAdresseTag", "", true);
+            validTag("ClassErrorInputAdresseTag", "Adresse validé", true);
+            inputAdresseTag.style.outline = "1px solid green";
+            inputAdresseTag.style.border = "1px solid green";
+            adresseValid.style.color = "green";
             inputAdresseTag = value;
+
         }
     }
 
     const inputCityTagChecker = (value) => {
         if (value.length > 0 && (value.length < 3 || value.length > 20)) {
-            errorDisplay("ClassErrorInputCityTag", "Ville non validé la ville doit faire entre 3 et 20 caractères");
-            inputCityTag = null;
+            errorTag("ClassErrorInputCityTag", "Ville non validé la ville doit faire entre 3 et 20 caractères");
+            inputCityTag.style.outline = "1px solid red";
+            inputCityTag.style.border = "1px solid red";
+            cityValid.style.color = "red";
         } else if (!value.match(/^[a-zA-Z0-9_.-]*$/)) {
-            errorDisplay("ClassErrorInputCityTag", "La ville ne doit pas contenir de caractères spéciaux");
+            errorTag("ClassErrorInputCityTag", "La ville ne doit pas contenir de caractères spéciaux");
             inputCityTag = null;
         } else {
-            errorDisplay("ClassErrorInputCityTag", "", true);
+            validTag("ClassErrorInputCityTag", "Ville validé", true);
+            inputCityTag.style.outline = "1px solid green";
+            inputCityTag.style.border = "1px solid green";
+            cityValid.style.color = "green";
             inputCityTag = value;
         }
     }
 
     const inputEmailTagChecker = (value) => {
         if (!value.match(/^[\w_-]+@[\w-]+\.[a-z]{2,4}$/i)) {
-            errorDisplay("ClassErrorInputMailTag", "Le mail n'est pas validé il manque l'un des caractères indspensable suivant: @ ou .fr ou le .com");
-            inputEmailTag = null;
+            errorTag("ClassErrorInputMailTag", "Le mail n'est pas validé il manque l'un des caractères indspensable suivant: @ ou .fr ou le .com");
+            inputEmailTag.style.outline = "1px solid red";
+            inputEmailTag.style.border = "1px solid red";
+            emailValid.style.color = "red";
         } else {
-            errorDisplay("ClassErrorInputMailTag", "", true);
+            validTag("ClassErrorInputMailTag", "Email validé", true);
+            inputEmailTag.style.outline = "1px solid green";
+            inputEmailTag.style.border = "1px solid green";
+            emailValid.style.color = "green";
             inputEmailTag = value;
         }
     };
