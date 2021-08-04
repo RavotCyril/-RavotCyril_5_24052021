@@ -77,14 +77,14 @@
     // Formulaire Prénom
 
     inputFirstNameTag.className = "Input-Page-Panier Largeur-Input col-12 my-4 mx-auto";
-    inputFirstNameTag.id = "First-Name";
+    inputFirstNameTag.id = "firstName";
     inputFirstNameTag.placeholder = "Entrer un Prénom";
     inputFirstNameTag.setAttribute("required", "");
     // inputFirstNameTag.setAttribute("onkeyup", "return limitlength(this, 20)");
-    inputFirstNameTag.name = "First-Name";
+    inputFirstNameTag.name = "firstName";
     inputFirstNameTag.type = "text";
-    labelFirstName.htmlFor = "First-Name";
-    labelFirstName.name = "First-Name";
+    labelFirstName.htmlFor = "firstName";
+    labelFirstName.name = "firstName";
     formContactTag.appendChild(labelFirstName);
     formContactTag.appendChild(inputFirstNameTag);
     formContactTag.appendChild(firstNameValid);
@@ -92,12 +92,12 @@
     // Formulaire Nom
 
     inputLastNameTag.className = "Input-Page-Panier Largeur-Input col-12 my-4 mx-auto";
-    inputLastNameTag.id = "LastName";
+    inputLastNameTag.id = "lastName";
     inputLastNameTag.placeholder = "Entrer un Nom";
     inputLastNameTag.setAttribute("required", "");
-    inputLastNameTag.name = "LastName";
+    inputLastNameTag.name = "lastName";
     inputLastNameTag.type = "text";
-    labelLastName.htmlFor = "LastName";
+    labelLastName.htmlFor = "lastName";
     formContactTag.appendChild(labelLastName);
     formContactTag.appendChild(inputLastNameTag);
     formContactTag.appendChild(lastNameValid);
@@ -131,12 +131,12 @@
     // Formulaire  Email
 
     inputEmailTag.className = "Input-Page-Panier Largeur-Input col-12 my-4 mx-auto";
-    inputEmailTag.id = "Email";
+    inputEmailTag.id = "email";
     inputEmailTag.placeholder = "Entrer un email";
     inputEmailTag.setAttribute("required", "");
-    inputEmailTag.name = "Email";
-    inputEmailTag.type = "Email";
-    labelEmail.htmlFor = "Email";
+    inputEmailTag.name = "email";
+    inputEmailTag.type = "email";
+    labelEmail.htmlFor = "email";
     formContactTag.appendChild(labelEmail);
     formContactTag.appendChild(inputEmailTag);
     formContactTag.appendChild(emailValid);
@@ -150,8 +150,10 @@
     inputButtonValidationCommandeTag.value = "Validation Commande";
     formContactTag.appendChild(inputButtonValidationCommandeTag);
 
+
     const inputs = document.querySelectorAll('input[type="text"], input[type="email"]');
     console.log(inputs);
+    let firstName, lastName, adresse, ville, email;
 
     const errorTag = (tag, message, invalid) => {
         const container = document.querySelector("." + tag);
@@ -170,6 +172,7 @@
         if (valid) {
             container.classList.add("valid");
             container.textContent = message;
+
         } else {
             container.classList.remove("invalid");
             container.textContent = message;
@@ -190,7 +193,6 @@
             inputFirstNameTag.style.outline = "1px solid green";
             inputFirstNameTag.style.border = "1px solid green";
             firstNameValid.style.color = "green";
-            inputFirstNameTag = value;
         }
     };
     const inputLastNameTagChecker = (value) => {
@@ -268,19 +270,19 @@
             console.log(e.target.id);
             switch (e.target.id) {
 
-                case "First-Name":
+                case "firstName":
                     inputFirstNameTagChecker(e.target.value);
                     break;
-                case "LastName":
+                case "lastName":
                     inputLastNameTagChecker(e.target.value);
                     break;
-                case "Adresse":
+                case "adresse":
                     inputAdresseTagChecker(e.target.value);
                     break;
                 case "Ville":
                     inputCityTagChecker(e.target.value);
                     break;
-                case "Email":
+                case "email":
                     inputEmailTagChecker(e.target.value);
                     break;
             }
@@ -289,19 +291,22 @@
     formContactTag.addEventListener("submit", (e) => {
         e.preventDefault();
 
-        if (inputFirstNameTag && inputLastNameTag && inputAdresseTag && inputCityTag && inputEmailTag) {
+        if (firstName && lastName && adresse && ville && email) {
             const data = {
-                inputFirstNameTag,
-                inputLastNameTag,
-                inputAdresseTag,
-                inputCityTag,
-                inputEmailTag,
+                firstName,
+                lastName,
+                adresse,
+                ville,
+                email,
             };
             console.log(data);
 
             inputs.forEach((input) => (input.value = ""));
-
-
+            firstName = null;
+            lastName = null;
+            adresse = null;
+            ville = null;
+            email = null;
             alert("Inscription validée !");
         } else {
             alert("veuillez remplir correctement les champs");
