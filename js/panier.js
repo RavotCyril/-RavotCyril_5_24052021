@@ -105,12 +105,12 @@
     // Formulaire Adresse
 
     inputAdresseTag.className = "Input-Page-Panier Largeur-Input col-12 my-4 mx-auto";
-    inputAdresseTag.id = "Adresse";
+    inputAdresseTag.id = "adresse";
     inputAdresseTag.placeholder = "Entrer une Adresse";
     inputAdresseTag.setAttribute("required", "");
-    inputAdresseTag.name = "Adresse";
+    inputAdresseTag.name = "adresse";
     inputAdresseTag.type = "text";
-    labelAdress.htmlFor = "Adresse";
+    labelAdress.htmlFor = "adresse";
     formContactTag.appendChild(labelAdress);
     formContactTag.appendChild(inputAdresseTag);
     formContactTag.appendChild(adresseValid);
@@ -279,7 +279,7 @@
                 case "adresse":
                     inputAdresseTagChecker(e.target.value);
                     break;
-                case "Ville":
+                case "ville":
                     inputCityTagChecker(e.target.value);
                     break;
                 case "email":
