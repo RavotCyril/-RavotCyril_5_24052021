@@ -118,12 +118,12 @@
     // Formulaire Ville
 
     inputCityTag.className = "Input-Page-Panier Largeur-Input col-12 my-4 mx-auto";
-    inputCityTag.id = "Ville";
+    inputCityTag.id = "ville";
     inputCityTag.placeholder = "Entrer Une Ville";
     inputCityTag.setAttribute("required", "");
-    inputCityTag.name = "Ville";
+    inputCityTag.name = "ville";
     inputCityTag.type = "text";
-    labelCity.htmlFor = "Ville";
+    labelCity.htmlFor = "ville";
     formContactTag.appendChild(labelCity);
     formContactTag.appendChild(inputCityTag);
     formContactTag.appendChild(cityValid);
@@ -275,16 +275,23 @@
                     break;
                 case "lastName":
                     inputLastNameTagChecker(e.target.value);
+                    console.log(e.target.value);
                     break;
                 case "adresse":
                     inputAdresseTagChecker(e.target.value);
+                    console.log(e.target.value);
                     break;
                 case "ville":
                     inputCityTagChecker(e.target.value);
+                    console.log(e.target.value);
                     break;
                 case "email":
                     inputEmailTagChecker(e.target.value);
+                    console.log(e.target.value);
                     break;
+                default:
+                    nul;
+
             }
         });
     });
@@ -312,44 +319,28 @@
             alert("veuillez remplir correctement les champs");
         }
     });
+    // Permet de créer la méthode Post. Pour envoyer les données du formulaire à la page Confirmation de commande.
+
     // Permet de créer la récupération et l'affichage des produits ajoutés au panier via la page produit.  Clef / Valeur. set Item.
     // Inversement de la syntaxe par rapport à la page produit pour la lecture, 
     // la syntaxe JSON.parse() reforme l’objet à partir de la chaîne linéarise et l'affiche sur la page.
     //  Transforme le Json en objet java Script.
+    //  CRUD >  Create (POST), read (GET),  update (PUT), Delete (DELETE); 
+    const init = {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            pseudo: "From Scratch",
+            message: 'Textual content',
+        }),
+        mode: "cors",
+        credentials: "same-origin",
+    };
+    document.querySelector('formContactTag').addEventListener('submit', () => {
+
+        fetch("http://localhost:3000/api/furniture/", +init).then(() => console.log('data envoyé'));
+    });
 })();
-
-// articleTag.textContent = localStorage.cart
-
-// let cart = localStorage.getItem('cart');
-//         Storage.prototype.getObject = function(cart) {
-//             let value = this.getItem(cart);
-//             return value && JSON.parse(value);
-//         }
-//         console.log('cart: ', JSON.parse(cart));
-
-// Permet de créer la méthode Post. Pour envoyer les données du formulaire à la page Confirmation de commande.
-
-// let json = {
-//     json: JSON.stringify({
-//         a: 1,
-//         b: 2
-//     }),
-//     delay: 3
-// };
-// fetch('/echo/json/', {
-//         method: 'post',
-//         headers: {
-//             'Accept': 'application/json, text/plain, */*',
-//             'Content-Type': 'application/json'
-//         },
-//         body: 'json=' + encodeURIComponent(JSON.stringify(json.json)) + '&delay=' + json.delay
-//     })
-//     .then(function(response) {
-//         return response.json();
-//     })
-//     .then(function(result) {
-//         alert(result);
-//     })
-//     .catch(function(error) {
-//         console.log('Request failed', error);
-//     });
