@@ -80,7 +80,6 @@
     inputFirstNameTag.id = "firstName";
     inputFirstNameTag.placeholder = "Entrer un Prénom";
     inputFirstNameTag.setAttribute("required", "");
-    // inputFirstNameTag.setAttribute("onkeyup", "return limitlength(this, 20)");
     inputFirstNameTag.name = "firstName";
     inputFirstNameTag.type = "text";
     labelFirstName.htmlFor = "firstName";
@@ -326,21 +325,39 @@
     // la syntaxe JSON.parse() reforme l’objet à partir de la chaîne linéarise et l'affiche sur la page.
     //  Transforme le Json en objet java Script.
     //  CRUD >  Create (POST), read (GET),  update (PUT), Delete (DELETE); 
-    const init = {
+    let cart;
+    const donnees = {
         method: 'POST',
         headers: {
-            'Accept': 'application/json',
+            Allow: 'POST',
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            pseudo: "From Scratch",
-            message: 'Textual content',
+
         }),
         mode: "cors",
         credentials: "same-origin",
     };
-    document.querySelector('formContactTag').addEventListener('submit', () => {
 
-        fetch("http://localhost:3000/api/furniture/", +init).then(() => console.log('data envoyé'));
+    const myHeaders = new Headers();
+    const init = {
+        method: "GET",
+        headers: myHeaders,
+        mode: "cors",
+        cache: "default",
+    };
+
+    fetch("data.json", init).then((res) => console.log(res));
+    localStorage.setItem("cart", JSON.stringify(cart));
+    formContactTag.addEventListener('submit', () => {
+
+        fetch("http://localhost:3000/api/furniture/order", donnees).then(() =>
+            console.log("data envoyée")
+        );
     });
+    const userDisplay = () => {
+        cart = JSON.parse(localStorage.getItem("cart"));
+        articleTag.textContent = cart
+    };
+    userDisplay();
 })();

@@ -173,6 +173,5 @@ function afficherArticle(sectionTag, article) {
             cart[article._id] = "1";
             localStorage.setItem("cart", JSON.stringify(cart));
         }
-        données = cart
     });
 }
