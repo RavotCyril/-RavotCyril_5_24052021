@@ -348,7 +348,6 @@
     };
 
     fetch("data.json", init).then((res) => console.log(res));
-    localStorage.setItem("cart", JSON.stringify(cart));
     formContactTag.addEventListener('submit', () => {
 
         fetch("http://localhost:3000/api/furniture/order", donnees).then(() =>
@@ -360,4 +359,9 @@
         articleTag.textContent = cart
     };
     userDisplay();
+    //Conversion en chaine JSON
+    let json = JSON.stringify(cart);
+
+    document.appendChild("articleTag").innerHTML =
+        "Type de la variable : " + typeof(json) + "<br>Contenu de la variable : " + json;
 })();

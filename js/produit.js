@@ -140,7 +140,7 @@ function afficherArticle(sectionTag, article) {
     let inputTag = document.createElement("input");
     bouttonTag.className = "Form-Produit";
     inputTag.className = "Boutton-Produit";
-    inputTag.type = "button";
+    inputTag.type = "submit";
     inputTag.value = "Ajouter au Panier";
     articleTag.appendChild(bouttonTag);
     bouttonTag.appendChild(inputTag);
@@ -149,10 +149,9 @@ function afficherArticle(sectionTag, article) {
     // Pour mémoriser des valeurs complexes et l'afficher, on utilisera le format JSON (JavaScript Objet Notation)  JSON.Parse.
     // on sérialise (ou linéarise)
     //  l’objet avec la syntaxe JSON.stringify().Cette opération transforme l’objet en JSON (une chaîne de caractères dans le panier.)
-
     inputTag.addEventListener("click", function() {
         console.log(article._id, "1");
-        let cart = JSON.parse(localStorage.getItem("cart"));
+        let cart = JSON.parse(localStorage.getItem("cart"))
         console.log(cart);
         let oldArticle = 0;
         if (cart !== null) {
@@ -173,5 +172,6 @@ function afficherArticle(sectionTag, article) {
             cart[article._id] = "1";
             localStorage.setItem("cart", JSON.stringify(cart));
         }
-    });
+        données = cart
+    })
 }
