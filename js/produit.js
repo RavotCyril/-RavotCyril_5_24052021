@@ -151,6 +151,7 @@ function afficherArticle(sectionTag, article) {
     //  l’objet avec la syntaxe JSON.stringify().Cette opération transforme l’objet en JSON (une chaîne de caractères dans le panier.)
     inputTag.addEventListener("click", function() {
         console.log(article._id, "1");
+        console.log(price2);
         let cart = JSON.parse(localStorage.getItem("cart"))
         console.log(cart);
         let oldArticle = 0;
@@ -158,6 +159,12 @@ function afficherArticle(sectionTag, article) {
             for (let key in cart) {
                 if (key == article._id) {
                     let value = parseInt(cart[article._id]);
+                    value += 1;
+                    cart[key] = value;
+                    oldArticle = 1;
+                }
+                if (key == article.price2) {
+                    let value = parseInt(cart[price2]);
                     value += 1;
                     cart[key] = value;
                     oldArticle = 1;

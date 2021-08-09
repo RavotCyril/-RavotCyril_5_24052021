@@ -344,18 +344,18 @@
     //  le formulaire pour l'envoyer ensuite sur la page de confirmation commande.
     //  CRUD >  Create (POST), read (GET),  update (PUT), Delete (DELETE); 
 
-    const donnees = {
-        method: "POST",
-        headers: {
-            Allow: "POST",
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
+    // const donnees = {
+    //     method: "POST",
+    //     headers: {
+    //         Allow: "POST",
+    //         'Content-Type': 'application/json'
+    //     },
+    //     body: JSON.stringify({
 
-        }),
-        mode: "cors",
-        credentials: "same-origin",
-    };
+    //     }),
+    //     mode: "cors",
+    //     credentials: "same-origin",
+    // };
 
     const myHeaders = new Headers();
     const init = {
@@ -365,15 +365,10 @@
         cache: "default",
     };
 
-
-
-
-
-
     fetch("data.json", init).then((res) => console.log(res));
     cart = JSON.parse(localStorage.getItem("cart"));
-    JSON.stringify(cart);
     console.log(cart);
+    // JSON.stringify(cart);
     cart = {
         id: "value",
     }
@@ -383,19 +378,21 @@
     console.log(cart);
 
 
-    formContactTag.addEventListener("submit", () => {
+    formContactTag.addEventListener("submit", (order) => {
 
-        fetch("http://localhost:3000/api/furniture/order", donnees).then(() =>
+        fetch("http://localhost:3000/api/furniture/" + order).then(() =>
             console.log("data envoyée")
         );
     });
-    // const userDisplay = () => {
-    //     cart = JSON.parse(localStorage.getItem("cart"));
-    //     articleTag.textContent = cart
-    //     console.log(cart);
+    const Display = () => {
+        cart = JSON.parse(localStorage.getItem("cart"));
+        articleTag.textContent = cart
+        console.log(cart);
 
-    // alert(JSON.stringify(cart));
-    // }; userDisplay(); console.log(userDisplay);
+        alert(JSON.stringify(cart));
+    };
+    Display();
+    console.log(Display);
 
 
     // function formDataToObject(data) {
