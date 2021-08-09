@@ -56,6 +56,7 @@
     prixDuProduitSelectionne.textContent = "Prix Du Produit Selectionné";
     prixTotalDuPanier.textContent = "Prix Total Du Panier";
     articleTag.className = "col-12 Article-Panier-Détails";
+    articleTag.id = "DonneesPanier";
     pTag.textContent = "Veuillez remplir ce formulaire pour valider votre commande";
     formContactTag.id = "Contact";
     formContactTag.setAttribute("method", "post");
@@ -153,7 +154,6 @@
 
     const inputs = document.querySelectorAll('input[type="text"], input[type="email"]');
     console.log(inputs);
-    let firstName, lastName, adresse, ville, email;
 
     // Constante errorTag : Fonction du code d'erreur avec message en cas de mauvais caractères dans les inputs.
 
@@ -211,12 +211,13 @@
             } else if (!value.match(/^[a-zA-Z0-9_.-]*$/)) {
                 errorTag("ClassErrorInputLastNameTag", "Le nom ne doit pas contenir de caractères spéciaux");
                 inputLastNameTag = null;
+            } else if (value.length === null) {
+                errorTag("ClassErrorInputLastNameTag", "Nom validé", false);
             } else {
                 validTag("ClassErrorInputLastNameTag", "Nom validé", true);
                 inputLastNameTag.style.outline = "1px solid green";
                 inputLastNameTag.style.border = "1px solid green";
                 lastNameValid.style.color = "green";
-                inputLastNameTag = value;
             }
         }
         // Constante adresse: Fonction du code de validation ou d'erreur selon la valeur tapper dans l'input.
@@ -232,7 +233,6 @@
                 inputAdresseTag.style.outline = "1px solid green";
                 inputAdresseTag.style.border = "1px solid green";
                 adresseValid.style.color = "green";
-                inputAdresseTag = value;
 
             }
         }
@@ -252,7 +252,6 @@
                 inputCityTag.style.outline = "1px solid green";
                 inputCityTag.style.border = "1px solid green";
                 cityValid.style.color = "green";
-                inputCityTag = value;
             }
         }
         // Constante inputEmailTagChecker(Email) : Fonction du code de validation ou d'erreur selon la valeur tapper dans l'input.
@@ -268,7 +267,6 @@
             inputEmailTag.style.outline = "1px solid green";
             inputEmailTag.style.border = "1px solid green";
             emailValid.style.color = "green";
-            inputEmailTag = value;
         }
     };
 
@@ -313,7 +311,32 @@
 
     formContactTag.addEventListener("submit", (e) => {
         e.preventDefault();
+        let datas = document.querySelectorAll('input[type="text"], input[type="email"]');
+        let firstName, lastName, adresse, ville, email;
+        datas.forEach((input) => {
+            switch (input.name) {
 
+                case "firstName":
+                    firstName = input.value;
+                    break;
+                case "lastName":
+                    lastName = input.value;
+                    break;
+                case "adresse":
+                    adresse = input.value
+                    break;
+                case "ville":
+                    ville = input.value;
+                    break;
+                case "email":
+                    email = input.value;
+                    break;
+                default:
+                    nul;
+            }
+
+        })
+        console.log("firstName :" + firstName, "lastName : " + lastName, "adresse : " + adresse, "ville :" + ville, "email : " + email);
         if (firstName && lastName && adresse && ville && email) {
             const data = {
                 firstName,
@@ -357,42 +380,44 @@
     //     credentials: "same-origin",
     // };
 
-    const myHeaders = new Headers();
-    const init = {
-        method: "GET",
-        headers: myHeaders,
-        mode: "cors",
-        cache: "default",
-    };
+    // const myHeaders = new Headers();
+    // const init = {
+    //     method: "GET",
+    //     headers: myHeaders,
+    //     mode: "cors",
+    //     cache: "default",
+    // };
+    // fetch("data.json", init).then((res) => console.log(res));
 
-    fetch("data.json", init).then((res) => console.log(res));
-    cart = JSON.parse(localStorage.getItem("cart"));
-    console.log(cart);
-    // JSON.stringify(cart);
-    cart = {
-        id: "value",
-    }
+    cart = {};
     for (let key in cart) {
         console.log(key + ":", cart[key]);
+        cart = JSON.parse(localStorage.getItem("cart"));
+        cart.forEach((articleId, qty) => {
+            console.log(articleId, qty);
+            articleTag.textContent = articleId;
+        });
+
     }
     console.log(cart);
+    console.log(typeof(cart));
+    // JSON.stringify(cart);
 
+    formContactTag.addEventListener("submit", () => {
 
-    formContactTag.addEventListener("submit", (order) => {
-
-        fetch("http://localhost:3000/api/furniture/" + order).then(() =>
+        fetch("http://localhost:3000/api/furniture/order").then(() =>
             console.log("data envoyée")
         );
     });
-    const Display = () => {
-        cart = JSON.parse(localStorage.getItem("cart"));
-        articleTag.textContent = cart
-        console.log(cart);
+    // const Display = () => {
+    //     cart = JSON.parse(localStorage.getItem("cart"));
+    //     articleTag.textContent = cart
+    //     console.log(cart);
 
-        alert(JSON.stringify(cart));
-    };
-    Display();
-    console.log(Display);
+    //     alert(JSON.stringify(cart));
+    // };
+    // Display();
+    // console.log(Display);
 
 
     // function formDataToObject(data) {

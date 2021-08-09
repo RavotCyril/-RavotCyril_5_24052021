@@ -163,12 +163,6 @@ function afficherArticle(sectionTag, article) {
                     cart[key] = value;
                     oldArticle = 1;
                 }
-                if (key == article.price2) {
-                    let value = parseInt(cart[price2]);
-                    value += 1;
-                    cart[key] = value;
-                    oldArticle = 1;
-                }
             }
             if (oldArticle == 0) {
                 cart[article._id] = "1";
