@@ -140,7 +140,7 @@ function afficherArticle(sectionTag, article) {
     let inputTag = document.createElement("input");
     bouttonTag.className = "Form-Produit";
     inputTag.className = "Boutton-Produit";
-    inputTag.type = "submit";
+    inputTag.type = "button";
     inputTag.value = "Ajouter au Panier";
     articleTag.appendChild(bouttonTag);
     bouttonTag.appendChild(inputTag);
@@ -172,6 +172,5 @@ function afficherArticle(sectionTag, article) {
             cart[article._id] = "1";
             localStorage.setItem("cart", JSON.stringify(cart));
         }
-        données = cart
     })
 }

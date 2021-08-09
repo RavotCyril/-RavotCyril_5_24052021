@@ -149,10 +149,13 @@
     inputButtonValidationCommandeTag.value = "Validation Commande";
     formContactTag.appendChild(inputButtonValidationCommandeTag);
 
+    // Constante inputs : Récupération - Sélection de tous les inputs de la page.
 
     const inputs = document.querySelectorAll('input[type="text"], input[type="email"]');
     console.log(inputs);
     let firstName, lastName, adresse, ville, email;
+
+    // Constante errorTag : Fonction du code d'erreur avec message en cas de mauvais caractères dans les inputs.
 
     const errorTag = (tag, message, invalid) => {
         const container = document.querySelector("." + tag);
@@ -165,6 +168,8 @@
             container.textContent = message;
         }
     };
+    // Constante validTag : Fonction du code de validation avec message en cas de données exactes.
+
     const validTag = (tag, message, valid) => {
         const container = document.querySelector("." + tag);
 
@@ -177,13 +182,14 @@
             container.textContent = message;
         }
     };
+    // Constante inputFirstName (Prénom) : Fonction du code de validation ou d'erreur selon la valeur tapper dans l'input.
+
     const inputFirstNameTagChecker = (value) => {
         if (value.length > 0 && (value.length < 3 || value.length > 20)) {
             errorTag("ClassErrorInputFirstNameTag", "Prénom non validé le prénom doit faire entre 3 et 20 caractères");
             inputFirstNameTag.style.outline = "1px solid red";
             inputFirstNameTag.style.border = "1px solid red";
             firstNameValid.style.color = "red";
-            // firstNameValid.style.border = "-internal-light-dark(rgb(118, 118, 118)"; validity.valid	
         } else if (!value.match(/^[a-zA-Z0-9_.-]*$/)) {
             errorTag("ClassErrorInputFirstNameTag", "Le prénom ne doit pas contenir de caractères spéciaux");
             inputFirstNameTag = null;
@@ -194,56 +200,62 @@
             firstNameValid.style.color = "green";
         }
     };
-    const inputLastNameTagChecker = (value) => {
-        if (value.length > 0 && (value.length < 3 || value.length > 20)) {
-            errorTag("ClassErrorInputLastNameTag", "Nom non validé le nom doit faire entre 3 et 20 caractères");
-            inputLastNameTag.style.outline = "1px solid red";
-            inputLastNameTag.style.border = "1px solid red";
-            lastNameValid.style.color = "red";
-        } else if (!value.match(/^[a-zA-Z0-9_.-]*$/)) {
-            errorTag("ClassErrorInputLastNameTag", "Le nom ne doit pas contenir de caractères spéciaux");
-            inputLastNameTag = null;
-        } else {
-            validTag("ClassErrorInputLastNameTag", "Nom validé", true);
-            inputLastNameTag.style.outline = "1px solid green";
-            inputLastNameTag.style.border = "1px solid green";
-            lastNameValid.style.color = "green";
-            inputLastNameTag = value;
-        }
-    }
-    const inputAdresseTagChecker = (value) => {
-        if (value.length > 0 && (value.length < 5 || value.length > 30)) {
-            errorTag("ClassErrorInputAdresseTag", "Adresse non validé l'adresse doit faire entre 5 et 30 caractères");
-            inputAdresseTag.style.outline = "1px solid red";
-            inputAdresseTag.style.border = "1px solid red";
-            adresseValid.style.color = "red";
-        } else {
-            validTag("ClassErrorInputAdresseTag", "Adresse validé", true);
-            inputAdresseTag.style.outline = "1px solid green";
-            inputAdresseTag.style.border = "1px solid green";
-            adresseValid.style.color = "green";
-            inputAdresseTag = value;
+    // Constante inputLastName (Nom) : Fonction du code de validation ou d'erreur selon la valeur tapper dans l'input.
 
+    const inputLastNameTagChecker = (value) => {
+            if (value.length > 0 && (value.length < 3 || value.length > 20)) {
+                errorTag("ClassErrorInputLastNameTag", "Nom non validé le nom doit faire entre 3 et 20 caractères");
+                inputLastNameTag.style.outline = "1px solid red";
+                inputLastNameTag.style.border = "1px solid red";
+                lastNameValid.style.color = "red";
+            } else if (!value.match(/^[a-zA-Z0-9_.-]*$/)) {
+                errorTag("ClassErrorInputLastNameTag", "Le nom ne doit pas contenir de caractères spéciaux");
+                inputLastNameTag = null;
+            } else {
+                validTag("ClassErrorInputLastNameTag", "Nom validé", true);
+                inputLastNameTag.style.outline = "1px solid green";
+                inputLastNameTag.style.border = "1px solid green";
+                lastNameValid.style.color = "green";
+                inputLastNameTag = value;
+            }
         }
-    }
+        // Constante adresse: Fonction du code de validation ou d'erreur selon la valeur tapper dans l'input.
+
+    const inputAdresseTagChecker = (value) => {
+            if (value.length > 0 && (value.length < 5 || value.length > 30)) {
+                errorTag("ClassErrorInputAdresseTag", "Adresse non validé l'adresse doit faire entre 5 et 30 caractères");
+                inputAdresseTag.style.outline = "1px solid red";
+                inputAdresseTag.style.border = "1px solid red";
+                adresseValid.style.color = "red";
+            } else {
+                validTag("ClassErrorInputAdresseTag", "Adresse validé", true);
+                inputAdresseTag.style.outline = "1px solid green";
+                inputAdresseTag.style.border = "1px solid green";
+                adresseValid.style.color = "green";
+                inputAdresseTag = value;
+
+            }
+        }
+        // Constante inputCityTagChecker (ville) : Fonction du code de validation ou d'erreur selon la valeur tapper dans l'input.
 
     const inputCityTagChecker = (value) => {
-        if (value.length > 0 && (value.length < 3 || value.length > 20)) {
-            errorTag("ClassErrorInputCityTag", "Ville non validé la ville doit faire entre 3 et 20 caractères");
-            inputCityTag.style.outline = "1px solid red";
-            inputCityTag.style.border = "1px solid red";
-            cityValid.style.color = "red";
-        } else if (!value.match(/^[a-zA-Z0-9_.-]*$/)) {
-            errorTag("ClassErrorInputCityTag", "La ville ne doit pas contenir de caractères spéciaux");
-            inputCityTag = null;
-        } else {
-            validTag("ClassErrorInputCityTag", "Ville validé", true);
-            inputCityTag.style.outline = "1px solid green";
-            inputCityTag.style.border = "1px solid green";
-            cityValid.style.color = "green";
-            inputCityTag = value;
+            if (value.length > 0 && (value.length < 3 || value.length > 20)) {
+                errorTag("ClassErrorInputCityTag", "Ville non validé la ville doit faire entre 3 et 20 caractères");
+                inputCityTag.style.outline = "1px solid red";
+                inputCityTag.style.border = "1px solid red";
+                cityValid.style.color = "red";
+            } else if (!value.match(/^[a-zA-Z0-9_.-]*$/)) {
+                errorTag("ClassErrorInputCityTag", "La ville ne doit pas contenir de caractères spéciaux");
+                inputCityTag = null;
+            } else {
+                validTag("ClassErrorInputCityTag", "Ville validé", true);
+                inputCityTag.style.outline = "1px solid green";
+                inputCityTag.style.border = "1px solid green";
+                cityValid.style.color = "green";
+                inputCityTag = value;
+            }
         }
-    }
+        // Constante inputEmailTagChecker(Email) : Fonction du code de validation ou d'erreur selon la valeur tapper dans l'input.
 
     const inputEmailTagChecker = (value) => {
         if (!value.match(/[a-z]+@[\w-]+\.[a-z]{2,4}$/i)) {
@@ -260,9 +272,9 @@
         }
     };
 
-    /* Avec l'input du bouton Validation Commande faire une fonction 
-               Qui contrôle si tout les inputs (champs) du formulaire ont bien été validés partout 
-               Pour ensuite pouvoir cliquer sur le bouton validation Commande et envoyer le formulaire.*/
+    /* Avec la method ForEach sur linput du bouton validation Commande.
+    Fonction qui contrôle si tout les inputs (champs) du formulaire ont bien été validés partout  avec la selection des ID des Inputs.
+    Pour ensuite pouvoir cliquer sur le bouton validation Commande et envoyer le formulaire.*/
 
     inputs.forEach((input) => {
         input.addEventListener("input", (e) => {
@@ -294,6 +306,11 @@
             }
         });
     });
+    // Avec AddEventListener. On regarde une fois que l'on envoie la demande du formulaire.
+    //  Si toutes les données sont validés dans les ID de chaque inputs
+    // On a ensuite un message de validation si les données sont bonnes.
+    //  Ou un message d'erreur si ce n'est pas le cas.
+
     formContactTag.addEventListener("submit", (e) => {
         e.preventDefault();
 
@@ -323,13 +340,14 @@
     // Permet de créer la récupération et l'affichage des produits ajoutés au panier via la page produit.  Clef / Valeur. set Item.
     // Inversement de la syntaxe par rapport à la page produit pour la lecture, 
     // la syntaxe JSON.parse() reforme l’objet à partir de la chaîne linéarise et l'affiche sur la page.
-    //  Transforme le Json en objet java Script.
+    //  Transforme le Json en objet java Script pour le renvoyer à L'API dans
+    //  le formulaire pour l'envoyer ensuite sur la page de confirmation commande.
     //  CRUD >  Create (POST), read (GET),  update (PUT), Delete (DELETE); 
-    let cart;
+
     const donnees = {
-        method: 'POST',
+        method: "POST",
         headers: {
-            Allow: 'POST',
+            Allow: "POST",
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
@@ -347,21 +365,48 @@
         cache: "default",
     };
 
+
+
+
+
+
     fetch("data.json", init).then((res) => console.log(res));
-    formContactTag.addEventListener('submit', () => {
+    cart = JSON.parse(localStorage.getItem("cart"));
+    JSON.stringify(cart);
+    console.log(cart);
+    cart = {
+        id: "value",
+    }
+    for (let key in cart) {
+        console.log(key + ":", cart[key]);
+    }
+    console.log(cart);
+
+
+    formContactTag.addEventListener("submit", () => {
 
         fetch("http://localhost:3000/api/furniture/order", donnees).then(() =>
             console.log("data envoyée")
         );
     });
-    const userDisplay = () => {
-        cart = JSON.parse(localStorage.getItem("cart"));
-        articleTag.textContent = cart
-    };
-    userDisplay();
-    //Conversion en chaine JSON
-    let json = JSON.stringify(cart);
+    // const userDisplay = () => {
+    //     cart = JSON.parse(localStorage.getItem("cart"));
+    //     articleTag.textContent = cart
+    //     console.log(cart);
 
-    document.appendChild("articleTag").innerHTML =
-        "Type de la variable : " + typeof(json) + "<br>Contenu de la variable : " + json;
+    // alert(JSON.stringify(cart));
+    // }; userDisplay(); console.log(userDisplay);
+
+
+    // function formDataToObject(data) {
+    //     data.forEach((value, key) => {
+    //         console.log(key, "=", value);
+    //     });
+    // }
+
+    // //Conversion en chaine JSON
+    // let json = JSON.stringify(cart);
+
+    // .document.appendChild("articleTag").innerHTML =
+    //     "cart" + typeof(json) + "<br>Contenu de la variable : " + json;
 })();
