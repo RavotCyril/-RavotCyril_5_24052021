@@ -44,7 +44,7 @@
     lastNameValid.className = 'ClassErrorInputLastNameTag';
     adresseValid.className = 'ClassErrorInputAdresseTag';
     cityValid.className = 'ClassErrorInputCityTag';
-    emailValid.className = 'ClassErrorInputMailTag';
+    emailValid.className = 'ClassErrorInputMailTag d-flex justify-content-center';
     newMain.className = "container-fluid";
     b.appendChild(newMain);
     sectionTag.className = "row";
@@ -155,115 +155,140 @@
     const inputs = document.querySelectorAll('input[type="text"], input[type="email"]');
     console.log(inputs);
 
-    // Constante errorTag : Fonction du code d'erreur avec message en cas de mauvais caractères dans les inputs.
+    // Variable errorTag : Fonction du code d'erreur avec message en cas de mauvais caractères dans les inputs.
 
-    const errorTag = (tag, message, invalid) => {
+    let errorTag = (tag, message, valid, invalid) => {
         const container = document.querySelector("." + tag);
 
         if (invalid) {
-            container.classList.add("error");
+            container.classList.add("invalid");
             container.textContent = message;
-        } else {
-            container.classList.remove("error");
+        } else if (valid) {
+            container.classList.remove("invalid");
             container.textContent = message;
         }
     };
-    // Constante validTag : Fonction du code de validation avec message en cas de données exactes.
+    // Variable validTag : Fonction du code de validation avec message en cas de données exactes.
 
-    const validTag = (tag, message, valid) => {
+    let validTag = (tag, message, valid, invalid) => {
         const container = document.querySelector("." + tag);
 
         if (valid) {
             container.classList.add("valid");
             container.textContent = message;
 
-        } else {
-            container.classList.remove("invalid");
+        } else if (invalid) {
+            container.classList.remove("valid");
             container.textContent = message;
         }
     };
-    // Constante inputFirstName (Prénom) : Fonction du code de validation ou d'erreur selon la valeur tapper dans l'input.
 
-    const inputFirstNameTagChecker = (value) => {
+    // Variable inputFirstName (Prénom) : Fonction du code de validation ou d'erreur selon la valeur tapper dans l'input.
+
+    let inputFirstNameTagChecker = (value) => {
         if (value.length > 0 && (value.length < 3 || value.length > 20)) {
-            errorTag("ClassErrorInputFirstNameTag", "Prénom non validé le prénom doit faire entre 3 et 20 caractères");
+            errorTag("ClassErrorInputFirstNameTag", "Prénom non validé le prénom doit faire entre 3 et 20 caractères", false, true);
             inputFirstNameTag.style.outline = "1px solid red";
             inputFirstNameTag.style.border = "1px solid red";
             firstNameValid.style.color = "red";
         } else if (!value.match(/^[a-zA-Z0-9_.-]*$/)) {
-            errorTag("ClassErrorInputFirstNameTag", "Le prénom ne doit pas contenir de caractères spéciaux");
-            inputFirstNameTag = null;
+            errorTag("ClassErrorInputFirstNameTag", "Le prénom ne doit pas contenir de caractères spéciaux", false, true);
+            inputFirstNameTag.style.outline = "1px solid red";
+            inputFirstNameTag.style.border = "1px solid red";
+            firstNameValid.style.color = "red";
+        } else if ((value.length === 0)) {
+            errorTag("ClassErrorInputFirstNameTag", "Prénom non validé le prénom doit faire entre 3 et 20 caractères", false, true);
+            inputFirstNameTag.style.outline = "1px solid red";
+            inputFirstNameTag.style.border = "1px solid red";
+            firstNameValid.style.color = "red";
         } else {
-            validTag("ClassErrorInputFirstNameTag", "Prénom validé", true);
+            validTag("ClassErrorInputFirstNameTag", "Prénom validé", true, false);
             inputFirstNameTag.style.outline = "1px solid green";
             inputFirstNameTag.style.border = "1px solid green";
             firstNameValid.style.color = "green";
         }
     };
-    // Constante inputLastName (Nom) : Fonction du code de validation ou d'erreur selon la valeur tapper dans l'input.
+    // Variable inputLastName (Nom) : Fonction du code de validation ou d'erreur selon la valeur tapper dans l'input.
 
-    const inputLastNameTagChecker = (value) => {
+    let inputLastNameTagChecker = (value) => {
             if (value.length > 0 && (value.length < 3 || value.length > 20)) {
-                errorTag("ClassErrorInputLastNameTag", "Nom non validé le nom doit faire entre 3 et 20 caractères");
+                errorTag("ClassErrorInputLastNameTag", "Nom non validé le nom doit faire entre 3 et 20 caractères", false, true);
                 inputLastNameTag.style.outline = "1px solid red";
                 inputLastNameTag.style.border = "1px solid red";
                 lastNameValid.style.color = "red";
             } else if (!value.match(/^[a-zA-Z0-9_.-]*$/)) {
-                errorTag("ClassErrorInputLastNameTag", "Le nom ne doit pas contenir de caractères spéciaux");
-                inputLastNameTag = null;
-            } else if (value.length === null) {
-                errorTag("ClassErrorInputLastNameTag", "Nom validé", false);
+                errorTag("ClassErrorInputLastNameTag", "Le nom ne doit pas contenir de caractères spéciaux", false, true);
+                inputLastNameTag.style.outline = "1px solid red";
+                inputLastNameTag.style.border = "1px solid red";
+                lastNameValid.style.color = "red";
+            } else if (value.length === 0) {
+                errorTag("ClassErrorInputLastNameTag", "Nom non validé le nom doit faire entre 3 et 20 caractères", false, true);
+                inputLastNameTag.style.outline = "1px solid red";
+                inputLastNameTag.style.border = "1px solid red";
+                lastNameValid.style.color = "red";
             } else {
-                validTag("ClassErrorInputLastNameTag", "Nom validé", true);
+                validTag("ClassErrorInputLastNameTag", "Nom validé", true, false);
                 inputLastNameTag.style.outline = "1px solid green";
                 inputLastNameTag.style.border = "1px solid green";
                 lastNameValid.style.color = "green";
             }
         }
-        // Constante adresse: Fonction du code de validation ou d'erreur selon la valeur tapper dans l'input.
+        // Variable adresse: Fonction du code de validation ou d'erreur selon la valeur tapper dans l'input.
 
-    const inputAdresseTagChecker = (value) => {
+    let inputAdresseTagChecker = (value) => {
             if (value.length > 0 && (value.length < 5 || value.length > 30)) {
-                errorTag("ClassErrorInputAdresseTag", "Adresse non validé l'adresse doit faire entre 5 et 30 caractères");
+                errorTag("ClassErrorInputAdresseTag", "Adresse non validé l'adresse doit faire entre 5 et 30 caractères", false, true);
+                inputAdresseTag.style.outline = "1px solid red";
+                inputAdresseTag.style.border = "1px solid red";
+                adresseValid.style.color = "red";
+            } else if (value.length === 0) {
+                errorTag("ClassErrorInputAdresseTag", "Adresse non validé l'adresse doit faire entre 5 et 30 caractères", false, true);
                 inputAdresseTag.style.outline = "1px solid red";
                 inputAdresseTag.style.border = "1px solid red";
                 adresseValid.style.color = "red";
             } else {
-                validTag("ClassErrorInputAdresseTag", "Adresse validé", true);
+                validTag("ClassErrorInputAdresseTag", "Adresse validé", true, false);
                 inputAdresseTag.style.outline = "1px solid green";
                 inputAdresseTag.style.border = "1px solid green";
                 adresseValid.style.color = "green";
 
             }
         }
-        // Constante inputCityTagChecker (ville) : Fonction du code de validation ou d'erreur selon la valeur tapper dans l'input.
+        // Variable inputCityTagChecker (ville) : Fonction du code de validation ou d'erreur selon la valeur tapper dans l'input.
 
-    const inputCityTagChecker = (value) => {
+    let inputCityTagChecker = (value) => {
             if (value.length > 0 && (value.length < 3 || value.length > 20)) {
-                errorTag("ClassErrorInputCityTag", "Ville non validé la ville doit faire entre 3 et 20 caractères");
+                errorTag("ClassErrorInputCityTag", "Ville non validé la ville doit faire entre 3 et 20 caractères", false, true);
                 inputCityTag.style.outline = "1px solid red";
                 inputCityTag.style.border = "1px solid red";
                 cityValid.style.color = "red";
             } else if (!value.match(/^[a-zA-Z0-9_.-]*$/)) {
-                errorTag("ClassErrorInputCityTag", "La ville ne doit pas contenir de caractères spéciaux");
-                inputCityTag = null;
+                errorTag("ClassErrorInputCityTag", "La ville ne doit pas contenir de caractères spéciaux", false, true);
+                inputCityTag.style.outline = "1px solid red";
+                inputCityTag.style.border = "1px solid red";
+                cityValid.style.color = "red";
+            } else if (value.length === 0) {
+                errorTag("ClassErrorInputCityTag", "Ville non validé la ville doit faire entre 3 et 20 caractères", false, true);
+                inputCityTag.style.outline = "1px solid red";
+                inputCityTag.style.border = "1px solid red";
+                cityValid.style.color = "red";
             } else {
-                validTag("ClassErrorInputCityTag", "Ville validé", true);
+                validTag("ClassErrorInputCityTag", "Ville validé", true, false);
                 inputCityTag.style.outline = "1px solid green";
                 inputCityTag.style.border = "1px solid green";
                 cityValid.style.color = "green";
             }
         }
-        // Constante inputEmailTagChecker(Email) : Fonction du code de validation ou d'erreur selon la valeur tapper dans l'input.
+        // Variable inputEmailTagChecker(Email) : Fonction du code de validation ou d'erreur selon la valeur tapper dans l'input.
 
-    const inputEmailTagChecker = (value) => {
+    let inputEmailTagChecker = (value) => {
         if (!value.match(/[a-z]+@[\w-]+\.[a-z]{2,4}$/i)) {
-            errorTag("ClassErrorInputMailTag", "Le mail n'est pas validé il manque l'un des caractères indspensable suivant: @ ou .fr ou le .com");
+            errorTag("ClassErrorInputMailTag", "Le mail n'est pas validé il manque l'un des caractères indispensable suivant: @ ou .fr ou le .com", false, true);
             inputEmailTag.style.outline = "1px solid red";
             inputEmailTag.style.border = "1px solid red";
             emailValid.style.color = "red";
         } else {
-            validTag("ClassErrorInputMailTag", "Email validé", true);
+            validTag("ClassErrorInputMailTag", "Email validé", true, false);
             inputEmailTag.style.outline = "1px solid green";
             inputEmailTag.style.border = "1px solid green";
             emailValid.style.color = "green";
