@@ -6,31 +6,19 @@ let newMain = document.createElement("Main");
 let sectionTag = document.createElement("section");
 let articleTag = document.createElement("article");
 let h1Tag = document.createElement("h1");
-let produitSelectionne = document.createElement("p");
-let quantiteSelectionne = document.createElement("p");
-let prixDuProduitSelectionne = document.createElement("p");
-let prixTotalDuPanier = document.createElement("p");
 let pTag = document.createElement("p");
 newMain.className = "container-fluid";
 sectionTag.className = "row";
 h1Tag.className = "col-12 my-4 text-center";
 pTag.className = "font-weight-bolder my-4 text-center";
 h1Tag.textContent = "Panier : Détails";
-produitSelectionne.textContent = "Produit Selectionné";
-quantiteSelectionne.textContent = "Quantité Selectionné";
-prixDuProduitSelectionne.textContent = "Prix Du Produit Selectionné";
-prixTotalDuPanier.textContent = "Prix Total Du Panier";
-articleTag.className = "col-12 Article-Panier-Détails";
+articleTag.className = "Article-Panier-Détails container-fluid px-0";
 articleTag.id = "DonneesPanier";
 pTag.textContent = "Veuillez remplir ce formulaire pour valider votre commande";
 b.appendChild(newMain);
 newMain.appendChild(sectionTag);
 sectionTag.appendChild(h1Tag);
 sectionTag.appendChild(articleTag);
-articleTag.appendChild(produitSelectionne);
-articleTag.appendChild(quantiteSelectionne);
-articleTag.appendChild(prixDuProduitSelectionne);
-articleTag.appendChild(prixTotalDuPanier);
 sectionTag.appendChild(pTag);
 
 // Fonction du formulaire.
@@ -418,17 +406,56 @@ function formulaire() {
     // };
     // fetch("data.json", init).then((res) => console.log(res));
 
+    let data = JSON.parse(localStorage.getItem("cart"));
+    console.log(data);
+    let tbody = document.createElement("tbody");
+    let tablePrincipal = document.createElement("table");
+    let trPrincipal = document.createElement("tr");
+    let trSecondaire = document.createElement("tr");
+    let trTroisieme = document.createElement("tr");
+    let trQuatrieme = document.createElement("tr");
+    let trCinquieme = document.createElement("tr");
+    let tdProduitSelectionne = document.createElement("td");
+    let tdQuantiteSelectionne = document.createElement("td");
+    let tdPrixDuProduitSelectionne = document.createElement("td");
+    let tdPrixTotalDuPanier = document.createElement("td");
+    tbody.className = "container-fluid border border-dark px-2 py-2";
+    tablePrincipal.className = "container-fluid";
+    trPrincipal.className = "border border-dark";
+    tdProduitSelectionne.className = "text-center";
+    tdQuantiteSelectionne.className = "text-center";
+    tdPrixDuProduitSelectionne.className = "text-center";
+    tdPrixTotalDuPanier.className = "text-center";
+    tdProduitSelectionne.textContent = "Produit Selectionné";
+    tdQuantiteSelectionne.textContent = "Quantité Selectionné";
+    tdPrixDuProduitSelectionne.textContent = "Prix Du Produit Selectionné";
+    tdPrixTotalDuPanier.textContent = "Prix Total Du Panier";
+
+    articleTag.appendChild(tbody);
+    tbody.appendChild(tablePrincipal);
+    tablePrincipal.appendChild(trPrincipal);
+    tablePrincipal.appendChild(trSecondaire);
+    tablePrincipal.appendChild(trTroisieme);
+    tablePrincipal.appendChild(trQuatrieme);
+    tablePrincipal.appendChild(trCinquieme);
+    trPrincipal.appendChild(tdProduitSelectionne);
+    trPrincipal.appendChild(tdQuantiteSelectionne);
+    trPrincipal.appendChild(tdPrixDuProduitSelectionne);
+    trPrincipal.appendChild(tdPrixTotalDuPanier);
 
     function panier() {
-        let cart = JSON.parse(localStorage.getItem("cart"));
-        console.log(cart);
+        for (let i = 0; i < data.length; i++) {
 
-    };
-    panier.forEach((articleId, article, qty) => {
-            cart[articleId] = [article.name, qty, article.price];
-            produitSelectionne.innerHTML = cart;
-        })
-        // JSON.stringify(cart);
+            trSecondaire.innerHTML = "<span>" + data[i].name + "<span>";
+            trSecondaire.innerHTML = "<span>" + data[i].price + "<span>";
+        };
+    }
+    panier();
+    // panier.forEach((articleId, article, qty) => {
+    //         cart[articleId] = [article.name, qty, article.price];
+    //         produitSelectionne.innerHTML = cart;
+    //     })
+    // JSON.stringify(cart);
 
     formContactTag.addEventListener("submit", () => {
 
