@@ -146,6 +146,10 @@
         color: burlywood;
     }
     
+    .Boutton-Produit:active {
+        color: green;
+    }
+    
     @media screen and (min-width:769px) and (max-width:1089px)
     /* styles pour tablettes*/
     

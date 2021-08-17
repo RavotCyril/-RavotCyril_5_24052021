@@ -1,18 +1,42 @@
-// Variable -> Déclaration  -> Balise body-Main-Logo-Nav-Liens-Titre-Article-... - Html de la page.
-(async function() {
-    // Déclaration de toutes les variables de la page HTML
+// Squellette de la page  Html. 
 
-    let b = document.body;
-    document.querySelector("header");
-    let newMain = document.createElement("Main");
-    let sectionTag = document.createElement("section");
-    let articleTag = document.createElement("article");
-    let h1Tag = document.createElement("h1");
-    let produitSelectionne = document.createElement("p");
-    let quantiteSelectionne = document.createElement("p");
-    let prixDuProduitSelectionne = document.createElement("p");
-    let prixTotalDuPanier = document.createElement("p");
-    let pTag = document.createElement("p");
+let b = document.body;
+document.querySelector("header");
+let newMain = document.createElement("Main");
+let sectionTag = document.createElement("section");
+let articleTag = document.createElement("article");
+let h1Tag = document.createElement("h1");
+let produitSelectionne = document.createElement("p");
+let quantiteSelectionne = document.createElement("p");
+let prixDuProduitSelectionne = document.createElement("p");
+let prixTotalDuPanier = document.createElement("p");
+let pTag = document.createElement("p");
+newMain.className = "container-fluid";
+sectionTag.className = "row";
+h1Tag.className = "col-12 my-4 text-center";
+pTag.className = "font-weight-bolder my-4 text-center";
+h1Tag.textContent = "Panier : Détails";
+produitSelectionne.textContent = "Produit Selectionné";
+quantiteSelectionne.textContent = "Quantité Selectionné";
+prixDuProduitSelectionne.textContent = "Prix Du Produit Selectionné";
+prixTotalDuPanier.textContent = "Prix Total Du Panier";
+articleTag.className = "col-12 Article-Panier-Détails";
+articleTag.id = "DonneesPanier";
+pTag.textContent = "Veuillez remplir ce formulaire pour valider votre commande";
+b.appendChild(newMain);
+newMain.appendChild(sectionTag);
+sectionTag.appendChild(h1Tag);
+sectionTag.appendChild(articleTag);
+articleTag.appendChild(produitSelectionne);
+articleTag.appendChild(quantiteSelectionne);
+articleTag.appendChild(prixDuProduitSelectionne);
+articleTag.appendChild(prixTotalDuPanier);
+sectionTag.appendChild(pTag);
+
+// Fonction du formulaire.
+
+function formulaire() {
+
 
     let formContactTag = document.createElement("form");
     let inputFirstNameTag = document.createElement("input");
@@ -38,42 +62,18 @@
     let inputButtonValidationCommandeTag = document.createElement("input");
 
 
-    // Appel des classes- Boostrap- TextContent- Id des balises html qui construise le squelette de la page.
+    // Appel des classes- Boostrap- TextContent- Id des balises html qui construise le squelette de la page du formulaire.
 
     firstNameValid.className = 'ClassErrorInputFirstNameTag';
     lastNameValid.className = 'ClassErrorInputLastNameTag';
     adresseValid.className = 'ClassErrorInputAdresseTag';
     cityValid.className = 'ClassErrorInputCityTag';
     emailValid.className = 'ClassErrorInputMailTag d-flex justify-content-center';
-    newMain.className = "container-fluid";
-    b.appendChild(newMain);
-    sectionTag.className = "row";
-    h1Tag.className = "col-12 my-4 text-center";
-    pTag.className = "font-weight-bolder my-4 text-center";
-    h1Tag.textContent = "Panier : Détails";
-    produitSelectionne.textContent = "Produit Selectionné";
-    quantiteSelectionne.textContent = "Quantité Selectionné";
-    prixDuProduitSelectionne.textContent = "Prix Du Produit Selectionné";
-    prixTotalDuPanier.textContent = "Prix Total Du Panier";
-    articleTag.className = "col-12 Article-Panier-Détails";
-    articleTag.id = "DonneesPanier";
-    pTag.textContent = "Veuillez remplir ce formulaire pour valider votre commande";
     formContactTag.id = "Contact";
     formContactTag.setAttribute("method", "post");
     formContactTag.setAttribute("action", "confirmation-de-commande.html");
     formContactTag.className = "col-sm-4 col-md-6 mx-auto text-center";
 
-    // Appel des balises en Html pour construire le squelette de la page.
-
-    newMain.appendChild(sectionTag);
-    sectionTag.appendChild(h1Tag);
-    sectionTag.appendChild(articleTag);
-    articleTag.appendChild(produitSelectionne);
-    articleTag.appendChild(quantiteSelectionne);
-    articleTag.appendChild(prixDuProduitSelectionne);
-    articleTag.appendChild(prixTotalDuPanier);
-    sectionTag.appendChild(pTag);
-    sectionTag.appendChild(formContactTag);
 
     // Formulaire Prénom
 
@@ -85,6 +85,7 @@
     inputFirstNameTag.type = "text";
     labelFirstName.htmlFor = "firstName";
     labelFirstName.name = "firstName";
+    sectionTag.appendChild(formContactTag);
     formContactTag.appendChild(labelFirstName);
     formContactTag.appendChild(inputFirstNameTag);
     formContactTag.appendChild(firstNameValid);
@@ -155,7 +156,7 @@
     const inputs = document.querySelectorAll('input[type="text"], input[type="email"]');
     console.log(inputs);
 
-    // Variable errorTag : Fonction du code d'erreur avec message en cas de mauvais caractères dans les inputs.
+    // Variable errorTag -> Fonction du code d'erreur avec message en cas de mauvais caractères dans les inputs.
 
     let errorTag = (tag, message, valid, invalid) => {
         const container = document.querySelector("." + tag);
@@ -168,7 +169,7 @@
             container.textContent = message;
         }
     };
-    // Variable validTag : Fonction du code de validation avec message en cas de données exactes.
+    // Variable validTag -> Fonction du code de validation avec message en cas de données exactes.
 
     let validTag = (tag, message, valid, invalid) => {
         const container = document.querySelector("." + tag);
@@ -329,6 +330,7 @@
             }
         });
     });
+
     // Avec AddEventListener. On regarde une fois que l'on envoie la demande du formulaire.
     //  Si toutes les données sont validés dans les ID de chaque inputs
     // On a ensuite un message de validation si les données sont bonnes.
@@ -383,6 +385,8 @@
             alert("veuillez remplir correctement les champs");
         }
     });
+
+
     // Permet de créer la méthode Post. Pour envoyer les données du formulaire à la page Confirmation de commande.
 
     // Permet de créer la récupération et l'affichage des produits ajoutés au panier via la page produit.  Clef / Valeur. set Item.
@@ -414,19 +418,17 @@
     // };
     // fetch("data.json", init).then((res) => console.log(res));
 
-    cart = {};
-    for (let key in cart) {
-        console.log(key + ":", cart[key]);
-        cart = JSON.parse(localStorage.getItem("cart"));
-        cart.forEach((articleId, qty) => {
-            console.log(articleId, qty);
-            articleTag.textContent = articleId;
-        });
 
-    }
-    console.log(cart);
-    console.log(typeof(cart));
-    // JSON.stringify(cart);
+    function panier() {
+        let cart = JSON.parse(localStorage.getItem("cart"));
+        console.log(cart);
+
+    };
+    panier.forEach((articleId, article, qty) => {
+            cart[articleId] = [article.name, qty, article.price];
+            produitSelectionne.innerHTML = cart;
+        })
+        // JSON.stringify(cart);
 
     formContactTag.addEventListener("submit", () => {
 
@@ -434,26 +436,21 @@
             console.log("data envoyée")
         );
     });
-    // const Display = () => {
-    //     cart = JSON.parse(localStorage.getItem("cart"));
-    //     articleTag.textContent = cart
-    //     console.log(cart);
+}
+formulaire();
+// const Display = () => {
+//     cart = JSON.parse(localStorage.getItem("cart"));
+//     articleTag.textContent = cart
+//     console.log(cart);
 
-    //     alert(JSON.stringify(cart));
-    // };
-    // Display();
-    // console.log(Display);
+//     alert(JSON.stringify(cart));
+// };
+// Display();
+// console.log(Display);
 
 
-    // function formDataToObject(data) {
-    //     data.forEach((value, key) => {
-    //         console.log(key, "=", value);
-    //     });
-    // }
+// //Conversion en chaine JSON
+// let json = JSON.stringify(cart);
 
-    // //Conversion en chaine JSON
-    // let json = JSON.stringify(cart);
-
-    // .document.appendChild("articleTag").innerHTML =
-    //     "cart" + typeof(json) + "<br>Contenu de la variable : " + json;
-})();
+// .document.appendChild("articleTag").innerHTML =
+//     "cart" + typeof(json) + "<br>Contenu de la variable : " + json;

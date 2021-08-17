@@ -1,21 +1,16 @@
 (async function() {
-    // Déclaration de toutes les variables de la page HTML
+    // Déclaration du body, header, h1, Main de la page HTML
 
     let b = document.body;
-    let newMain = document.createElement("Main");
-    let h1Tag = document.createElement("h1");
     document.querySelector("header");
+    let h1Tag = document.createElement("h1");
+    let newMain = document.createElement("Main");
 
-
-    //--------------------- Appel de toutes les variables pour créer les balises HTML----------------------------------------------
-
-    //  Header - h1 - Div-Logo - Nav - Logo - Main
-
+    //  Appel du Main, h1.
     b.appendChild(newMain);
     h1Tag.textContent = "Catalogue : Meubles en chêne";
     b.appendChild(h1Tag);
 
-    //---------------------- Fin Appel de toutes les variables pour créer les balises HTML---------------------------------------------
 
     // Variable - Fonction - > APi Déclaration
 
@@ -133,24 +128,36 @@ function afficherArticle(sectionTag, article) {
         selectTag.appendChild(optionTag);
         optionTag.value = article.varnish[i];
         optionTag.text = article.varnish[i];
+
     }
     // Permet de créer les variables et la fonction du  bouton panier
 
     let bouttonTag = document.createElement("form");
     let inputTag = document.createElement("input");
+    let spanTag = document.createElement("span");
     bouttonTag.className = "Form-Produit";
     inputTag.className = "Boutton-Produit";
+    spanTag.className = "Message-Ajout-Panier-Validation-Erreur";
     inputTag.type = "button";
     inputTag.value = "Ajouter au Panier";
     articleTag.appendChild(bouttonTag);
     bouttonTag.appendChild(inputTag);
+    articleTag.appendChild(spanTag);
 
     // Permet de créer la récupération de L'iD selectionné sur la page catalogue et la quantité dans le panier.  Clef / Valeur. Get Item.
     // Pour mémoriser des valeurs complexes et l'afficher, on utilisera le format JSON (JavaScript Objet Notation)  JSON.Parse.
     // on sérialise (ou linéarise)
     //  l’objet avec la syntaxe JSON.stringify().Cette opération transforme l’objet en JSON (une chaîne de caractères dans le panier.)
+    let validTag = (tag, message, valid) => {
+        const container = document.querySelector("." + tag);
+
+        if (valid) {
+            container.classList.add("valid");
+            container.textContent = message;
+        };
+    }
     inputTag.addEventListener("click", function() {
-        console.log(article._id, "1");
+        console.log(article._id, article.price, "1");
         let cart = JSON.parse(localStorage.getItem("cart"))
         console.log(cart);
         let oldArticle = 0;
@@ -161,6 +168,8 @@ function afficherArticle(sectionTag, article) {
                     value += 1;
                     cart[key] = value;
                     oldArticle = 1;
+                    validTag("Message-Ajout-Panier-Validation-Erreur", alert("Article ajouté au panier"), true);
+                    spanTag.style.color = "green";
                 }
             }
             if (oldArticle == 0) {
