@@ -374,37 +374,9 @@ function formulaire() {
         }
     });
 
+    //  Récupération des données du panier de la page Produit. 
+    //  + Création du tableau  pour l'afficher sur la page Panier.
 
-    // Permet de créer la méthode Post. Pour envoyer les données du formulaire à la page Confirmation de commande.
-
-    // Permet de créer la récupération et l'affichage des produits ajoutés au panier via la page produit.  Clef / Valeur. set Item.
-    // Inversement de la syntaxe par rapport à la page produit pour la lecture, 
-    // la syntaxe JSON.parse() reforme l’objet à partir de la chaîne linéarise et l'affiche sur la page.
-    //  Transforme le Json en objet java Script pour le renvoyer à L'API dans
-    //  le formulaire pour l'envoyer ensuite sur la page de confirmation commande.
-    //  CRUD >  Create (POST), read (GET),  update (PUT), Delete (DELETE); 
-
-    // const donnees = {
-    //     method: "POST",
-    //     headers: {
-    //         Allow: "POST",
-    //         'Content-Type': 'application/json'
-    //     },
-    //     body: JSON.stringify({
-
-    //     }),
-    //     mode: "cors",
-    //     credentials: "same-origin",
-    // };
-
-    // const myHeaders = new Headers();
-    // const init = {
-    //     method: "GET",
-    //     headers: myHeaders,
-    //     mode: "cors",
-    //     cache: "default",
-    // };
-    // fetch("data.json", init).then((res) => console.log(res));
 
     let data = JSON.parse(localStorage.getItem("cart"));
     console.log(data);
@@ -415,6 +387,7 @@ function formulaire() {
     let trTroisieme = document.createElement("tr");
     let trQuatrieme = document.createElement("tr");
     let trCinquieme = document.createElement("tr");
+    let trSixieme = document.createElement("tr");
     let tdProduitSelectionne = document.createElement("td");
     let tdQuantiteSelectionne = document.createElement("td");
     let tdPrixDuProduitSelectionne = document.createElement("td");
@@ -438,19 +411,33 @@ function formulaire() {
     tablePrincipal.appendChild(trTroisieme);
     tablePrincipal.appendChild(trQuatrieme);
     tablePrincipal.appendChild(trCinquieme);
+    tablePrincipal.appendChild(trSixieme);
     trPrincipal.appendChild(tdProduitSelectionne);
     trPrincipal.appendChild(tdQuantiteSelectionne);
     trPrincipal.appendChild(tdPrixDuProduitSelectionne);
     trPrincipal.appendChild(tdPrixTotalDuPanier);
 
-    function panier() {
-        for (let i = 0; i < data.length; i++) {
 
-            trSecondaire.innerHTML = "<span>" + data[i].name + "<span>";
-            trSecondaire.innerHTML = "<span>" + data[i].price + "<span>";
-        };
+    /* Function d'affichage du panier pour afficher
+       les données selectionnés sur la page produit sur la page Panier. */
+
+
+    function panier() {
+        for (let cart in data) {
+            console.log(cart + ":", data[cart]);
+            trSecondaire.innerHTML = (cart + ":" + data[cart]);
+            console.log(typeof [cart]);
+            trTroisieme.innerHTML = (cart + ":" + data[cart]);
+            console.log(trTroisieme.innerHTML);
+            trQuatrieme.innerHTML = (cart + ":" + data[cart]);
+            trCinquieme.innerHTML = (cart + ":" + data[cart]);
+            trSixieme.innerHTML = (cart + ":" + data[cart]);
+
+        }
     }
     panier();
+
+
     // panier.forEach((articleId, article, qty) => {
     //         cart[articleId] = [article.name, qty, article.price];
     //         produitSelectionne.innerHTML = cart;
@@ -465,6 +452,39 @@ function formulaire() {
     });
 }
 formulaire();
+
+
+// Permet de créer la méthode Post. Pour envoyer les données du formulaire à la page Confirmation de commande.
+
+// Permet de créer la récupération et l'affichage des produits ajoutés au panier via la page produit.  Clef / Valeur. set Item.
+// Inversement de la syntaxe par rapport à la page produit pour la lecture, 
+// la syntaxe JSON.parse() reforme l’objet à partir de la chaîne linéarise et l'affiche sur la page.
+//  Transforme le Json en objet java Script pour le renvoyer à L'API dans
+//  le formulaire pour l'envoyer ensuite sur la page de confirmation commande.
+//  CRUD >  Create (POST), read (GET),  update (PUT), Delete (DELETE); 
+
+// const donnees = {
+//     method: "POST",
+//     headers: {
+//         Allow: "POST",
+//         'Content-Type': 'application/json'
+//     },
+//     body: JSON.stringify({
+
+//     }),
+//     mode: "cors",
+//     credentials: "same-origin",
+// };
+
+// const myHeaders = new Headers();
+// const init = {
+//     method: "GET",
+//     headers: myHeaders,
+//     mode: "cors",
+//     cache: "default",
+// };
+// fetch("data.json", init).then((res) => console.log(res));
+
 // const Display = () => {
 //     cart = JSON.parse(localStorage.getItem("cart"));
 //     articleTag.textContent = cart

@@ -156,8 +156,8 @@
             display: flex;
             border: 1px solid black;
             height: 200px;
-            margin: 0px 1%;
             font-size: 0.9rem;
+            width: 100%;
         }
         .navbar-brand {
             width: 50%;
@@ -185,14 +185,9 @@
             display: flex;
             border: 1px solid black;
             height: 200px;
-            margin: 0px;
-            padding: 0px 2%;
             width: 100%;
-            font-size: 0.7rem;
+            font-size: 0.6rem;
             text-align: center;
-        }
-        .Article-Panier-Détails p {
-            padding-right: 5px;
         }
         .navbar-brand {
             width: 50%;
@@ -219,10 +214,8 @@
             border: 1px solid black;
             height: 200px;
             margin: 0px;
-            font-size: 0.5rem;
-        }
-        .Article-Panier-Détails p {
-            padding-right: 5px;
+            width: 100%;
+            font-size: 0.4rem;
         }
         .navbar-brand {
             width: 50%;
