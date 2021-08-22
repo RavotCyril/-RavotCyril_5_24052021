@@ -138,12 +138,15 @@ function afficherArticle(sectionTag, article) {
 
     let bouttonTag = document.createElement("form");
     let inputTag = document.createElement("input");
+    let spanMessageAjouterAuPanierTag = document.createElement("span");
     bouttonTag.className = "Form-Produit";
     inputTag.className = "Boutton-Produit";
+    spanMessageAjouterAuPanierTag.className = "Message-Ajout-Panier-Validation-Erreur";
     inputTag.type = "submit";
     inputTag.value = "Ajouter au Panier";
     articleTag.appendChild(bouttonTag);
     bouttonTag.appendChild(inputTag);
+    bouttonTag.appendChild(spanMessageAjouterAuPanierTag);
 
     // Permet de créer la récupération de L'iD selectionné sur la page catalogue et la quantité dans le panier.  Clef / Valeur. Get Item.
     // Pour mémoriser des valeurs complexes et l'afficher, on utilisera le format JSON (JavaScript Objet Notation)  JSON.Parse.
@@ -182,6 +185,5 @@ function afficherArticle(sectionTag, article) {
             cart[article._id] = "1";
             localStorage.setItem("cart", JSON.stringify(cart));
         }
-        données = cart
     })
 }

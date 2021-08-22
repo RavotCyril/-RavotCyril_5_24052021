@@ -326,9 +326,9 @@ function formulaire() {
 
     formContactTag.addEventListener("submit", (e) => {
         e.preventDefault();
-        let datas = document.querySelectorAll('input[type="text"], input[type="email"]');
+        let carts = document.querySelectorAll('input[type="text"], input[type="email"]');
         let firstName, lastName, adresse, ville, email;
-        datas.forEach((input) => {
+        carts.forEach((input) => {
             switch (input.name) {
 
                 case "firstName":
@@ -353,14 +353,14 @@ function formulaire() {
         })
         console.log("firstName :" + firstName, "lastName : " + lastName, "adresse : " + adresse, "ville :" + ville, "email : " + email);
         if (firstName && lastName && adresse && ville && email) {
-            const data = {
+            const cart = {
                 firstName,
                 lastName,
                 adresse,
                 ville,
                 email,
             };
-            console.log(data);
+            console.log(cart);
 
             inputs.forEach((input) => (input.value = ""));
             firstName = null;
@@ -417,20 +417,27 @@ function formulaire() {
 
     /* Function d'affichage du panier pour afficher
        les données selectionnés sur la page produit sur la page Panier. */
-
+    // const article = await getArticles(idproduit);
+    // async function getArticles(id) {
+    //     try {
+    //         let res = await fetch("http://localhost:3000/api/furniture/" + id);
+    //         return await res.json();
+    //     } catch (error) {
+    //         alert(error);
+    //     }
+    // }
     let cart = JSON.parse(localStorage.getItem("cart"));
-    data = cart;
-    console.log(data);
+    console.log(cart);
 
     function panier() {
-        for (let cart in data) {
-            console.log(cart + ":", data[cart]);
-            trSecondaire.innerHTML = (cart + ":" + data[cart]);
-            trTroisieme.innerHTML = (cart + ":" + data[cart]);
+        for (let key in cart) {
+            console.log(cart + ":", cart[cart]);
+            trSecondaire.innerHTML = (cart + ":" + key[article.name, +article.price]);
+            trTroisieme.innerHTML = (cart + ":" + key[article.name, +article.price]);
             console.log(trTroisieme.innerHTML);
-            trQuatrieme.innerHTML = (cart + ":" + data[cart]);
-            trCinquieme.innerHTML = (cart + ":" + data[cart]);
-            trSixieme.innerHTML = (cart + ":" + data[cart]);
+            trQuatrieme.innerHTML = (cart + ":" + key[article.name, +article.price]);
+            trCinquieme.innerHTML = (cart + ":" + key[article.name, +article.price]);
+            trSixieme.innerHTML = (cart + ":" + key[article.name, +article.price]);
 
         }
     }
@@ -446,7 +453,7 @@ function formulaire() {
     formContactTag.addEventListener("submit", () => {
 
         fetch("http://localhost:3000/api/furniture/order").then(() =>
-            console.log("data envoyée")
+            console.log("cart envoyée")
         );
     });
 }
@@ -482,7 +489,7 @@ formulaire();
 //     mode: "cors",
 //     cache: "default",
 // };
-// fetch("data.json", init).then((res) => console.log(res));
+// fetch("cart.json", init).then((res) => console.log(res));
 
 // const Display = () => {
 //     cart = JSON.parse(localStorage.getItem("cart"));
