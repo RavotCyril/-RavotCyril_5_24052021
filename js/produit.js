@@ -1,16 +1,21 @@
 (async function() {
-    // Déclaration du body, header, h1, Main de la page HTML
+    // Déclaration de toutes les variables de la page HTML
 
     let b = document.body;
-    document.querySelector("header");
-    let h1Tag = document.createElement("h1");
     let newMain = document.createElement("Main");
+    let h1Tag = document.createElement("h1");
+    document.querySelector("header");
 
-    //  Appel du Main, h1.
+
+    //--------------------- Appel de toutes les variables pour créer les balises HTML----------------------------------------------
+
+    //  Header - h1 - Div-Logo - Nav - Logo - Main
+
     b.appendChild(newMain);
     h1Tag.textContent = "Catalogue : Meubles en chêne";
     b.appendChild(h1Tag);
 
+    //---------------------- Fin Appel de toutes les variables pour créer les balises HTML---------------------------------------------
 
     // Variable - Fonction - > APi Déclaration
 
@@ -128,21 +133,17 @@ function afficherArticle(sectionTag, article) {
         selectTag.appendChild(optionTag);
         optionTag.value = article.varnish[i];
         optionTag.text = article.varnish[i];
-
     }
     // Permet de créer les variables et la fonction du  bouton panier
 
     let bouttonTag = document.createElement("form");
     let inputTag = document.createElement("input");
-    let spanMessageAjouterAuPanierTag = document.createElement("span");
     bouttonTag.className = "Form-Produit";
     inputTag.className = "Boutton-Produit";
-    inputTag.type = "button";
+    inputTag.type = "submit";
     inputTag.value = "Ajouter au Panier";
-    spanMessageAjouterAuPanierTag.className = "Message-Ajout-Panier-Validation-Erreur";
     articleTag.appendChild(bouttonTag);
     bouttonTag.appendChild(inputTag);
-    bouttonTag.appendChild(spanMessageAjouterAuPanierTag);
 
     // Permet de créer la récupération de L'iD selectionné sur la page catalogue et la quantité dans le panier.  Clef / Valeur. Get Item.
     // Pour mémoriser des valeurs complexes et l'afficher, on utilisera le format JSON (JavaScript Objet Notation)  JSON.Parse.
@@ -158,32 +159,29 @@ function afficherArticle(sectionTag, article) {
         }
     }
     inputTag.addEventListener("click", function() {
-        console.log(article._id, article.price, "1");
-        let cart = [];
-        cart = JSON.parse(localStorage.getItem("cart"))
-        let data = (article._id + " ," + article.name + "," + article.price);
+        console.log(article._id, "1");
+        let cart = JSON.parse(localStorage.getItem("cart"))
         console.log(cart);
-        console.log(data);
         let oldArticle = 0;
         if (cart !== null) {
             for (let key in cart) {
-                if (key == article._id + " ," + article.name + "," + article.price) {
-                    let qty = parseInt(cart[article._id + " ," + article.name + "," + article.price]);
-                    cart[(article._id + " ," + article.name + "," + article.price)]
-                    qty += 1;
-                    cart[key] = qty;
+                if (key == article._id) {
+                    let value = parseInt(cart[article._id]);
+                    value += 1;
+                    cart[key] = value;
                     oldArticle = 1;
                     validTag("Message-Ajout-Panier-Validation-Erreur", alert("Article ajouté au panier"), true);
                 }
             }
             if (oldArticle == 0) {
-                cart[(article._id + " ," + article.name + "," + article.price)] = "1";
+                cart[article._id] = "1";
             }
             localStorage.setItem("cart", JSON.stringify(cart));
         } else {
             let cart = {};
-            cart[(article._id + " ," + article.name + "," + article.price)] = "1";
+            cart[article._id] = "1";
             localStorage.setItem("cart", JSON.stringify(cart));
         }
+        données = cart
     })
 }
