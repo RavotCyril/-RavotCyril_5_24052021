@@ -162,7 +162,7 @@ function afficherArticle(sectionTag, article) {
         }
     }
     inputTag.addEventListener("click", function() {
-        console.log(article._id, "1");
+        console.log(article._id, article.price, "1");
         let cart = JSON.parse(localStorage.getItem("cart"))
         console.log(cart);
         let oldArticle = 0;
