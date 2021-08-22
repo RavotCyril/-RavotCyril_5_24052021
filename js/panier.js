@@ -377,9 +377,6 @@ function formulaire() {
     //  Récupération des données du panier de la page Produit. 
     //  + Création du tableau  pour l'afficher sur la page Panier.
 
-
-    let data = JSON.parse(localStorage.getItem("cart"));
-    console.log(data);
     let tbody = document.createElement("tbody");
     let tablePrincipal = document.createElement("table");
     let trPrincipal = document.createElement("tr");
@@ -421,12 +418,14 @@ function formulaire() {
     /* Function d'affichage du panier pour afficher
        les données selectionnés sur la page produit sur la page Panier. */
 
+    let cart = JSON.parse(localStorage.getItem("cart"));
+    data = cart;
+    console.log(data);
 
     function panier() {
         for (let cart in data) {
             console.log(cart + ":", data[cart]);
             trSecondaire.innerHTML = (cart + ":" + data[cart]);
-            console.log(typeof [cart]);
             trTroisieme.innerHTML = (cart + ":" + data[cart]);
             console.log(trTroisieme.innerHTML);
             trQuatrieme.innerHTML = (cart + ":" + data[cart]);

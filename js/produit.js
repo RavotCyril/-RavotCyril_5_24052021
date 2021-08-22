@@ -159,7 +159,8 @@ function afficherArticle(sectionTag, article) {
     }
     inputTag.addEventListener("click", function() {
         console.log(article._id, article.price, "1");
-        let cart = JSON.parse(localStorage.getItem("cart"))
+        let cart = [];
+        cart = JSON.parse(localStorage.getItem("cart"))
         let data = (article._id + " ," + article.name + "," + article.price);
         console.log(cart);
         console.log(data);
