@@ -1,31 +1,94 @@
-// Squellette de la page  Html. 
+(async function() {
+    let b = document.body;
+    document.querySelector("header");
+    let newMain = document.createElement("Main");
+    // Fonction pour appeller les articles de L'API.
+    let sectionTag = document.createElement("section");
+    let h1Tag = document.createElement("h1");
+    let articleTag = document.createElement("article");
+    const article = await getArticles();
+    //console.log(articles);
 
-let b = document.body;
-document.querySelector("header");
-let newMain = document.createElement("Main");
-let sectionTag = document.createElement("section");
-let articleTag = document.createElement("article");
-let h1Tag = document.createElement("h1");
-let pTag = document.createElement("p");
-newMain.className = "container-fluid";
-sectionTag.className = "row";
-h1Tag.className = "col-12 my-4 text-center";
-pTag.className = "font-weight-bolder my-4 text-center";
-h1Tag.textContent = "Panier : Détails";
-articleTag.className = "Article-Panier-Détails container-fluid px-0";
-articleTag.id = "DonneesPanier";
-pTag.textContent = "Veuillez remplir ce formulaire pour valider votre commande";
-b.appendChild(newMain);
-newMain.appendChild(sectionTag);
-sectionTag.appendChild(h1Tag);
-sectionTag.appendChild(articleTag);
-sectionTag.appendChild(pTag);
+    afficherPanier(sectionTag, article);
+    newMain.className = "container-fluid";
+    sectionTag.className = "row";
+    h1Tag.className = "col-12 my-4 text-center";
+    h1Tag.textContent = "Panier : Détails";
+    articleTag.className = "Article-Panier-Détails container-fluid px-0";
+    articleTag.id = "DonneesPanier";
+    b.appendChild(newMain);
+    newMain.appendChild(sectionTag);
+})();
 
-// Fonction du formulaire.
+async function getArticles() {
+    try {
+        let res = await fetch("http://localhost:3000/api/furniture");
+        return await res.json();
+    } catch (error) {
+        alert(error);
+    }
+}
+//  Récupération des données du panier de la page Produit. 
+//  + Création du tableau  pour l'afficher sur la page Panier.
+function AfficherPanier(sectionTag, h1Tag, articleTag, article) {
 
-function formulaire() {
+    let cart = JSON.parse(localStorage.getItem("cart"));
+    console.log(cart);
+    let tbody = document.createElement("tbody");
+    let tablePrincipal = document.createElement("table");
+    let trPrincipal = document.createElement("tr");
+    let trSecondaire = document.createElement("tr");
+    let trTroisieme = document.createElement("tr");
+    let trQuatrieme = document.createElement("tr");
+    let trCinquieme = document.createElement("tr");
+    let trSixieme = document.createElement("tr");
+    let tdProduitSelectionne = document.createElement("td");
+    let tdQuantiteSelectionne = document.createElement("td");
+    let tdPrixDuProduitSelectionne = document.createElement("td");
+    let tdPrixTotalDuPanier = document.createElement("td");
+    tbody.className = "container-fluid border border-dark px-2 py-2";
+    tablePrincipal.className = "container-fluid";
+    trPrincipal.className = "border border-dark";
+    tdProduitSelectionne.className = "text-center";
+    tdQuantiteSelectionne.className = "text-center";
+    tdPrixDuProduitSelectionne.className = "text-center";
+    tdPrixTotalDuPanier.className = "text-center";
+    tdProduitSelectionne.textContent = "Produit Selectionné";
+    tdQuantiteSelectionne.textContent = "Quantité Selectionné";
+    tdPrixDuProduitSelectionne.textContent = "Prix Du Produit Selectionné";
+    tdPrixTotalDuPanier.textContent = "Prix Total Du Panier";
 
+    sectionTag.appendChild(h1Tag);
+    sectionTag.appendChild(articleTag);
+    sectionTag.appendChild(pTag);
+    articleTag.appendChild(tbody);
+    tbody.appendChild(tablePrincipal);
+    tablePrincipal.appendChild(trPrincipal);
+    tablePrincipal.appendChild(trSecondaire);
+    tablePrincipal.appendChild(trTroisieme);
+    tablePrincipal.appendChild(trQuatrieme);
+    tablePrincipal.appendChild(trCinquieme);
+    tablePrincipal.appendChild(trSixieme);
+    trPrincipal.appendChild(tdProduitSelectionne);
+    trPrincipal.appendChild(tdQuantiteSelectionne);
+    trPrincipal.appendChild(tdPrixDuProduitSelectionne);
+    trPrincipal.appendChild(tdPrixTotalDuPanier);
 
+    for (let key in cart) {
+        console.log(cart + ":", cart[cart]);
+        trSecondaire.innerHTML = (cart + ":" + key[article.name, +article.price]);
+        trTroisieme.innerHTML = (cart + ":" + key[article.name, +article.price]);
+        console.log(trTroisieme.innerHTML);
+        trQuatrieme.innerHTML = (cart + ":" + key[article.name, +article.price]);
+        trCinquieme.innerHTML = (cart + ":" + key[article.name, +article.price]);
+        trSixieme.innerHTML = (cart + ":" + key[article.name, +article.price]);
+
+    }
+}
+
+function formulaire(sectionTag) {
+
+    let pTag = document.createElement("p");
     let formContactTag = document.createElement("form");
     let inputFirstNameTag = document.createElement("input");
     let firstNameValid = document.createElement("span");
@@ -52,6 +115,8 @@ function formulaire() {
 
     // Appel des classes- Boostrap- TextContent- Id des balises html qui construise le squelette de la page du formulaire.
 
+    pTag.className = "font-weight-bolder my-4 text-center";
+    pTag.textContent = "Veuillez remplir ce formulaire pour valider votre commande";
     firstNameValid.className = 'ClassErrorInputFirstNameTag';
     lastNameValid.className = 'ClassErrorInputLastNameTag';
     adresseValid.className = 'ClassErrorInputAdresseTag';
@@ -139,10 +204,6 @@ function formulaire() {
     inputButtonValidationCommandeTag.value = "Validation Commande";
     formContactTag.appendChild(inputButtonValidationCommandeTag);
 
-    // Constante inputs : Récupération - Sélection de tous les inputs de la page.
-
-    const inputs = document.querySelectorAll('input[type="text"], input[type="email"]');
-    console.log(inputs);
 
     // Variable errorTag -> Fonction du code d'erreur avec message en cas de mauvais caractères dans les inputs.
 
@@ -287,6 +348,10 @@ function formulaire() {
     /* Avec la method ForEach sur linput du bouton validation Commande.
     Fonction qui contrôle si tout les inputs (champs) du formulaire ont bien été validés partout  avec la selection des ID des Inputs.
     Pour ensuite pouvoir cliquer sur le bouton validation Commande et envoyer le formulaire.*/
+    // Constante inputs : Récupération - Sélection de tous les inputs de la page.
+
+    const inputs = document.querySelectorAll('input[type="text"], input[type="email"]');
+    console.log(inputs);
 
     inputs.forEach((input) => {
         input.addEventListener("input", (e) => {
@@ -373,91 +438,15 @@ function formulaire() {
             alert("veuillez remplir correctement les champs");
         }
     });
-
-    //  Récupération des données du panier de la page Produit. 
-    //  + Création du tableau  pour l'afficher sur la page Panier.
-
-    let tbody = document.createElement("tbody");
-    let tablePrincipal = document.createElement("table");
-    let trPrincipal = document.createElement("tr");
-    let trSecondaire = document.createElement("tr");
-    let trTroisieme = document.createElement("tr");
-    let trQuatrieme = document.createElement("tr");
-    let trCinquieme = document.createElement("tr");
-    let trSixieme = document.createElement("tr");
-    let tdProduitSelectionne = document.createElement("td");
-    let tdQuantiteSelectionne = document.createElement("td");
-    let tdPrixDuProduitSelectionne = document.createElement("td");
-    let tdPrixTotalDuPanier = document.createElement("td");
-    tbody.className = "container-fluid border border-dark px-2 py-2";
-    tablePrincipal.className = "container-fluid";
-    trPrincipal.className = "border border-dark";
-    tdProduitSelectionne.className = "text-center";
-    tdQuantiteSelectionne.className = "text-center";
-    tdPrixDuProduitSelectionne.className = "text-center";
-    tdPrixTotalDuPanier.className = "text-center";
-    tdProduitSelectionne.textContent = "Produit Selectionné";
-    tdQuantiteSelectionne.textContent = "Quantité Selectionné";
-    tdPrixDuProduitSelectionne.textContent = "Prix Du Produit Selectionné";
-    tdPrixTotalDuPanier.textContent = "Prix Total Du Panier";
-
-    articleTag.appendChild(tbody);
-    tbody.appendChild(tablePrincipal);
-    tablePrincipal.appendChild(trPrincipal);
-    tablePrincipal.appendChild(trSecondaire);
-    tablePrincipal.appendChild(trTroisieme);
-    tablePrincipal.appendChild(trQuatrieme);
-    tablePrincipal.appendChild(trCinquieme);
-    tablePrincipal.appendChild(trSixieme);
-    trPrincipal.appendChild(tdProduitSelectionne);
-    trPrincipal.appendChild(tdQuantiteSelectionne);
-    trPrincipal.appendChild(tdPrixDuProduitSelectionne);
-    trPrincipal.appendChild(tdPrixTotalDuPanier);
-
-
-    /* Function d'affichage du panier pour afficher
-       les données selectionnés sur la page produit sur la page Panier. */
-    // const article = await getArticles(idproduit);
-    // async function getArticles(id) {
-    //     try {
-    //         let res = await fetch("http://localhost:3000/api/furniture/" + id);
-    //         return await res.json();
-    //     } catch (error) {
-    //         alert(error);
-    //     }
-    // }
-    let cart = JSON.parse(localStorage.getItem("cart"));
-    console.log(cart);
-
-    function panier() {
-        for (let key in cart) {
-            console.log(cart + ":", cart[cart]);
-            trSecondaire.innerHTML = (cart + ":" + key[article.name, +article.price]);
-            trTroisieme.innerHTML = (cart + ":" + key[article.name, +article.price]);
-            console.log(trTroisieme.innerHTML);
-            trQuatrieme.innerHTML = (cart + ":" + key[article.name, +article.price]);
-            trCinquieme.innerHTML = (cart + ":" + key[article.name, +article.price]);
-            trSixieme.innerHTML = (cart + ":" + key[article.name, +article.price]);
-
-        }
-    }
-    panier();
-
-
-    // panier.forEach((articleId, article, qty) => {
-    //         cart[articleId] = [article.name, qty, article.price];
-    //         produitSelectionne.innerHTML = cart;
-    //     })
-    // JSON.stringify(cart);
-
-    formContactTag.addEventListener("submit", () => {
-
-        fetch("http://localhost:3000/api/furniture/order").then(() =>
-            console.log("cart envoyée")
-        );
-    });
 }
 formulaire();
+
+formContactTag.addEventListener("submit", () => {
+
+    fetch("http://localhost:3000/api/furniture/order").then(() =>
+        console.log("cart envoyée")
+    );
+});
 
 
 // Permet de créer la méthode Post. Pour envoyer les données du formulaire à la page Confirmation de commande.
