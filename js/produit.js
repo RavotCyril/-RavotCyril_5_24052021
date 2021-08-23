@@ -116,6 +116,13 @@ function afficherArticle(sectionTag, article) {
     // Pour mémoriser des valeurs complexes et l'afficher, on utilisera le format JSON (JavaScript Objet Notation)  JSON.Parse.
     // on sérialise (ou linéarise)
     //  l’objet avec la syntaxe JSON.stringify().Cette opération transforme l’objet en JSON (une chaîne de caractères dans le panier.)
+    let validTag = (tag, message, valid) => {
+        const container = document.querySelector("." + tag);
+        if (valid) {
+            container.classList.add("valid");
+            container.textContent = message;
+        }
+    }
     inputTag.addEventListener("click", function() {
         console.log(article._id, "1");
         let cart = JSON.parse(localStorage.getItem("cart"))
@@ -128,6 +135,7 @@ function afficherArticle(sectionTag, article) {
                     value += 1;
                     cart[key] = value;
                     oldArticle = 1;
+                    validTag("Message-Ajout-Panier-Validation-Erreur", alert("Article ajouté au panier"), true);
                 }
             }
             if (oldArticle == 0) {
