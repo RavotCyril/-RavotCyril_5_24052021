@@ -1,4 +1,4 @@
-(async function() {
+(async function getAllParaElems() {
 
     let b = document.body;
     document.querySelector("header");
@@ -8,12 +8,7 @@
     let h1Tag = document.createElement("h1");
     let articleTag = document.createElement("article");
     const articles = await getArticles();
-    for (let i in articles) {
-        console.log(articles[i]);
-        afficherArticle(sectionTag, articles[i]);
-    }
     //console.log(articles);
-
     newMain.className = "container-fluid";
     sectionTag.className = "row";
     h1Tag.className = "col-12 my-4 text-center";
@@ -22,6 +17,11 @@
     articleTag.id = "DonneesPanier";
     b.appendChild(newMain);
     newMain.appendChild(sectionTag);
+    console.log(sectionTag);
+    for (let i in articles) {
+        console.log(articles[i]);
+        afficherPanier(sectionTag, article);
+    }
 })();
 // Methode Get Permet de récupérer l'?id= des paramètres de l'URL, l'identifiant
 
@@ -36,7 +36,7 @@ async function getArticles() {
 }
 //  Récupération des données du panier de la page Produit. 
 //  + Création du tableau  pour l'afficher sur la page Panier.
-function AfficherPanier(sectionTag, h1Tag, articleTag, article) {
+function AfficherPanier(sectionTag, article) {
 
     let cart = JSON.parse(localStorage.getItem("cart"));
     console.log(cart);
