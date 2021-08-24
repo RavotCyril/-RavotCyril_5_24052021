@@ -1,4 +1,5 @@
 (async function() {
+
     let b = document.body;
     document.querySelector("header");
     let newMain = document.createElement("Main");
@@ -6,10 +7,13 @@
     let sectionTag = document.createElement("section");
     let h1Tag = document.createElement("h1");
     let articleTag = document.createElement("article");
-    const article = await getArticles();
+    const articles = await getArticles();
+    for (let i in articles) {
+        console.log(articles[i]);
+        afficherArticle(sectionTag, articles[i]);
+    }
     //console.log(articles);
 
-    afficherPanier(sectionTag, article);
     newMain.className = "container-fluid";
     sectionTag.className = "row";
     h1Tag.className = "col-12 my-4 text-center";
@@ -19,6 +23,8 @@
     b.appendChild(newMain);
     newMain.appendChild(sectionTag);
 })();
+// Methode Get Permet de récupérer l'?id= des paramètres de l'URL, l'identifiant
+
 
 async function getArticles() {
     try {
@@ -60,7 +66,6 @@ function AfficherPanier(sectionTag, h1Tag, articleTag, article) {
 
     sectionTag.appendChild(h1Tag);
     sectionTag.appendChild(articleTag);
-    sectionTag.appendChild(pTag);
     articleTag.appendChild(tbody);
     tbody.appendChild(tablePrincipal);
     tablePrincipal.appendChild(trPrincipal);
@@ -138,6 +143,7 @@ function formulaire(sectionTag) {
     inputFirstNameTag.type = "text";
     labelFirstName.htmlFor = "firstName";
     labelFirstName.name = "firstName";
+    sectionTag.appendChild(pTag);
     sectionTag.appendChild(formContactTag);
     formContactTag.appendChild(labelFirstName);
     formContactTag.appendChild(inputFirstNameTag);
@@ -441,12 +447,12 @@ function formulaire(sectionTag) {
 }
 formulaire();
 
-formContactTag.addEventListener("submit", () => {
+// formContactTag.addEventListener("submit", () => {
 
-    fetch("http://localhost:3000/api/furniture/order").then(() =>
-        console.log("cart envoyée")
-    );
-});
+//     fetch("http://localhost:3000/api/furniture/order").then(() =>
+//         console.log("cart envoyée")
+//     );
+// });
 
 
 // Permet de créer la méthode Post. Pour envoyer les données du formulaire à la page Confirmation de commande.
