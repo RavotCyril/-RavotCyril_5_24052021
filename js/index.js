@@ -5,6 +5,7 @@
     let b = document.body;
     document.querySelector("header");
     let newMain = document.createElement("Main");
+    let sectionTag = document.createElement("section");
     let h1Tag = document.createElement("h1");
 
     //--------------------- Appel de toutes les variables pour créer les balises HTML----------------------------------------------
@@ -14,12 +15,15 @@
     b.appendChild(newMain);
     h1Tag.textContent = "Catalogue : Meubles en chêne";
     b.appendChild(h1Tag);
+    sectionTag.id = "Fourniture";
+    sectionTag.className = "Content";
+    newMain.appendChild(sectionTag);
+    b.appendChild(newMain);
 
     //---------------------- Fin Appel de toutes les variables pour créer les balises HTML---------------------------------------------
 
     // Variable - Fonction - > APi Déclaration
 
-    let sectionTag = document.createElement("section");
 
     const articles = await getArticles();
     //console.log(articles);
@@ -27,10 +31,7 @@
         console.log(articles[i]);
         afficherArticle(sectionTag, articles[i]);
     }
-    sectionTag.id = "Fourniture";
-    sectionTag.className = "Content";
-    newMain.appendChild(sectionTag);
-    b.appendChild(newMain);
+
 })();
 // Fonction pour appeller les articles de L'API.
 
