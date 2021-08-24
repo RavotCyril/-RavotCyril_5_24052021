@@ -101,12 +101,16 @@ function afficherArticle(sectionTag, article) {
     // Permet de créer les variables et la fonction du  bouton panier
     let bouttonTag = document.createElement("form");
     let inputTag = document.createElement("input");
+    let spanMessageAjouterAuPanierTag = document.createElement("span");
     bouttonTag.className = "Form-Produit";
     inputTag.className = "Boutton-Produit";
+    spanMessageAjouterAuPanierTag.className = "Message-Ajout-Panier-Validation-Erreur";
     inputTag.type = "button";
     inputTag.value = "Ajouter au Panier";
     articleTag.appendChild(bouttonTag);
     bouttonTag.appendChild(inputTag);
+    bouttonTag.appendChild(spanMessageAjouterAuPanierTag);
+
     // Permet de créer la récupération de L'iD selectionné sur la page catalogue et la quantité dans le panier.  Clef / Valeur. Get Item.
     // Pour mémoriser des valeurs complexes et l'afficher, on utilisera le format JSON (JavaScript Objet Notation)  JSON.Parse.
     // on sérialise (ou linéarise)
