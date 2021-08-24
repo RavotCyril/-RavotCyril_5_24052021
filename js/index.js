@@ -28,8 +28,8 @@
     const articles = await getArticles();
     //console.log(articles);
     for (let i in articles) {
-        console.log(articles[i]);
-        afficherArticle(sectionTag, articles[i]);
+        console.log(articles);
+        afficherArticle(sectionTag, articles);
     }
 
 })();
