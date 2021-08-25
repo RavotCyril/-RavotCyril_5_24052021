@@ -9,7 +9,6 @@
         let newMain = document.createElement("Main");
         let sectionTag = document.createElement("section");
         let h1Tag = document.createElement("h1");
-        let articleTag = document.createElement("article");
 
 
 
@@ -20,13 +19,10 @@
         sectionTag.className = "row";
         h1Tag.className = "col-12 my-4 text-center";
         h1Tag.textContent = "Panier : Détails";
-        articleTag.className = "Article-Panier-Détails container-fluid px-0";
-        articleTag.id = "DonneesPanier";
+
+        b.appendChild(h1Tag);
         b.appendChild(newMain);
         newMain.appendChild(sectionTag);
-        sectionTag.appendChild(h1Tag);
-        sectionTag.appendChild(articleTag);
-        console.log(sectionTag);
 
         //---------------------- Fin Appel de toutes les variables pour créer les balises HTML---------------------------------------------
 
@@ -36,14 +32,10 @@
         const article = await getArticles();
         //console.log(articles);
 
-        // Fonction boucle for - > APi Déclaration
+        // Fonction - > APi Déclaration
 
-        for (let i in article) {
-            console.log(article[i]);
+        afficherPanier(sectionTag, article);
 
-            afficherPanier(articleTag, article[i]);
-            console.log(afficherPanier());
-        }
     })();
     // Methode Get Permet de récupérer l'?id= des paramètres de l'URL, l'identifiant
 
@@ -58,8 +50,9 @@
     }
     //  Récupération des données du panier de la page Produit. 
     //  + Création du tableau  pour l'afficher sur la page Panier.
-    function afficherPanier(articleTag, article) {
+    function afficherPanier(sectionTag, article) {
 
+        let articleTag = document.createElement("article");
         let cart = JSON.parse(localStorage.getItem("cart"));
         console.log(cart);
         let tbody = document.createElement("tbody");
@@ -74,6 +67,9 @@
         let tdQuantiteSelectionne = document.createElement("td");
         let tdPrixDuProduitSelectionne = document.createElement("td");
         let tdPrixTotalDuPanier = document.createElement("td");
+
+        articleTag.className = "Article-Panier-Détails container-fluid px-0";
+        articleTag.id = "DonneesPanier";
         tbody.className = "container-fluid border border-dark px-2 py-2";
         tablePrincipal.className = "container-fluid";
         trPrincipal.className = "border border-dark";
@@ -86,6 +82,7 @@
         tdPrixDuProduitSelectionne.textContent = "Prix Du Produit Selectionné";
         tdPrixTotalDuPanier.textContent = "Prix Total Du Panier";
 
+        sectionTag.appendChild(articleTag);
         articleTag.appendChild(tbody);
         tbody.appendChild(tablePrincipal);
         tablePrincipal.appendChild(trPrincipal);
@@ -100,14 +97,17 @@
         trPrincipal.appendChild(tdPrixTotalDuPanier);
 
         for (let key in cart) {
-            console.log(cart + ":", cart[cart]);
-            trSecondaire.innerHTML = (cart + ":" + key[article.name, +article.price]);
-            trTroisieme.innerHTML = (cart + ":" + key[article.name, +article.price]);
-            console.log(trTroisieme.innerHTML);
-            trQuatrieme.innerHTML = (cart + ":" + key[article.name, +article.price]);
-            trCinquieme.innerHTML = (cart + ":" + key[article.name, +article.price]);
-            trSixieme.innerHTML = (cart + ":" + key[article.name, +article.price]);
+            if (key == article) console.log(article); {
+                cart[article.id] = { "price": article.price, "name": article.name }
 
+                trSecondaire.innerHTML = (cart[article] = [article.price, article.name]);
+                trTroisieme.innerHTML = (cart + ":" + article[article.name, +article.price]);
+                console.log(trTroisieme.innerHTML);
+                trQuatrieme.innerHTML = (cart + ":" + article[article.name, +article.price]);
+                trCinquieme.innerHTML = (cart + ":" + article[article.name, +article.price]);
+                trSixieme.innerHTML = (cart + ":" + [article.name, +article.price]);
+
+            }
         }
     }
 
@@ -465,8 +465,8 @@
                 alert("veuillez remplir correctement les champs");
             }
         });
+        formulaire(sectionTag);
     }
-    formulaire();
 
     // formContactTag.addEventListener("submit", () => {
 

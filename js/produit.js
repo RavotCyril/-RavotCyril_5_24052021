@@ -17,9 +17,9 @@
         sectionTag.className = "Content";
         h1Tag.textContent = "Catalogue : Meubles en chêne";
 
+        b.appendChild(h1Tag);
         b.appendChild(newMain);
         newMain.appendChild(sectionTag);
-        b.appendChild(h1Tag);
 
         //---------------------- Fin Appel de toutes les variables pour créer les balises HTML---------------------------------------------
 
@@ -27,7 +27,6 @@
         le résultat de la méthode Fetch pour récupérer les donnéees de l'API  */
 
         const article = await getArticles(idproduit);
-        //console.log(articles);
 
         // Fonction - > APi Déclaration
 
@@ -54,6 +53,7 @@
     // Déclaration - Variable et Fonction - > Articles - H2 -figure - div - img -figcaption -p : Object, Id , imageUrl Name, Prix, Description, ...
 
     function afficherArticle(sectionTag, article) {
+
         let articleTag = document.createElement("article");
         let titleTag = document.createElement("h2");
         let figureTag = document.createElement("figure");
@@ -66,13 +66,14 @@
         // Appel - Variable et Fonction - > Id
 
         articleTag.id = article._id;
+
         articleTag.className = "Article";
 
         // Créer un élément style
         // Appel - Variable et Fonction - > Name + Description Figcaption
 
         titleTag.textContent = article.name;
-
+        console.log(article.description);
         // Appel - Variable et Fonction - > Titre h2 + Figure
 
         sectionTag.appendChild(articleTag);
@@ -169,7 +170,7 @@
 
         inputTag.addEventListener("click", function() {
             console.log(article._id, "1");
-            console.log(price2);
+
             let cart = JSON.parse(localStorage.getItem("cart"))
             console.log(cart);
             let oldArticle = 0;
@@ -192,5 +193,6 @@
                 cart[article._id] = "1";
                 localStorage.setItem("cart", JSON.stringify(cart));
             }
+
         })
     }
