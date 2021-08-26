@@ -29,12 +29,15 @@
         /*Constante article. Qui permet de récupérer avec la function getARticle 
         le résultat de la méthode Fetch pour récupérer les donnéees de l'API  */
 
-        const article = await getArticles();
+        const articles = await getArticles();
         //console.log(articles);
-
+        for (let i in articles) {
+            console.log(articles[i]);
+            afficherPanier(sectionTag, articles[i]);
+        }
         // Fonction - > APi Déclaration
 
-        afficherPanier(sectionTag, article);
+        // afficherPanier(sectionTag, article);
 
     })();
     // Methode Get Permet de récupérer l'?id= des paramètres de l'URL, l'identifiant
@@ -101,13 +104,12 @@
         /* Si  cart ( valeur de mon localStorage ) est invalide.Alors faire une boucle. 
         Pour  valeur clef (Items) dans l'Api (article) si les clefs de l'Api sont égales à un Id de L'API et que 
         les clefs de mon localStorage sont égales à un ID de L'API alors afficher moi les valeurs.   */
-        console.log(article.name)
         if (!cart) {
-            for (let items in article) {
+            for (let prod in cart) {
 
-                if (items == article._id) {
-                    console.log(cart);
-                    key[cart] = article._id;
+                if (prod == article._id) {
+                    console.log("5be9cc611c9d440000c1421e");
+                    prod[cart] = article._id;
 
                     console.log(items[article]);
 

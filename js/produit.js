@@ -73,7 +73,6 @@
         // Appel - Variable et Fonction - > Name + Description Figcaption
 
         titleTag.textContent = article.name;
-        console.log(article.description);
         // Appel - Variable et Fonction - > Titre h2 + Figure
 
         sectionTag.appendChild(articleTag);
@@ -167,7 +166,6 @@
             on sérialise (ou linéarise)
             l’objet avec la syntaxe JSON.stringify().La méthode JSON.stringify() convertit une valeur JavaScript en chaîne JSON.
             (une chaîne de caractères dans le panier.) et stock les données dans local storage */
-
         inputTag.addEventListener("click", function() {
             console.log(article._id, "1");
 
