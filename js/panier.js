@@ -31,8 +31,7 @@
 
         const articles = await getArticles();
         //console.log(articles);
-        for (let i in articles) {
-            console.log(articles[i]);
+        for (let i = 0; i < 1; i++ in articles) {
             afficherPanier(sectionTag, articles[i]);
         }
         // Fonction - > APi Déclaration
@@ -68,12 +67,15 @@
         let tdQuantiteSelectionne = document.createElement("td");
         let tdPrixDuProduitSelectionne = document.createElement("td");
         let tdPrixTotalDuPanier = document.createElement("td");
+        let prixTag = document.createElement("p");
+
 
         articleTag.className = "Article-Panier-Détails container-fluid px-0";
         articleTag.id = "DonneesPanier";
         tbody.className = "container-fluid border border-dark px-2 py-2";
         tablePrincipal.className = "container-fluid";
         trPrincipal.className = "border border-dark";
+        trSecondaire.className = "container-fluid";
         tdProduitSelectionne.className = "text-center";
         tdQuantiteSelectionne.className = "text-center";
         tdPrixDuProduitSelectionne.className = "text-center";
@@ -99,28 +101,35 @@
 
         // Récupération de la clef de mon local Storage avec les articles et les données Id + Quantités. 
         let cart = JSON.parse(localStorage.getItem("cart"));
-        console.log(cart);
-        /* Si  cart ( valeur de mon localStorage ) est invalide.Alors faire une boucle. 
-        Pour  valeur clef (Items) dans l'Api (article) si les clefs de l'Api sont égales à un Id de L'API et que 
-        les clefs de mon localStorage sont égales à un ID de L'API alors afficher moi les valeurs.   */
-        console.log(article.name);
-        if (!cart) {
-            for (let prod in cart) {
-                if (prod == article._id) {
-                    console.log("5be9cc611c9d440000c1421e");
-                    prod[cart] = article._id;
+        console.log(cart)
+            /* Si  cart ( valeur de mon localStorage ).Alors faire une boucle. 
+            Pour  "valeur" (Items) dans le localStorage "clef" (cart).
+            Si les valeurs (items) du local Storage sont égales à un Id de L'API 
+            Alors Afficher moi les valeurs dans les  5 lignes Tr  */
+            // Déclaration - Variable et constante - > Price
 
-                    console.log(prod[article]);
+        let price = article.price;
+        // on affiche une devise avec le style "currency"  et  on se limite ici à deux chiffres  l'euro et les centimes.
 
-                    // cart[article.id] = { "price": article.price, "name": article.name }
-                    // cart[article] = [article.price, article.name]
+        let price2 = new Intl.NumberFormat("fr-FR", {
+            style: "currency",
+            currency: "EUR",
+            minimumFractionDigits: "0",
+        }).format(Math.round(price / 100));
+        // Appel - > Price
+        prixTag.textContent = price2;
+        prixTag.className = "Prix";
+        if (cart) {
+            for (let items in cart) {
 
-                    trSecondaire.innerHTML = (cart, +items[article.price, article.name]);
-                    trTroisieme.innerHTML = (cart, +":", +items[article.name, +article.price]);
-                    console.log(trTroisieme.innerHTML);
-                    trQuatrieme.innerHTML = (cart, +":", +items[article.name, +article.price]);
-                    trCinquieme.innerHTML = (cart, +":", +items[article.name, +article.price]);
-                    trSixieme.innerHTML = (cart, +":", +items[article.name, +article.price]);
+                if (items == article._id) {
+                    cart[article.id] = [article.price, article.name];
+                    console.log(cart[article.id]);
+                    trSecondaire.innerHTML = (article.name + " " + cart[items] + " " + price2);
+                    trTroisieme.innerHTML = (article.name + " " + cart[items] + " " + price2);
+                    trQuatrieme.innerHTML = (article.name + " " + cart[items] + " " + price2);
+                    trCinquieme.innerHTML = (article.name + " " + cart[items] + " " + price2);
+                    trSixieme.innerHTML = (article.name + " " + cart[items] + " " + price2);
                 }
             }
             localStorage.setItem("cart", JSON.stringify(cart));
