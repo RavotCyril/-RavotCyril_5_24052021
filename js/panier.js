@@ -98,20 +98,19 @@
         trPrincipal.appendChild(tdPrixTotalDuPanier);
 
         // Récupération de la clef de mon local Storage avec les articles et les données Id + Quantités. 
-
         let cart = JSON.parse(localStorage.getItem("cart"));
         console.log(cart);
         /* Si  cart ( valeur de mon localStorage ) est invalide.Alors faire une boucle. 
         Pour  valeur clef (Items) dans l'Api (article) si les clefs de l'Api sont égales à un Id de L'API et que 
         les clefs de mon localStorage sont égales à un ID de L'API alors afficher moi les valeurs.   */
+        console.log(article.name);
         if (!cart) {
             for (let prod in cart) {
-
                 if (prod == article._id) {
                     console.log("5be9cc611c9d440000c1421e");
                     prod[cart] = article._id;
 
-                    console.log(items[article]);
+                    console.log(prod[article]);
 
                     // cart[article.id] = { "price": article.price, "name": article.name }
                     // cart[article] = [article.price, article.name]
