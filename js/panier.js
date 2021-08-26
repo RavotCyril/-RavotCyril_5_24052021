@@ -53,8 +53,6 @@
     function afficherPanier(sectionTag, article) {
 
         let articleTag = document.createElement("article");
-        let cart = JSON.parse(localStorage.getItem("cart"));
-        console.log(cart);
         let tbody = document.createElement("tbody");
         let tablePrincipal = document.createElement("table");
         let trPrincipal = document.createElement("tr");
@@ -96,18 +94,35 @@
         trPrincipal.appendChild(tdPrixDuProduitSelectionne);
         trPrincipal.appendChild(tdPrixTotalDuPanier);
 
-        for (let key in cart) {
-            if (key == article) console.log(article); {
-                cart[article.id] = { "price": article.price, "name": article.name }
+        // Récupération de la clef de mon local Storage avec les articles et les données Id + Quantités. 
 
-                trSecondaire.innerHTML = (cart[article] = [article.price, article.name]);
-                trTroisieme.innerHTML = (cart + ":" + article[article.name, +article.price]);
-                console.log(trTroisieme.innerHTML);
-                trQuatrieme.innerHTML = (cart + ":" + article[article.name, +article.price]);
-                trCinquieme.innerHTML = (cart + ":" + article[article.name, +article.price]);
-                trSixieme.innerHTML = (cart + ":" + [article.name, +article.price]);
+        let cart = JSON.parse(localStorage.getItem("cart"));
+        console.log(cart);
+        /* Si  cart ( valeur de mon localStorage ) est invalide.Alors faire une boucle. 
+        Pour  valeur clef (Items) dans l'Api (article) si les clefs de l'Api sont égales à un Id de L'API et que 
+        les clefs de mon localStorage sont égales à un ID de L'API alors afficher moi les valeurs.   */
+        console.log(article.name)
+        if (!cart) {
+            for (let items in article) {
 
+                if (items == article._id) {
+                    console.log(cart);
+                    key[cart] = article._id;
+
+                    console.log(items[article]);
+
+                    // cart[article.id] = { "price": article.price, "name": article.name }
+                    // cart[article] = [article.price, article.name]
+
+                    trSecondaire.innerHTML = (cart, +items[article.price, article.name]);
+                    trTroisieme.innerHTML = (cart, +":", +items[article.name, +article.price]);
+                    console.log(trTroisieme.innerHTML);
+                    trQuatrieme.innerHTML = (cart, +":", +items[article.name, +article.price]);
+                    trCinquieme.innerHTML = (cart, +":", +items[article.name, +article.price]);
+                    trSixieme.innerHTML = (cart, +":", +items[article.name, +article.price]);
+                }
             }
+            localStorage.setItem("cart", JSON.stringify(cart));
         }
     }
 
