@@ -164,33 +164,39 @@
             /* Permet de créer la récupération de L'iD selectionné sur la page catalogue et la quantité dans le panier.  Clef / Valeur. Get Item.
             Pour mémoriser des valeurs complexes et l'afficher, on utilisera le format JSON (JavaScript Objet Notation)  JSON.Parse.
             on sérialise (ou linéarise)
-            l’objet avec la syntaxe JSON.stringify().La méthode JSON.stringify() convertit une valeur JavaScript en chaîne JSON.
-            (une chaîne de caractères dans le panier.) et stock les données dans local storage */
+         
         inputTag.addEventListener("click", function() {
             console.log(article._id, "1");
 
-            let cart = JSON.parse(localStorage.getItem("cart"))
-            console.log(cart);
-            let oldArticle = 0;
-            if (cart !== null) {
-                for (let key in cart) {
-                    if (key == article._id) {
-                        let value = parseInt(cart[article._id]);
-                        value += 1;
-                        cart[key] = value;
-                        oldArticle = 1;
-                        validTag("Message-Ajout-Panier-Validation-Erreur", alert("Article ajouté au panier"), true);
-                    }
-                }
-                if (oldArticle == 0) {
-                    cart[article._id] = "1";
-                }
-                localStorage.setItem("cart", JSON.stringify(cart));
-            } else {
-                let cart = {};
-                cart[article._id] = "1";
-                localStorage.setItem("cart", JSON.stringify(cart));
-            }
+            /* Déclaration de la variable " cart "dans laquelle on met les valeurs du localStorage stocké.
+            A Savoir  la key "cart" avec les "values" -> Id + quantités  */
 
-        })
+        let cart = JSON.parse(localStorage.getItem("cart"))
+
+        /* JSON.parse --> La méthode JSON.parse() convertit la chaîne de caractères JSON en un objet JavaScript.  ( l'inverse de JSON.stringify )*/
+
+        console.log(cart);
+        let oldArticle = 0;
+        if (cart !== null) {
+            for (let key in cart) {
+                if (key == article._id) {
+                    let value = parseInt(cart[article._id]);
+                    value += 1;
+                    cart[key] = value;
+                    oldArticle = 1;
+                    validTag("Message-Ajout-Panier-Validation-Erreur", alert("Article ajouté au panier"), true);
+                }
+            }
+            if (oldArticle == 0) {
+                cart[article._id] = "1";
+            }
+            localStorage.setItem("cart", JSON.stringify(cart));
+        } else {
+            let cart = {};
+            cart[article._id] = "1";
+            localStorage.setItem("cart", JSON.stringify(cart));
+
+            /* l’objet avec la syntaxe JSON.stringify().La méthode JSON.stringify() convertit les objets JavaScript en chaîne JSON
+              et stock les données dans local storage  ( l'inverse de JSON.Parse )*/
+        }
     }

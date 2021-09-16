@@ -31,12 +31,12 @@
 
         const articles = await getArticles();
         //console.log(articles);
-        for (let i = 0; i < 1; i++ in articles) {
+        for (let i = 0; i < 1; i++, articles) {
             afficherPanier(sectionTag, articles[i]);
         }
         // Fonction - > APi Déclaration
 
-        // afficherPanier(sectionTag, article);
+        // afficherPanier(sectionTagrs, article);
 
     })();
     // Methode Get Permet de récupérer l'?id= des paramètres de l'URL, l'identifiant
@@ -119,20 +119,35 @@
         // Appel - > Price
         prixTag.textContent = price2;
         prixTag.className = "Prix";
-        if (cart) {
+        articleTag.id = article._id;
+        if (cart[article._id]) {
             for (let items in cart) {
-
-                if (items == article._id) {
-                    cart[article.id] = [article.price, article.name];
-                    console.log(cart[article.id]);
+                if (items == "5be9cc611c9d440000c1421e") {
+                    // console.log(cart[article.id] = [qty, article.price, article.name]);
+                    // console.log(cart["628zhzizu2u28"] = ["1", "24900", "leNomDeLartixcle"]);
+                    // console.log(cart[article.id] = { "qty": qty, "price": article.price, "name": article.name });
+                    console.log(items == "5be9cc611c9d440000c1421e");
+                    console.log(article._id);
+                    console.log(article._id[article.name]);
                     trSecondaire.innerHTML = (article.name + " " + cart[items] + " " + price2);
+                } else if (items == "5beaadda1c9d440000a57d98") {
+                    console.log(items == "5beaadda1c9d440000a57d98");
+
                     trTroisieme.innerHTML = (article.name + " " + cart[items] + " " + price2);
+                } else if (items == "5beaae361c9d440000a57d99") {
+                    console.log(items == "5beaae361c9d440000a57d99");
+
                     trQuatrieme.innerHTML = (article.name + " " + cart[items] + " " + price2);
+                } else if (items == "5beaaf2e1c9d440000a57d9a") {
+                    console.log(items == "5beaaf2e1c9d440000a57d9a");
+
                     trCinquieme.innerHTML = (article.name + " " + cart[items] + " " + price2);
+                } else if (items == "5beab2061c9d440000a57d9b") {
+                    console.log(items == "5beab2061c9d440000a57d9b");
+
                     trSixieme.innerHTML = (article.name + " " + cart[items] + " " + price2);
                 }
             }
-            localStorage.setItem("cart", JSON.stringify(cart));
         }
     }
 
