@@ -505,8 +505,8 @@
                 alert("veuillez remplir correctement les champs");
             }
         });
-        formulaire(sectionTag);
     }
+    formulaire(sectionTag);
 
     // formContactTag.addEventListener("submit", () => {
 
