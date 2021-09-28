@@ -34,9 +34,6 @@
         for (let i = 0; i < 1; i++, articles) {
             afficherPanier(sectionTag, articles[i]);
         }
-        // Fonction - > APi Déclaration
-
-        // afficherPanier(sectionTagrs, article);
 
     })();
     // Methode Get Permet de récupérer l'?id= des paramètres de l'URL, l'identifiant
@@ -128,7 +125,6 @@
                     // console.log(cart[article.id] = { "qty": qty, "price": article.price, "name": article.name });
                     console.log(items == "5be9cc611c9d440000c1421e");
                     console.log(article._id);
-                    console.log(article._id[article.name]);
                     trSecondaire.innerHTML = (article.name + " " + cart[items] + " " + price2);
                 } else if (items == "5beaadda1c9d440000a57d98") {
                     console.log(items == "5beaadda1c9d440000a57d98");
@@ -150,6 +146,7 @@
             }
         }
     }
+    // Function Principal du formulaire du panier 
 
     function formulaire(sectionTag) {
 
@@ -328,29 +325,30 @@
         // Variable inputLastName (Nom) : Fonction du code de validation ou d'erreur selon la valeur tapper dans l'input.
 
         let inputLastNameTagChecker = (value) => {
-                if (value.length > 0 && (value.length < 3 || value.length > 20)) {
-                    errorTag("ClassErrorInputLastNameTag", "Nom non validé le nom doit faire entre 3 et 20 caractères", false, true);
-                    inputLastNameTag.style.outline = "1px solid red";
-                    inputLastNameTag.style.border = "1px solid red";
-                    lastNameValid.style.color = "red";
-                } else if (!value.match(/^[a-zA-Z0-9_.-]*$/)) {
-                    errorTag("ClassErrorInputLastNameTag", "Le nom ne doit pas contenir de caractères spéciaux", false, true);
-                    inputLastNameTag.style.outline = "1px solid red";
-                    inputLastNameTag.style.border = "1px solid red";
-                    lastNameValid.style.color = "red";
-                } else if (value.length === 0) {
-                    errorTag("ClassErrorInputLastNameTag", "Nom non validé le nom doit faire entre 3 et 20 caractères", false, true);
-                    inputLastNameTag.style.outline = "1px solid red";
-                    inputLastNameTag.style.border = "1px solid red";
-                    lastNameValid.style.color = "red";
-                } else {
-                    validTag("ClassErrorInputLastNameTag", "Nom validé", true, false);
-                    inputLastNameTag.style.outline = "1px solid green";
-                    inputLastNameTag.style.border = "1px solid green";
-                    lastNameValid.style.color = "green";
-                }
+            if (value.length > 0 && (value.length < 3 || value.length > 20)) {
+                errorTag("ClassErrorInputLastNameTag", "Nom non validé le nom doit faire entre 3 et 20 caractères", false, true);
+                inputLastNameTag.style.outline = "1px solid red";
+                inputLastNameTag.style.border = "1px solid red";
+                lastNameValid.style.color = "red";
+            } else if (!value.match(/^[a-zA-Z0-9_.-]*$/)) {
+                errorTag("ClassErrorInputLastNameTag", "Le nom ne doit pas contenir de caractères spéciaux", false, true);
+                inputLastNameTag.style.outline = "1px solid red";
+                inputLastNameTag.style.border = "1px solid red";
+                lastNameValid.style.color = "red";
+            } else if (value.length === 0) {
+                errorTag("ClassErrorInputLastNameTag", "Nom non validé le nom doit faire entre 3 et 20 caractères", false, true);
+                inputLastNameTag.style.outline = "1px solid red";
+                inputLastNameTag.style.border = "1px solid red";
+                lastNameValid.style.color = "red";
+            } else {
+                validTag("ClassErrorInputLastNameTag", "Nom validé", true, false);
+                inputLastNameTag.style.outline = "1px solid green";
+                inputLastNameTag.style.border = "1px solid green";
+                lastNameValid.style.color = "green";
             }
-            // Variable adresse: Fonction du code de validation ou d'erreur selon la valeur tapper dans l'input.
+        }
+
+        // Variable adresse: Fonction du code de validation ou d'erreur selon la valeur tapper dans l'input.
 
         let inputAdresseTagChecker = (value) => {
                 if (value.length > 0 && (value.length < 5 || value.length > 30)) {
@@ -504,6 +502,7 @@
             } else {
                 alert("veuillez remplir correctement les champs");
             }
+
         });
     }
     formulaire(sectionTag);
