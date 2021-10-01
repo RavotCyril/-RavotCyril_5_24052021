@@ -2,7 +2,6 @@
 
     (async function() {
         // Déclaration de toutes les variables de la page HTML
-
         let b = document.body;
         document.querySelector("header");
         let newMain = document.createElement("Main");
@@ -27,6 +26,7 @@
         le résultat de la méthode Fetch pour récupérer les donnéees de l'API  */
 
         const article = await getArticles(idproduit);
+        // console.log(article);
 
         // Fonction - > APi Déclaration
 
@@ -48,6 +48,7 @@
         } catch (error) {
             alert(error);
         }
+
     }
 
     // Déclaration - Variable et Fonction - > Articles - H2 -figure - div - img -figcaption -p : Object, Id , imageUrl Name, Prix, Description, ...
@@ -66,7 +67,6 @@
         // Appel - Variable et Fonction - > Id
 
         articleTag.id = article._id;
-
         articleTag.className = "Article";
 
         // Créer un élément style
@@ -153,15 +153,16 @@
          Qui permet d'afficher une alerte " Article ajouté au panier "" à chaque clic */
 
         let validTag = (tag, message, valid) => {
-                const container = document.querySelector("." + tag);
+            const container = document.querySelector("." + tag);
 
-                if (valid) {
-                    container.classList.add("valid");
-                    container.textContent = message;
-
-                }
+            if (valid) {
+                container.classList.add("valid");
+                container.textContent = message;
             }
-            /* Permet de créer la récupération de L'iD selectionné sur la page catalogue et la quantité dans le panier.  Clef / Valeur. Get Item.
+
+        }
+
+        /* Permet de créer la récupération de L'iD selectionné sur la page catalogue et la quantité dans le panier.  Clef / Valeur. Get Item.
             Pour mémoriser des valeurs complexes et l'afficher, on utilisera le format JSON (JavaScript Objet Notation)  JSON.Parse.
             on sérialise (ou linéarise)
          
@@ -170,25 +171,62 @@
 
             /* Déclaration de la variable " cart "dans laquelle on met les valeurs du localStorage stocké.
             A Savoir  la key "cart" avec les "values" -> Id + quantités  */
-            // TODO : recupérer la liste d'article du panier
+        // TODO : recupérer la liste d'article du panier
         let cart = JSON.parse(localStorage.getItem("cart"))
         console.log(cart);
-        /* JSON.parse --> La méthode JSON.parse() convertit la chaîne de caractères JSON en un objet JavaScript.  ( l'inverse de JSON.stringify )*/
 
+        inputTag.addEventListener("click", function() {
+            console.log(article._id, "1");
+            /* JSON.parse --> La méthode JSON.parse() convertit la chaîne de caractères JSON en un objet JavaScript.  ( l'inverse de JSON.stringify )*/
+            let oldArticle = 0;
 
-        if (cart !== null) {
-            if (cart.find(x => x.id_produit == article._id)) {
-                cart.push({ "id_produit": article._id, "varnish": article.varnish, "name": article.name, "prix": article.price, "quantite": article.qty });
+            if (cart !== null) {
+                for (let key in cart) {
+                    if (key == (x => x.id_produit == article._id)) {
+                        cart = [];
+                        let value = parseInt(cart.push({ "id_produit": article._id, "varnish": article.varnish, "name": article.name, "prix": article.price, "quantite": article.qty }));
+                        value += 1;
+                        oldArticle = 1;
+                        validTag("Message-Ajout-Panier-Validation-Erreur", alert("Article ajouté au panier"), true);
+                    }
+                }
+                if (oldArticle == 0) {
+                    cart = [];
+                    cart = { "id_produit": article._id, "varnish": article.varnish, "name": article.name, "prix": article.price, "quantite": article.qty } = "1";
+                }
+                localStorage.setItem("cart", JSON.stringify(cart));
             } else {
-                cart.push({ "id_produit": article._id, "prix": article.price, "quantite": 1 });
+                cart = [];
+                cart = { "id_produit": article._id, "varnish": article.varnish, "name": article.name, "prix": article.price, "quantite": article.qty } = "1";
+                localStorage.setItem("cart", JSON.stringify(cart));
             }
-        } else {
-            cart = [];
-            cart.push({ "id_produit": article._id, "prix": article.price, "quantite": 1 });
-
-
-            /* l’objet avec la syntaxe JSON.stringify().La méthode JSON.stringify() convertit les objets JavaScript en chaîne JSON
-              et stock les données dans local storage  ( l'inverse de JSON.Parse )*/
-        }
-        localStorage.setItem("cart", JSON.stringify(cart));
+        })
     }
+
+    //     inputTag.addEventListener("click", function() {
+    //         console.log(article._id, "1");
+
+    //         let cart = JSON.parse(localStorage.getItem("cart"))
+    //         console.log(cart);
+    //         let oldArticle = 0;
+    //         if (cart !== null) {
+    //             for (let key in cart) {
+    //                 if (key == article._id) {
+    //                     let value = parseInt(cart[article._id]);
+    //                     value += 1;
+    //                     cart[key] = value;
+    //                     oldArticle = 1;
+    //                     validTag("Message-Ajout-Panier-Validation-Erreur", alert("Article ajouté au panier"), true);
+    //                 }
+    //             }
+    //             if (oldArticle == 0) {
+    //                 cart[article._id] = "1";
+    //             }
+    //             localStorage.setItem("cart", JSON.stringify(cart));
+    //         } else {
+    //             let cart = {};
+    //             cart[article._id] = "1";
+    //             localStorage.setItem("cart", JSON.stringify(cart));
+    //         }
+    //     })
+    // }
