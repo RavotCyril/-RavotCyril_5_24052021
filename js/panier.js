@@ -29,122 +29,141 @@
         /*Constante article. Qui permet de récupérer avec la function getARticle 
         le résultat de la méthode Fetch pour récupérer les donnéees de l'API  */
 
-        const articles = await getArticles();
+        // const articles = await getArticles();
         //console.log(articles);
-        for (let i = 0; i < 1; i++, articles) {
-            afficherPanier(sectionTag, articles[i]);
-        }
+
+        afficherPanier(sectionTag);
+
 
     })();
     // Methode Get Permet de récupérer l'?id= des paramètres de l'URL, l'identifiant
 
 
-    async function getArticles() {
-        try {
-            let res = await fetch("http://localhost:3000/api/furniture");
-            return await res.json();
-        } catch (error) {
-            alert(error);
-        }
-    }
+    // async function getArticles() {
+    //     try {
+    //         let res = await fetch("http://localhost:3000/api/furniture");
+    //         return await res.json();
+    //     } catch (error) {
+    //         alert(error);
+    //     }
+    // }
     //  Récupération des données du panier de la page Produit. 
     //  + Création du tableau  pour l'afficher sur la page Panier.
-    function afficherPanier(sectionTag, article) {
+    function afficherPanier() {
 
-        let articleTag = document.createElement("article");
-        let tbody = document.createElement("tbody");
-        let tablePrincipal = document.createElement("table");
-        let trPrincipal = document.createElement("tr");
-        let trSecondaire = document.createElement("tr");
-        let trTroisieme = document.createElement("tr");
-        let trQuatrieme = document.createElement("tr");
-        let trCinquieme = document.createElement("tr");
-        let trSixieme = document.createElement("tr");
-        let tdProduitSelectionne = document.createElement("td");
-        let tdQuantiteSelectionne = document.createElement("td");
-        let tdPrixDuProduitSelectionne = document.createElement("td");
-        let tdPrixTotalDuPanier = document.createElement("td");
-        let prixTag = document.createElement("p");
+        // let articleTag = document.createElement("article");
+        // let tbody = document.createElement("tbody");
+        // let tablePrincipal = document.createElement("table");
+        // let trPrincipal = document.createElement("tr");
+        // let trSecondaire = document.createElement("tr");
+        // let trTroisieme = document.createElement("tr");
+        // let trQuatrieme = document.createElement("tr");
+        // let trCinquieme = document.createElement("tr");
+        // let trSixieme = document.createElement("tr");
+        // let tdProduitSelectionne = document.createElement("td");
+        // let tdQuantiteSelectionne = document.createElement("td");
+        // let tdPrixDuProduitSelectionne = document.createElement("td");
+        // let tdPrixTotalDuPanier = document.createElement("td");
+        // let prixTag = document.createElement("p");
 
 
-        articleTag.className = "Article-Panier-Détails container-fluid px-0";
-        articleTag.id = "DonneesPanier";
-        tbody.className = "container-fluid border border-dark px-2 py-2";
-        tablePrincipal.className = "container-fluid";
-        trPrincipal.className = "border border-dark";
-        trSecondaire.className = "container-fluid";
-        tdProduitSelectionne.className = "text-center";
-        tdQuantiteSelectionne.className = "text-center";
-        tdPrixDuProduitSelectionne.className = "text-center";
-        tdPrixTotalDuPanier.className = "text-center";
-        tdProduitSelectionne.textContent = "Produit Selectionné";
-        tdQuantiteSelectionne.textContent = "Quantité Selectionné";
-        tdPrixDuProduitSelectionne.textContent = "Prix Du Produit Selectionné";
-        tdPrixTotalDuPanier.textContent = "Prix Total Du Panier";
+        // articleTag.className = "Article-Panier-Détails container-fluid px-0";
+        // articleTag.id = "DonneesPanier";
+        // tbody.className = "container-fluid border border-dark px-2 py-2";
+        // tablePrincipal.className = "container-fluid";
+        // trPrincipal.className = "border border-dark";
+        // trSecondaire.className = "container-fluid";
+        // tdProduitSelectionne.className = "text-center";
+        // tdQuantiteSelectionne.className = "text-center";
+        // tdPrixDuProduitSelectionne.className = "text-center";
+        // tdPrixTotalDuPanier.className = "text-center";
+        // tdProduitSelectionne.textContent = "Produit Selectionné";
+        // tdQuantiteSelectionne.textContent = "Quantité Selectionné";
+        // tdPrixDuProduitSelectionne.textContent = "Prix Du Produit Selectionné";
+        // tdPrixTotalDuPanier.textContent = "Prix Total Du Panier";
 
-        sectionTag.appendChild(articleTag);
-        articleTag.appendChild(tbody);
-        tbody.appendChild(tablePrincipal);
-        tablePrincipal.appendChild(trPrincipal);
-        tablePrincipal.appendChild(trSecondaire);
-        tablePrincipal.appendChild(trTroisieme);
-        tablePrincipal.appendChild(trQuatrieme);
-        tablePrincipal.appendChild(trCinquieme);
-        tablePrincipal.appendChild(trSixieme);
-        trPrincipal.appendChild(tdProduitSelectionne);
-        trPrincipal.appendChild(tdQuantiteSelectionne);
-        trPrincipal.appendChild(tdPrixDuProduitSelectionne);
-        trPrincipal.appendChild(tdPrixTotalDuPanier);
+        // sectionTag.appendChild(articleTag);
+        // articleTag.appendChild(tbody);
+        // tbody.appendChild(tablePrincipal);
+        // tablePrincipal.appendChild(trPrincipal);
+        // tablePrincipal.appendChild(trSecondaire);
+        // tablePrincipal.appendChild(trTroisieme);
+        // tablePrincipal.appendChild(trQuatrieme);
+        // tablePrincipal.appendChild(trCinquieme);
+        // tablePrincipal.appendChild(trSixieme);
+        // trPrincipal.appendChild(tdProduitSelectionne);
+        // trPrincipal.appendChild(tdQuantiteSelectionne);
+        // trPrincipal.appendChild(tdPrixDuProduitSelectionne);
+        // trPrincipal.appendChild(tdPrixTotalDuPanier);
 
         // Récupération de la clef de mon local Storage avec les articles et les données Id + Quantités. 
         let cart = JSON.parse(localStorage.getItem("cart"));
-        console.log(cart)
-            /* Si  cart ( valeur de mon localStorage ).Alors faire une boucle. 
-            Pour  "valeur" (Items) dans le localStorage "clef" (cart).
-            Si les valeurs (items) du local Storage sont égales à un Id de L'API 
-            Alors Afficher moi les valeurs dans les  5 lignes Tr  */
-            // Déclaration - Variable et constante - > Price
+        console.log(cart);
+        console.log(cart[0].split(':')[0]);
+        var lstArt = [];
+        // Construction de l'objet article avec son prix, son libelle........................
+        // On va aller chercher le complement grâce à l'id de l'article pour tous les articles
+        /* Si  cart ( valeur de mon localStorage ).Alors faire une boucle. 
+        Pour  "valeur" (Items) dans le localStorage "clef" (cart).
+        Si les valeurs (items) du local Storage sont égales à un Id de L'API 
+        Alors Afficher moi les valeurs dans les  5 lignes Tr  */
+        // Déclaration - Variable et constante - > Price
+        for (var i = 0; i < cart.length; i++) {
+            console.log("first");
+            console.log(cart[i].split(':')[0]);
+            fetch("http://localhost:3000/api/furniture/" + cart[i].split(':')[0])
+                .then(resp => {
+                    resp.json();
+                }).then(valeur => {
+                    lstArt.push(valeur);
+                    console.log(valeur);
+                }).catch(err => {
+                    console.log(err);
+                })
 
-        let price = article.price;
-        // on affiche une devise avec le style "currency"  et  on se limite ici à deux chiffres  l'euro et les centimes.
-
-        let price2 = new Intl.NumberFormat("fr-FR", {
-            style: "currency",
-            currency: "EUR",
-            minimumFractionDigits: "0",
-        }).format(Math.round(price / 100));
-        // Appel - > Price
-        prixTag.textContent = price2;
-        prixTag.className = "Prix";
-        articleTag.id = article._id;
-        if (cart[article._id]) {
-            for (let items in cart) {
-                if (items == "5be9cc611c9d440000c1421e") {
-                    // console.log(cart[article.id] = [qty, article.price, article.name]);
-                    // console.log(cart["628zhzizu2u28"] = ["1", "24900", "leNomDeLartixcle"]);
-                    // console.log(cart[article.id] = { "qty": qty, "price": article.price, "name": article.name });
-                    console.log(items == "5be9cc611c9d440000c1421e");
-                    console.log(article._id);
-                    trSecondaire.innerHTML = (article.name + " " + cart[items] + " " + price2);
-                } else if (items == "5beaadda1c9d440000a57d98") {
-                    console.log(items == "5beaadda1c9d440000a57d98");
-
-                    trTroisieme.innerHTML = (article.name + " " + cart[items] + " " + price2);
-                } else if (items == "5beaae361c9d440000a57d99") {
-                    console.log(items == "5beaae361c9d440000a57d99");
-
-                    trQuatrieme.innerHTML = (article.name + " " + cart[items] + " " + price2);
-                } else if (items == "5beaaf2e1c9d440000a57d9a") {
-                    console.log(items == "5beaaf2e1c9d440000a57d9a");
-
-                    trCinquieme.innerHTML = (article.name + " " + cart[items] + " " + price2);
-                } else if (items == "5beab2061c9d440000a57d9b") {
-                    console.log(items == "5beab2061c9d440000a57d9b");
-
-                    trSixieme.innerHTML = (article.name + " " + cart[items] + " " + price2);
-                }
-            }
         }
+        // let price = article.price;
+        // // on affiche une devise avec le style "currency"  et  on se limite ici à deux chiffres  l'euro et les centimes.
+
+        // let price2 = new Intl.NumberFormat("fr-FR", {
+        //     style: "currency",
+        //     currency: "EUR",
+        //     minimumFractionDigits: "0",
+        // }).format(Math.round(price / 100));
+        // // Appel - > Price
+        // prixTag.textContent = price2;
+        // prixTag.className = "Prix";
+        // articleTag.id = article._id;
+        // if (cart[article._id]) {
+        //     for (let items in cart) {
+
+
+        //         if (items == "5be9cc611c9d440000c1421e") {
+        //             // console.log(cart[article.id] = [qty, article.price, article.name]);
+        //             // console.log(cart["628zhzizu2u28"] = ["1", "24900", "leNomDeLartixcle"]);
+        //             // console.log(cart[article.id] = { "qty": qty, "price": article.price, "name": article.name });
+        //             console.log(items == "5be9cc611c9d440000c1421e");
+        //             console.log(article._id);
+        //             trSecondaire.innerHTML = (article.name + " " + cart[items] + " " + price2);
+        //         } else if (items == "5beaadda1c9d440000a57d98") {
+        //             console.log(items == "5beaadda1c9d440000a57d98");
+
+        //             trTroisieme.innerHTML = (article.name + " " + cart[items] + " " + price2);
+        //         } else if (items == "5beaae361c9d440000a57d99") {
+        //             console.log(items == "5beaae361c9d440000a57d99");
+
+        //             trQuatrieme.innerHTML = (article.name + " " + cart[items] + " " + price2);
+        //         } else if (items == "5beaaf2e1c9d440000a57d9a") {
+        //             console.log(items == "5beaaf2e1c9d440000a57d9a");
+
+        //             trCinquieme.innerHTML = (article.name + " " + cart[items] + " " + price2);
+        //         } else if (items == "5beab2061c9d440000a57d9b") {
+        //             console.log(items == "5beab2061c9d440000a57d9b");
+
+        //             trSixieme.innerHTML = (article.name + " " + cart[items] + " " + price2);
+        //         }
+        //     }
+        // }
     }
     // Function Principal du formulaire du panier 
 
@@ -505,7 +524,7 @@
 
         });
     }
-    formulaire(sectionTag);
+    // formulaire(sectionTag);
 
     // formContactTag.addEventListener("submit", () => {
 

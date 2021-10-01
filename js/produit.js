@@ -170,33 +170,25 @@
 
             /* Déclaration de la variable " cart "dans laquelle on met les valeurs du localStorage stocké.
             A Savoir  la key "cart" avec les "values" -> Id + quantités  */
-
+            // TODO : recupérer la liste d'article du panier
         let cart = JSON.parse(localStorage.getItem("cart"))
-
+        console.log(cart);
         /* JSON.parse --> La méthode JSON.parse() convertit la chaîne de caractères JSON en un objet JavaScript.  ( l'inverse de JSON.stringify )*/
 
-        console.log(cart);
-        let oldArticle = 0;
+
         if (cart !== null) {
-            for (let key in cart) {
-                if (key == article._id) {
-                    let value = parseInt(cart[article._id]);
-                    value += 1;
-                    cart[key] = value;
-                    oldArticle = 1;
-                    validTag("Message-Ajout-Panier-Validation-Erreur", alert("Article ajouté au panier"), true);
-                }
+            if (cart.find(x => x.id_produit == article._id)) {
+                cart.push({ "id_produit": article._id, "varnish": article.varnish, "name": article.name, "prix": article.price, "quantite": article.qty });
+            } else {
+                cart.push({ "id_produit": article._id, "prix": article.price, "quantite": 1 });
             }
-            if (oldArticle == 0) {
-                cart[article._id] = "1";
-            }
-            localStorage.setItem("cart", JSON.stringify(cart));
         } else {
-            let cart = {};
-            cart[article._id] = "1";
-            localStorage.setItem("cart", JSON.stringify(cart));
+            cart = [];
+            cart.push({ "id_produit": article._id, "prix": article.price, "quantite": 1 });
+
 
             /* l’objet avec la syntaxe JSON.stringify().La méthode JSON.stringify() convertit les objets JavaScript en chaîne JSON
               et stock les données dans local storage  ( l'inverse de JSON.Parse )*/
         }
+        localStorage.setItem("cart", JSON.stringify(cart));
     }
