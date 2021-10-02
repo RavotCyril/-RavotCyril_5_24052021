@@ -26,11 +26,9 @@
         le résultat de la méthode Fetch pour récupérer les donnéees de l'API  */
 
         const article = await getArticles(idproduit);
-        // console.log(article);
-
         // Fonction - > APi Déclaration
 
-        afficherArticle(sectionTag, article);
+        afficherArticle(sectionTag, idproduit, article);
 
     })();
 
@@ -53,7 +51,7 @@
 
     // Déclaration - Variable et Fonction - > Articles - H2 -figure - div - img -figcaption -p : Object, Id , imageUrl Name, Prix, Description, ...
 
-    function afficherArticle(sectionTag, article) {
+    function afficherArticle(sectionTag, idproduit, article) {
 
         let articleTag = document.createElement("article");
         let titleTag = document.createElement("h2");
@@ -172,28 +170,77 @@
             /* Déclaration de la variable " cart "dans laquelle on met les valeurs du localStorage stocké.
             A Savoir  la key "cart" avec les "values" -> Id + quantités  */
         // TODO : recupérer la liste d'article du panier
-        let oldArticle = 0
+        //     console.log(article._id);
+        //     console.log({ "idproduit": article._id, "varnish": article.varnish, "name": article.name, "prix": article.price });
+        //     inputTag.addEventListener("click", function() {
+        //         console.log(idproduit);
+        //         let cart = JSON.parse(localStorage.getItem("cart"))
+        //         console.log(cart);
+        //         let oldArticle = 0
+        //         if (cart !== null) {
+        //             for (let key in cart) {
+        //                 if (key == article._id) {
+        //                     let value = parseInt({ "idproduit": article._id, "varnish": article.varnish, "name": article.name, "prix": article.price });
+        //                     value += 1;
+        //                     cart[key] = value;
+        //                     oldArticle = 1;
+        //                     validTag("Message-Ajout-Panier-Validation-Erreur", alert("Article ajouté au panier"), true);
+        //                 }
+        //                 console.log("hello");
+
+        //                 if (oldArticle == 0) {
+        //                     cart = [];
+        //                     ({ "id_produit": article._id, "varnish": article.varnish, "name": article.name, "prix": article.price });
+
+        //                     localStorage.setItem("cart", JSON.stringify(cart));
+        //                 } else {
+        //                     cart = [];
+        //                     ({ "id_produit": article._id, "varnish": article.varnish, "name": article.name, "prix": article.price });
+
+        //                     /* l’objet avec la syntaxe JSON.stringify().La méthode JSON.stringify() convertit les objets JavaScript en chaîne JSON
+        //                       et stock les données dans local storage  ( l'inverse de JSON.Parse )*/
+        //                     localStorage.setItem("cart", JSON.stringify(cart));
+        //                 }
+        //             }
+        //         }
+        //     })
+        // }
+        /* Déclaration de la variable " cart "dans laquelle on met les valeurs du localStorage stocké.
+             A Savoir  la key "cart" avec les "values" -> Id + quantités  */
         inputTag.addEventListener("click", function() {
+            console.log(article._id, "1");
             let cart = JSON.parse(localStorage.getItem("cart"))
+
+            /* JSON.parse --> La méthode JSON.parse() convertit la chaîne de caractères JSON en un objet JavaScript.  ( l'inverse de JSON.stringify )*/
+
+            console.log(cart);
+            let oldArticle = 0;
+            /* Inégalité stricte (!==) Renvoie true si la comparaison des 2 valeurs ne sont pas égaux ou s'ils ne sont pas de même type. 
+            La valeur null est un littéral JavaScript représentant la nullité au sens où aucune valeur pour 
+            l'objet n'est présente.
+             C'est une des valeurs primitives de JavaScript.
+            */
             if (cart !== null) {
-                if (cart.find(x => x.id_produit == article._id)) {
-                    let cart = [];
-                    cart.push({ "id_produit": article._id, "varnish": article.varnish, "name": article.name, "prix": article.price, "quantite": 1 });
-                    oldArticle = 1;
-                    validTag("Message-Ajout-Panier-Validation-Erreur", alert("Article ajouté au panier"), true);
+                for (let key in cart) {
+                    if (key == article._id) {
+                        // console.log((cart[article._id] = [{ "idproduit": article._id, "varnish": article.varnish, "name": article.name, "prix": article.price }]));
+                        // Object.keys
+                        // console.log(cart);
+                        // console.log(key);
+                        // console.log(cart[key]);
+                        let value = parseInt(cart[article._id]);
+                        value += 1;
+                        cart[key] = value;
+                        oldArticle = 1;
+                        validTag("Message-Ajout-Panier-Validation-Erreur", alert("Article ajouté au panier"), true);
+                    }
                 }
                 if (oldArticle == 0) {
-                    cart = [];
-                    cart.push({ "id_produit": article._id, "varnish": article.varnish, "name": article.name, "prix": article.price, "quantite": 1 });
-                    localStorage.setItem("cart", JSON.stringify(cart));
-                } else {
-                    cart = [];
-                    cart.push({ "id_produit": article._id, "prix": article.price, "quantite": 1 });
-
-                    /* l’objet avec la syntaxe JSON.stringify().La méthode JSON.stringify() convertit les objets JavaScript en chaîne JSON
-                      et stock les données dans local storage  ( l'inverse de JSON.Parse )*/
-                    localStorage.setItem("cart", JSON.stringify(cart));
+                    cart[article._id] = "1";
                 }
+                localStorage.setItem("cart", JSON.stringify(cart));
             }
+            /* l’objet avec la syntaxe JSON.stringify().La méthode JSON.stringify() convertit les objets JavaScript en chaîne JSON
+              et stock les données dans local storage  ( l'inverse de JSON.Parse )*/
         })
     }
