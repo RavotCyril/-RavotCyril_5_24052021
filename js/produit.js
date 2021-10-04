@@ -169,78 +169,73 @@
 
             /* Déclaration de la variable " cart "dans laquelle on met les valeurs du localStorage stocké.
             A Savoir  la key "cart" avec les "values" -> Id + quantités  */
-        // TODO : recupérer la liste d'article du panier
-        //     console.log(article._id);
-        //     console.log({ "idproduit": article._id, "varnish": article.varnish, "name": article.name, "prix": article.price });
-        //     inputTag.addEventListener("click", function() {
-        //         console.log(idproduit);
-        //         let cart = JSON.parse(localStorage.getItem("cart"))
-        //         console.log(cart);
-        //         let oldArticle = 0
-        //         if (cart !== null) {
-        //             for (let key in cart) {
-        //                 if (key == article._id) {
-        //                     let value = parseInt({ "idproduit": article._id, "varnish": article.varnish, "name": article.name, "prix": article.price });
-        //                     value += 1;
-        //                     cart[key] = value;
-        //                     oldArticle = 1;
-        //                     validTag("Message-Ajout-Panier-Validation-Erreur", alert("Article ajouté au panier"), true);
-        //                 }
-        //                 console.log("hello");
-
-        //                 if (oldArticle == 0) {
-        //                     cart = [];
-        //                     ({ "id_produit": article._id, "varnish": article.varnish, "name": article.name, "prix": article.price });
-
-        //                     localStorage.setItem("cart", JSON.stringify(cart));
-        //                 } else {
-        //                     cart = [];
-        //                     ({ "id_produit": article._id, "varnish": article.varnish, "name": article.name, "prix": article.price });
-
-        //                     /* l’objet avec la syntaxe JSON.stringify().La méthode JSON.stringify() convertit les objets JavaScript en chaîne JSON
-        //                       et stock les données dans local storage  ( l'inverse de JSON.Parse )*/
-        //                     localStorage.setItem("cart", JSON.stringify(cart));
-        //                 }
-        //             }
-        //         }
-        //     })
-        // }
-        /* Déclaration de la variable " cart "dans laquelle on met les valeurs du localStorage stocké.
-             A Savoir  la key "cart" avec les "values" -> Id + quantités  */
+        // TODO: recupérer la liste d 'article du panier
+        console.log(article._id);
+        console.log({ "idproduit": article._id, "varnish": article.varnish, "name": article.name, "prix": article.price });
         inputTag.addEventListener("click", function() {
-            console.log(article._id, "1");
             let cart = JSON.parse(localStorage.getItem("cart"))
-
-            /* JSON.parse --> La méthode JSON.parse() convertit la chaîne de caractères JSON en un objet JavaScript.  ( l'inverse de JSON.stringify )*/
-
             console.log(cart);
-            let oldArticle = 0;
-            /* Inégalité stricte (!==) Renvoie true si la comparaison des 2 valeurs ne sont pas égaux ou s'ils ne sont pas de même type. 
-            La valeur null est un littéral JavaScript représentant la nullité au sens où aucune valeur pour 
-            l'objet n'est présente.
-             C'est une des valeurs primitives de JavaScript.
-            */
+            /* JSON.parse --> La méthode JSON.parse() convertit la chaîne de caractères JSON en un objet JavaScript.  ( l'inverse de JSON.stringify )*/
             if (cart !== null) {
                 for (let key in cart) {
-                    if (key == article._id) {
-                        // console.log((cart[article._id] = [{ "idproduit": article._id, "varnish": article.varnish, "name": article.name, "prix": article.price }]));
-                        // Object.keys
-                        // console.log(cart);
-                        // console.log(key);
-                        // console.log(cart[key]);
-                        let value = parseInt(cart[article._id]);
-                        value += 1;
-                        cart[key] = value;
-                        oldArticle = 1;
+                    if (cart.find(x => x.id_produit == article._id)) {
+                        cart.push({ "id_produit": article._id, "varnish": article.varnish, "name": article.name, "prix": article.price });
                         validTag("Message-Ajout-Panier-Validation-Erreur", alert("Article ajouté au panier"), true);
                     }
                 }
                 if (oldArticle == 0) {
                     cart[article._id] = "1";
                 }
+                /* l’objet avec la syntaxe JSON.stringify().La méthode JSON.stringify() convertit les objets JavaScript en chaîne JSON
+                  et stock les données dans local storage  ( l'inverse de JSON.Parse )*/
                 localStorage.setItem("cart", JSON.stringify(cart));
+            } else {
+                cart.push({ "id_produit": article._id, "varnish": article.varnish, "name": article.name, "prix": article.price });
+                /* l’objet avec la syntaxe JSON.stringify().La méthode JSON.stringify() convertit les objets JavaScript en chaîne JSON
+                  et stock les données dans local storage  ( l'inverse de JSON.Parse )*/
+                localStorage.setItem("cart", JSON.stringify(cart));
+
             }
-            /* l’objet avec la syntaxe JSON.stringify().La méthode JSON.stringify() convertit les objets JavaScript en chaîne JSON
-              et stock les données dans local storage  ( l'inverse de JSON.Parse )*/
         })
     }
+    /* Déclaration de la variable " cart "dans laquelle on met les valeurs du localStorage stocké.
+         A Savoir  la key "cart" avec les "values" -> Id + quantités  */
+    //     inputTag.addEventListener("click", function() {
+    //         console.log(article._id, "1");
+    //         /* JSON.parse --> La méthode JSON.parse() convertit la chaîne de caractères JSON en un objet JavaScript.  ( l'inverse de JSON.stringify )*/
+    //         let cart = JSON.parse(localStorage.getItem("cart"))
+
+
+    //         console.log(cart);
+    //         let oldArticle = 0;
+    //         /* Inégalité stricte (!==) Renvoie true si la comparaison des 2 valeurs ne sont pas égaux ou s'ils ne sont pas de même type. 
+    //         La valeur null est un littéral JavaScript représentant la nullité au sens où aucune valeur pour 
+    //         l'objet n'est présente.
+    //          C'est une des valeurs primitives de JavaScript.
+    //         */
+    //         if (cart !== null) {
+    //             for (let key in cart) {
+    //                 if (key == article._id) {
+    //                     // console.log((cart[article._id] = [{ "idproduit": article._id, "varnish": article.varnish, "name": article.name, "prix": article.price }]));
+    //                     let value = parseInt(cart[article._id]);
+    //                     value += 1;
+    //                     cart[key] = value;
+    //                     // cart[article._id] = [{ "idproduit": article._id, "varnish": article.varnish, "name": article.name, "prix": article.price }];
+    //                     oldArticle = 1;
+    //                     validTag("Message-Ajout-Panier-Validation-Erreur", alert("Article ajouté au panier"), true);
+
+    //                 }
+    //             }
+    //             if (oldArticle == 0) {
+    //                 cart[article._id] = "1";
+    //             }
+    //             localStorage.setItem("cart", JSON.stringify(cart));
+    //         } else {
+    //             let cart = {};
+    //             cart[article._id] = "1";
+    //             localStorage.setItem("cart", JSON.stringify(cart));
+    //             /* l’objet avec la syntaxe JSON.stringify().La méthode JSON.stringify() convertit les objets JavaScript en chaîne JSON
+    //               et stock les données dans local storage  ( l'inverse de JSON.Parse )*/
+    //         }
+    //     })
+    // }
