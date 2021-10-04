@@ -178,8 +178,8 @@
             /* JSON.parse --> La méthode JSON.parse() convertit la chaîne de caractères JSON en un objet JavaScript.  ( l'inverse de JSON.stringify )*/
             if (cart !== null) {
                 for (let key in cart) {
-                    if (cart.find(x => x.id_produit == article._id)) {
-                        cart.push({ "id_produit": article._id, "varnish": article.varnish, "name": article.name, "prix": article.price });
+                    if (cart.find(x => x.idproduit == article._id)) {
+                        cart.push({ "idproduit": article._id, "varnish": article.varnish, "name": article.name, "prix": article.price });
                         validTag("Message-Ajout-Panier-Validation-Erreur", alert("Article ajouté au panier"), true);
                     }
                 }
