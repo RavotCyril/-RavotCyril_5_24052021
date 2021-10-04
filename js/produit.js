@@ -170,27 +170,33 @@
             /* Déclaration de la variable " cart "dans laquelle on met les valeurs du localStorage stocké.
             A Savoir  la key "cart" avec les "values" -> Id + quantités  */
         // TODO: recupérer la liste d 'article du panier
-        console.log(article._id);
+        console.log(idproduit);
         console.log({ "idproduit": article._id, "varnish": article.varnish, "name": article.name, "prix": article.price });
+        let oldArticle = 0;
         inputTag.addEventListener("click", function() {
-            let cart = JSON.parse(localStorage.getItem("cart"))
-            console.log(cart);
             /* JSON.parse --> La méthode JSON.parse() convertit la chaîne de caractères JSON en un objet JavaScript.  ( l'inverse de JSON.stringify )*/
+
+            let cart = JSON.parse(localStorage.getItem("cart"))
             if (cart !== null) {
                 for (let key in cart) {
+                    key = [];
+                    key = idproduit;
+                    console.log(key);
                     if (cart.find(x => x.idproduit == article._id)) {
-                        cart.push({ "idproduit": article._id, "varnish": article.varnish, "name": article.name, "prix": article.price });
+                        cart = cart.push({ "varnish": article.varnish, "name": article.name, "prix": article.price });
+                        oldArticle = 1;
                         validTag("Message-Ajout-Panier-Validation-Erreur", alert("Article ajouté au panier"), true);
                     }
                 }
                 if (oldArticle == 0) {
-                    cart[article._id] = "1";
+                    cart += "1";
                 }
                 /* l’objet avec la syntaxe JSON.stringify().La méthode JSON.stringify() convertit les objets JavaScript en chaîne JSON
                   et stock les données dans local storage  ( l'inverse de JSON.Parse )*/
                 localStorage.setItem("cart", JSON.stringify(cart));
             } else {
-                cart.push({ "id_produit": article._id, "varnish": article.varnish, "name": article.name, "prix": article.price });
+                cart = [];
+                cart += "1";
                 /* l’objet avec la syntaxe JSON.stringify().La méthode JSON.stringify() convertit les objets JavaScript en chaîne JSON
                   et stock les données dans local storage  ( l'inverse de JSON.Parse )*/
                 localStorage.setItem("cart", JSON.stringify(cart));
