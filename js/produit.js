@@ -150,9 +150,8 @@
         /* Créaction de la variable validTag avec des paramètres classe, message et valid suivis d'une fonction.
          Qui permet d'afficher une alerte " Article ajouté au panier "" à chaque clic */
 
-        let validTag = (tag, message, valid) => {
-            const container = document.querySelector("." + tag);
-
+        let validTag = (NomClasse, message, valid) => {
+            const container = document.querySelector("." + NomClasse);
             if (valid) {
                 container.classList.add("valid");
                 container.textContent = message;
@@ -175,26 +174,29 @@
             /* JSON.parse --> La méthode JSON.parse() convertit la chaîne de caractères JSON en un objet JavaScript.  ( l'inverse de JSON.stringify )*/
 
             let oldArticle = 0;
-            qty = 0;
+            let qty = 0;
             let cart = JSON.parse(localStorage.getItem("cart"))
+            console.log(cart);
             if (cart !== null) {
+                for (oldArticle in cart) {
+                    cart = [{ "idproduit": idproduit }];
+                    if (cart.find(x => x.idproduit == article._id)) {
 
-                cart = [{ "idproduit": article._id }];
-                console.log(cart);
-                if (cart.find(x => x.idproduit == article._id)) {
-                    cart.push({ "idproduit": article._id, "varnish": article.varnish, "name": article.name, "prix": article.price, "Quantite": qty += 1 });
-                    oldArticle = 1;
-                    validTag("Message-Ajout-Panier-Validation-Erreur", alert("Article ajouté au panier"), true);
+                        cart.push({ "varnish": article.varnish, "name": article.name, "prix": article.price, "quantite": qty += 1 });
+                        oldArticle = 1;
+                        validTag("Message-Ajout-Panier-Validation-Erreur", alert("Article ajouté au panier"), true);
+                    }
+                    if (oldArticle == 0) {
+                        cart = [{ "idproduit": article._id }];
+                        cart.push({ "varnish": article.varnish, "name": article.name, "prix": article.price, "quantite": qty += 0 });
+                    }
+                    /* l’objet avec la syntaxe JSON.stringify().La méthode JSON.stringify() convertit les objets JavaScript en chaîne JSON
+                      et stock les données dans local storage  ( l'inverse de JSON.Parse )*/
+                    localStorage.setItem("cart", JSON.stringify(cart));
                 }
-                if (oldArticle == 0) {
-                    cart.push({ "idproduit": article._id, "varnish": article.varnish, "name": article.name, "prix": article.price });
-                }
-                /* l’objet avec la syntaxe JSON.stringify().La méthode JSON.stringify() convertit les objets JavaScript en chaîne JSON
-                  et stock les données dans local storage  ( l'inverse de JSON.Parse )*/
-                localStorage.setItem("cart", JSON.stringify(cart));
             } else {
                 cart = [{ "idproduit": article._id }];
-                cart.push({ "idproduit": article._id, "varnish": article.varnish, "name": article.name, "prix": article.price });
+                cart.push({ "varnish": article.varnish, "name": article.name, "prix": article.price });
                 /* l’objet avec la syntaxe JSON.stringify().La méthode JSON.stringify() convertit les objets JavaScript en chaîne JSON
                   et stock les données dans local storage  ( l'inverse de JSON.Parse )*/
                 localStorage.setItem("cart", JSON.stringify(cart));
@@ -235,6 +237,7 @@
     //             localStorage.setItem("cart", JSON.stringify(cart));
     //         } else {
     //             let cart = {};
+    //             console.log(cart);
     //             cart[article._id] = "1";
     //             localStorage.setItem("cart", JSON.stringify(cart));
     //             /* l’objet avec la syntaxe JSON.stringify().La méthode JSON.stringify() convertit les objets JavaScript en chaîne JSON
