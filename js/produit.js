@@ -157,7 +157,6 @@
                 container.classList.add("valid");
                 container.textContent = message;
             }
-
         }
 
         /* Permet de créer la récupération de L'iD selectionné sur la page catalogue et la quantité dans le panier.  Clef / Valeur. Get Item.
@@ -172,35 +171,33 @@
         // TODO: recupérer la liste d 'article du panier
         console.log(idproduit);
         console.log({ "idproduit": article._id, "varnish": article.varnish, "name": article.name, "prix": article.price });
-        let oldArticle = 0;
         inputTag.addEventListener("click", function() {
             /* JSON.parse --> La méthode JSON.parse() convertit la chaîne de caractères JSON en un objet JavaScript.  ( l'inverse de JSON.stringify )*/
 
+            let oldArticle = 0;
+            qty = 0;
             let cart = JSON.parse(localStorage.getItem("cart"))
             if (cart !== null) {
-                for (let key in cart) {
-                    key = [];
-                    key = idproduit;
-                    console.log(key);
-                    if (cart.find(x => x.idproduit == article._id)) {
-                        cart = cart.push({ "varnish": article.varnish, "name": article.name, "prix": article.price });
-                        oldArticle = 1;
-                        validTag("Message-Ajout-Panier-Validation-Erreur", alert("Article ajouté au panier"), true);
-                    }
+
+                cart = [{ "idproduit": article._id }];
+                console.log(cart);
+                if (cart.find(x => x.idproduit == article._id)) {
+                    cart.push({ "idproduit": article._id, "varnish": article.varnish, "name": article.name, "prix": article.price, "Quantite": qty += 1 });
+                    oldArticle = 1;
+                    validTag("Message-Ajout-Panier-Validation-Erreur", alert("Article ajouté au panier"), true);
                 }
                 if (oldArticle == 0) {
-                    cart += "1";
+                    cart.push({ "idproduit": article._id, "varnish": article.varnish, "name": article.name, "prix": article.price });
                 }
                 /* l’objet avec la syntaxe JSON.stringify().La méthode JSON.stringify() convertit les objets JavaScript en chaîne JSON
                   et stock les données dans local storage  ( l'inverse de JSON.Parse )*/
                 localStorage.setItem("cart", JSON.stringify(cart));
             } else {
-                cart = [];
-                cart += "1";
+                cart = [{ "idproduit": article._id }];
+                cart.push({ "idproduit": article._id, "varnish": article.varnish, "name": article.name, "prix": article.price });
                 /* l’objet avec la syntaxe JSON.stringify().La méthode JSON.stringify() convertit les objets JavaScript en chaîne JSON
                   et stock les données dans local storage  ( l'inverse de JSON.Parse )*/
                 localStorage.setItem("cart", JSON.stringify(cart));
-
             }
         })
     }
