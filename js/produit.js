@@ -162,62 +162,61 @@
             Pour mémoriser des valeurs complexes et l'afficher, on utilisera le format JSON (JavaScript Objet Notation)  JSON.Parse.
             on sérialise (ou linéarise)
          
-        inputTag.addEventListener("click", function() {
-            console.log(article._id, "1");
 
-            /* Déclaration de la variable " cart "dans laquelle on met les valeurs du localStorage stocké.
-            A Savoir  la key "cart" avec les "values" -> Id + quantités  */
+        /* Déclaration de la variable " cart "dans laquelle on met les valeurs du localStorage stocké. */
         // TODO: recupérer la liste d 'article du panier
         console.log(idproduit);
         console.log({ "idproduit": article._id, "varnish": article.varnish, "name": article.name, "prix": article.price });
         inputTag.addEventListener("click", function() {
             /* JSON.parse --> La méthode JSON.parse() convertit la chaîne de caractères JSON en un objet JavaScript.  ( l'inverse de JSON.stringify )*/
-
-            let oldArticle = 0;
-            let qty = 0;
             let cart = JSON.parse(localStorage.getItem("cart"))
             console.log(cart);
-            if (cart !== null) {
-                for (oldArticle in cart) {
-                    cart = [{ "idproduit": idproduit }];
-                    if (cart.find(x => x.idproduit == article._id)) {
+            let oldArticle = 0;
+            let qty = 0;
 
-                        cart.push({ "varnish": article.varnish, "name": article.name, "prix": article.price, "quantite": qty += 1 });
-                        oldArticle = 1;
-                        validTag("Message-Ajout-Panier-Validation-Erreur", alert("Article ajouté au panier"), true);
-                    }
-                    if (oldArticle == 0) {
-                        cart = [{ "idproduit": article._id }];
-                        cart.push({ "varnish": article.varnish, "name": article.name, "prix": article.price, "quantite": qty += 0 });
-                    }
-                    /* l’objet avec la syntaxe JSON.stringify().La méthode JSON.stringify() convertit les objets JavaScript en chaîne JSON
-                      et stock les données dans local storage  ( l'inverse de JSON.Parse )*/
-                    localStorage.setItem("cart", JSON.stringify(cart));
+            /* Inégalité stricte (!==) Renvoie true si la comparaison des 2 valeurs ne sont pas égaux ou 
+            s'ils ne sont pas de même type. 
+            La valeur null est un littéral JavaScript représentant la nullité au sens où aucune valeur pour 
+            l'objet n'est présente.C'est une des valeurs primitives de JavaScript */
+            if (cart !== null) {
+                if (oldArticle == 0) {
+                    cart = [];
+                    cart.push({ "idproduit": article._id, "varnish": article.varnish, "name": article.name, "prix": article.price });
+                    oldArticle = 1;
                 }
+                if (cart.find(x => x.idproduit == article._id)) {
+                    cart.push({ "quantite": qty += 1 });
+                    validTag("Message-Ajout-Panier-Validation-Erreur", alert("Article ajouté au panier"), true);
+                }
+                localStorage.setItem("cart", JSON.stringify(cart));
+                /* l’objet avec la syntaxe JSON.stringify().La méthode JSON.stringify() convertit les objets JavaScript en chaîne JSON
+                  et stock les données dans local storage  ( l'inverse de JSON.Parse )*/
             } else {
-                cart = [{ "idproduit": article._id }];
-                cart.push({ "varnish": article.varnish, "name": article.name, "prix": article.price });
+                let cart = {};
+                qty += 1;
                 /* l’objet avec la syntaxe JSON.stringify().La méthode JSON.stringify() convertit les objets JavaScript en chaîne JSON
                   et stock les données dans local storage  ( l'inverse de JSON.Parse )*/
                 localStorage.setItem("cart", JSON.stringify(cart));
             }
         })
     }
+
     /* Déclaration de la variable " cart "dans laquelle on met les valeurs du localStorage stocké.
          A Savoir  la key "cart" avec les "values" -> Id + quantités  */
     //     inputTag.addEventListener("click", function() {
+
     //         console.log(article._id, "1");
-    //         /* JSON.parse --> La méthode JSON.parse() convertit la chaîne de caractères JSON en un objet JavaScript.  ( l'inverse de JSON.stringify )*/
+    //         //         /* JSON.parse --> La méthode JSON.parse() convertit la chaîne de caractères JSON en un objet JavaScript.  ( l'inverse de JSON.stringify )*/
     //         let cart = JSON.parse(localStorage.getItem("cart"))
 
 
     //         console.log(cart);
     //         let oldArticle = 0;
-    //         /* Inégalité stricte (!==) Renvoie true si la comparaison des 2 valeurs ne sont pas égaux ou s'ils ne sont pas de même type. 
-    //         La valeur null est un littéral JavaScript représentant la nullité au sens où aucune valeur pour 
-    //         l'objet n'est présente.
-    //          C'est une des valeurs primitives de JavaScript.
-    //         */
+    //         //         /* Inégalité stricte (!==) Renvoie true si la comparaison des 2 valeurs ne sont pas égaux ou s'ils ne sont pas de même type. 
+    //         //         La valeur null est un littéral JavaScript représentant la nullité au sens où aucune valeur pour 
+    //         //         l'objet n'est présente.
+    //         //          C'est une des valeurs primitives de JavaScript.
+    //         //         */
     //         if (cart !== null) {
     //             for (let key in cart) {
     //                 if (key == article._id) {
@@ -228,7 +227,6 @@
     //                     // cart[article._id] = [{ "idproduit": article._id, "varnish": article.varnish, "name": article.name, "prix": article.price }];
     //                     oldArticle = 1;
     //                     validTag("Message-Ajout-Panier-Validation-Erreur", alert("Article ajouté au panier"), true);
-
     //                 }
     //             }
     //             if (oldArticle == 0) {
