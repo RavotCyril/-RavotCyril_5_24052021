@@ -171,33 +171,49 @@
             /* JSON.parse --> La méthode JSON.parse() convertit la chaîne de caractères JSON en un objet JavaScript.  ( l'inverse de JSON.stringify )*/
             let cart = JSON.parse(localStorage.getItem("cart"))
             console.log(cart);
-            let oldArticle = 0;
-            let qty = 0;
+            // let oldArticle = 0;
+            // let qty = 0;
 
             /* Inégalité stricte (!==) Renvoie true si la comparaison des 2 valeurs ne sont pas égaux ou 
             s'ils ne sont pas de même type. 
             La valeur null est un littéral JavaScript représentant la nullité au sens où aucune valeur pour 
             l'objet n'est présente.C'est une des valeurs primitives de JavaScript */
-            if (cart !== null) {
-                if (oldArticle == 0) {
-                    cart = [];
-                    cart.push({ "idproduit": article._id, "varnish": article.varnish, "name": article.name, "prix": article.price });
-                    oldArticle = 1;
+
+            var e = document.getElementById("Meuble-Select");
+            var optionSelected = e.options[e.selectedIndex].text;
+            if (cart != null) {
+
+                // Je verifie que l'article que je souhaite ajouter exist dans le panier
+                var art = cart.find(x => x.idproduit == article._id && x.varnish == optionSelected);
+                if (art != null) {
+                    cart[cart.indexOf(art)].quantite += 1;
+                } else {
+                    cart.push({ "idproduit": article._id, "varnish": optionSelected, "name": article.name, "prix": article.price, "quantite": 1 });
                 }
-                if (cart.find(x => x.idproduit == article._id)) {
-                    cart.push({ "quantite": qty += 1 });
-                    validTag("Message-Ajout-Panier-Validation-Erreur", alert("Article ajouté au panier"), true);
-                }
-                localStorage.setItem("cart", JSON.stringify(cart));
+
+
+                // if (oldArticle == 0) {
+
+                //     cart.push({ "idproduit": article._id, "varnish": article.varnish, "name": article.name, "prix": article.price, "quantite": 1 });
+                //     oldArticle = 1;
+                // }
+                // if (cart.find(x => x.idproduit == article._id)) {
+                //     cart.push({ "quantite": qty += 1 });
+                //     validTag("Message-Ajout-Panier-Validation-Erreur", alert("Article ajouté au panier"), true);
+                // }
+
                 /* l’objet avec la syntaxe JSON.stringify().La méthode JSON.stringify() convertit les objets JavaScript en chaîne JSON
                   et stock les données dans local storage  ( l'inverse de JSON.Parse )*/
             } else {
-                let cart = {};
-                qty += 1;
+
+                cart = [];
+                cart.push({ "idproduit": article._id, "varnish": optionSelected, "name": article.name, "prix": article.price, "quantite": 1 });
                 /* l’objet avec la syntaxe JSON.stringify().La méthode JSON.stringify() convertit les objets JavaScript en chaîne JSON
                   et stock les données dans local storage  ( l'inverse de JSON.Parse )*/
-                localStorage.setItem("cart", JSON.stringify(cart));
+
             }
+
+            localStorage.setItem("cart", JSON.stringify(cart));
         })
     }
 

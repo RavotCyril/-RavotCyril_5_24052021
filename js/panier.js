@@ -51,6 +51,11 @@
     //  + Création du tableau  pour l'afficher sur la page Panier.
     function afficherPanier() {
 
+        let cart = JSON.parse(localStorage.getItem("cart"));
+        for (var i = 0; i < cart.length; i++) {
+            document.getElementById("basket_tablebody").innerHTML += "<tr data-id=" + cart[i].idproduit + "><td>" + cart[i].name + "</td></tr>"
+        }
+
         // let articleTag = document.createElement("article");
         // let tbody = document.createElement("tbody");
         // let tablePrincipal = document.createElement("table");
@@ -97,31 +102,31 @@
         // trPrincipal.appendChild(tdPrixTotalDuPanier);
 
         // Récupération de la clef de mon local Storage avec les articles et les données Id + Quantités. 
-        let cart = JSON.parse(localStorage.getItem("cart"));
-        console.log(cart);
-        console.log(cart[0].split(':')[0]);
-        var lstArt = [];
-        // Construction de l'objet article avec son prix, son libelle........................
-        // On va aller chercher le complement grâce à l'id de l'article pour tous les articles
-        /* Si  cart ( valeur de mon localStorage ).Alors faire une boucle. 
-        Pour  "valeur" (Items) dans le localStorage "clef" (cart).
-        Si les valeurs (items) du local Storage sont égales à un Id de L'API 
-        Alors Afficher moi les valeurs dans les  5 lignes Tr  */
-        // Déclaration - Variable et constante - > Price
-        for (var i = 0; i < cart.length; i++) {
-            console.log("first");
-            console.log(cart[i].split(':')[0]);
-            fetch("http://localhost:3000/api/furniture/" + cart[i].split(':')[0])
-                .then(resp => {
-                    resp.json();
-                }).then(valeur => {
-                    lstArt.push(valeur);
-                    console.log(valeur);
-                }).catch(err => {
-                    console.log(err);
-                })
 
-        }
+
+        // console.log(cart);
+        // console.log(cart[0].split(':')[0]);
+        // var lstArt = [];
+        // // Construction de l'objet article avec son prix, son libelle........................
+        // // On va aller chercher le complement grâce à l'id de l'article pour tous les articles
+        // /* Si  cart ( valeur de mon localStorage ).Alors faire une boucle. 
+        // Pour  "valeur" (Items) dans le localStorage "clef" (cart).
+        // Si les valeurs (items) du local Storage sont égales à un Id de L'API 
+        // Alors Afficher moi les valeurs dans les  5 lignes Tr  */
+        // // Déclaration - Variable et constante - > Price
+        // for (var i = 0; i < cart.length; i++) {
+        //     console.log("first");
+        //     console.log(cart[i].split(':')[0]);
+        //     fetch("http://localhost:3000/api/furniture/" + cart[i].split(':')[0])
+        //         .then(resp => {
+        //             resp.json();
+        //         }).then(valeur => {
+        //             lstArt.push(valeur);
+        //             console.log(valeur);
+        //         }).catch(err => {
+        //             console.log(err);
+        //         })
+        // }
         // let price = article.price;
         // // on affiche une devise avec le style "currency"  et  on se limite ici à deux chiffres  l'euro et les centimes.
 
