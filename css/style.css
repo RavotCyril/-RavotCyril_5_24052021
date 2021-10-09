@@ -147,6 +147,11 @@
     .Boutton-Produit:active {
         color: green;
     }
+    /* Pour mettre une bordure aux td ( case ) des données du panier */
+    
+    td {
+        border: 1px solid black;
+    }
     
     @media screen and (min-width:769px) and (max-width:1089px)
     /* styles pour tablettes*/
@@ -209,6 +214,9 @@
     /* styles pour mobile petit écran paysage+Portrait*/
     
     {
+        #DonneesPanier {
+            font-size: 1rem;
+        }
         .Article-Panier-Détails {
             display: flex;
             border: 1px solid black;
@@ -244,5 +252,18 @@
         /* Classe pour modifier la largeur (width) des bouttons des  Inputs */
         .Boutton-Largeur-Input {
             font-size: 1.0rem;
+        }
+    }
+    
+    @media screen and (max-width: 320px)
+    /* styles pour mobile très petit écran Portrait*/
+    
+    {
+        #DonneesPanier {
+            font-size: 0.7rem;
+        }
+        /* Classe pour modifier la largeur (width) des bouttons des  Inputs */
+        .Boutton-Largeur-Input {
+            font-size: 0.8rem;
         }
     }
