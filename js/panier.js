@@ -5,50 +5,71 @@
       let prixTotale3;
       let prixTotale4;
       let prixTotale5;
-      let prixTotale6;
       let quantite1;
       let quantite2;
       let quantite3;
       let quantite4;
       let quantite5;
-      let quantite6;
       let prix1;
       let prix2;
       let prix3;
       let prix4;
       let prix5;
-      let prix6;
       //   for (let i = 0; i < cart.length; i++)
-      for (let i = 0; i < 1; i++ in Article1)
-          document.getElementById("Article1").innerHTML += "<tr data-id=" + cart[i].idproduit + "><td>" + cart[i].name + "</td>" + "<td>" + cart[i].varnish + "</td>" + "<td>" + (quantite1 = cart[i].quantite) + "</td>" + "<td>" + (prix1 = cart[i].prix) + "</td></tr>"
 
-      prixTotale1 = (parseInt(quantite1) * parseInt(prix1));
+      for (let i = 0; i < 4; i++) {
+          if (cart[i].idproduit == "5be9cc611c9d440000c1421e") {
+              document.getElementById("basket_tablebody1").innerHTML += "<tr id='Article1' class='row-fluid' data-id=" + cart[i].idproduit + "><td class='Name'>" + cart[i].name + "</td>" + "<td class='Varnish'>" + cart[i].varnish + "</td>" + "<td class='Quantite'>" + (quantite1 = cart[i].quantite) + "</td>" + "<td class='Prix'>" + (prix1 = cart[i].prix) + "</td></tr>"
+              prixTotale1 = (parseInt(quantite1) * parseInt(prix1));
+          } else if (cart[i].idproduit == undefined) {
+              document.getElementById("basket_tablebody1").innerHTML == null;
+          }
+      }
+      for (let i = 0; i < 2; i++) {
+          if (cart[i].idproduit == "5beaadda1c9d440000a57d98") {
+              document.getElementById("basket_tablebody2").innerHTML += "<tr id='Article2' class='row-fluid' data-id=" + cart[i].idproduit + "><td <td class='Name'>" + cart[i].name + "</td>" + "<td class='Varnish'>" + cart[i].varnish + "</td>" + "<td class='Quantite'>" + (quantite2 = cart[i].quantite) + "</td>" + "<td class='Prix'>" + (prix2 = cart[i].prix) + "</td></tr>"
+              prixTotale2 = (parseInt(quantite2) * parseInt(prix2));
+          } else if (cart[i].idproduit == undefined) {
+              document.getElementById("basket_tablebody2").innerHTML == null;
+          }
+      }
 
-      for (let i = 1; i < 2; i++ in Article2)
-          document.getElementById("Article2").innerHTML += "<tr data-id=" + cart[i].idproduit + "><td>" + cart[i].name + "</td>" + "<td>" + cart[i].varnish + "</td>" + "<td>" + (quantite2 = cart[i].quantite) + "</td>" + "<td>" + (prix2 = cart[i].prix) + "</td></tr>"
-      prixTotale2 = (parseInt(quantite2) * parseInt(prix2));
-      for (let i = 2; i < 3; i++ in Article3)
-          document.getElementById("Article3").innerHTML += "<tr data-id=" + cart[i].idproduit + "><td>" + cart[i].name + "</td>" + "<td>" + cart[i].varnish + "</td>" + "<td>" + (quantite3 = cart[i].quantite) + "</td>" + "<td>" + (prix3 = cart[i].prix) + "</td></tr>"
-      prixTotale3 = (parseInt(quantite3) * parseInt(prix3));
-      for (let i = 3; i < 4; i++ in Article4)
-          document.getElementById("Article4").innerHTML += "<tr data-id=" + cart[i].idproduit + "><td>" + cart[i].name + "</td>" + "<td>" + cart[i].varnish + "</td>" + "<td>" + (quantite4 = cart[i].quantite) + "</td>" + "<td>" + (prix4 = cart[i].prix) + "</td></tr>"
-      prixTotale4 = (parseInt(quantite4) * parseInt(prix4));
-      for (let i = 4; i < 5; i++ in Article5)
-          document.getElementById("Article5").innerHTML += "<tr data-id=" + cart[i].idproduit + "><td>" + cart[i].name + "</td>" + "<td>" + cart[i].varnish + "</td>" + "<td>" + (quantite5 = cart[i].quantite) + "</td>" + "<td>" + (prix5 = cart[i].prix) + "</td></tr>"
-      prixTotale5 = (parseInt(quantite5) * parseInt(prix5));
-      for (let i = 5; i < 6; i++ in Article6)
-          document.getElementById("Article6").innerHTML += "<tr data-id=" + cart[i].idproduit + "><td>" + cart[i].name + "</td>" + "<td>" + cart[i].varnish + "</td>" + "<td>" + (quantite6 = cart[i].quantite) + "</td>" + "<td>" + (prix6 = cart[i].prix) + "</td></tr>"
-      prixTotale6 = (parseInt(quantite6) * parseInt(prix6));
-      let prixPaniertotal = (parseInt(prixTotale1) + parseInt(prixTotale2) + parseInt(prixTotale3) + parseInt(prixTotale4) + parseInt(prixTotale5) + parseInt(prixTotale6));
-      let quantitePaniertotal = (parseInt(quantite1) + parseInt(quantite2) + parseInt(quantite3) + parseInt(quantite4) + parseInt(quantite5) + parseInt(quantite6));
+      for (let i = 0; i < 3; i++) {
+          if (cart[i].idproduit == "5beaae361c9d440000a57d99") {
+              document.getElementById("basket_tablebody3").innerHTML += "<tr id='Article3' class='row-fluid' data-id=" + cart[i].idproduit + "><td <td class='Name'>" + cart[i].name + "</td>" + "<td class='Varnish'>" + cart[i].varnish + "</td>" + "<td class='Quantite'>" + (quantite3 = cart[i].quantite) + "</td>" + "<td class='Prix'>" + (prix3 = cart[i].prix) + "</td></tr>"
+              prixTotale3 = (parseInt(quantite3) * parseInt(prix3));
+          } else if (cart[i].idproduit == undefined) {
+              document.getElementById("basket_tablebody3").innerHTML == null;
+          }
+      }
 
-      document.getElementById("Article7").innerHTML += "<tr data-id=>" + "<td>" + "</td>" + "<td>" + "</td>" + "<td>" + quantitePaniertotal + "</td>" + "<td >" + prixPaniertotal + "€" + "</td></tr>"
+      for (let i = 0; i < 2; i++) {
+          if (cart[i].idproduit == "5beaaf2e1c9d440000a57d9a") {
+              document.getElementById("basket_tablebody4").innerHTML += "<tr id='Article4' class='row-fluid' data-id=" + cart[i].idproduit + "><td class='Name'>" + cart[i].name + "</td>" + "<td class='Varnish'>" + cart[i].varnish + "</td>" + "<td class='Quantite'>" + (quantite4 = cart[i].quantite) + "</td>" + "<td class='Prix'>" + (prix4 = cart[i].prix) + "</td></tr>"
+              prixTotale4 = (parseInt(quantite4) * parseInt(prix4));
+          } else if (cart[i].idproduit == undefined) {
+              document.getElementById("basket_tablebody4").innerHTML == null;
+          }
+      }
 
+      for (let i = 0; i < 2; i++) {
+          if (cart[i].idproduit == "5beab2061c9d440000a57d9b") {
+              document.getElementById("basket_tablebody5").innerHTML += "<tr id='Article5' class='row-fluid' data-id=" + cart[i].idproduit + "><td class='Name'>" + cart[i].name + "</td>" + "<td <td class='Varnish'>" + cart[i].varnish + "</td>" + "<td class='Quantite'>" + (quantite5 = cart[i].quantite) + "</td>" + "<td class='Prix'>" + (prix5 = cart[i].prix) + "</td></tr>"
+              prixTotale5 = (parseInt(quantite5) * parseInt(prix5));
+          } else if (cart[i].idproduit == undefined) {
+              document.getElementById("basket_tablebody5").innerHTML == null;
+          }
+      }
 
+      /* L'opérateur OU logique (||) (disjonction logique) renvoie vrai si et seulement si au moins un de ses opérandes est vrai.
+      Toutefois, || peut aussi être utilisé avec des valeurs non-booléennes et, dans ce cas, renverra une valeur non-booléenne. */
 
-      //             // console.log(cart[article.id] = [qty, article.price, article.name]);
-      //             // console.log(cart["628zhzizu2u28"] = ["1", "24900", "leNomDeLartixcle"]);
-      //             // console.log(cart[article.id] = { "qty": qty, "price": article.price, "name": article.name });
+      let prixPaniertotal = (parseInt(prixTotale1) + parseInt(prixTotale2) + parseInt(prixTotale3) + parseInt(prixTotale4) + parseInt(prixTotale5));
+      let quantitePaniertotal = (parseInt(quantite1) + parseInt(quantite2) + parseInt(quantite3) + parseInt(quantite4) + parseInt(quantite5));
+
+      document.getElementById("Article6").innerHTML += "<tr>" + "<td>" + "</td>" + "<td>" + "</td>" + "<td>" + quantitePaniertotal + "</td>" + "<td >" + prixPaniertotal + "€" + "</td></tr>"
+      console.log(cart);
+
   }
   afficherPanier();
 
@@ -57,7 +78,6 @@
   function formulaire() {
 
       let sectionTag = document.getElementById("Formulaire");
-      let pTag = document.createElement("p");
       let formContactTag = document.createElement("form");
       let inputFirstNameTag = document.createElement("input");
       let firstNameValid = document.createElement("span");
@@ -84,8 +104,6 @@
 
       // Appel des classes- Boostrap- TextContent- Id des balises html qui construise le squelette de la page du formulaire.
 
-      pTag.className = "font-weight-bolder my-4 text-center";
-      pTag.textContent = "Veuillez remplir ce formulaire pour valider votre commande";
       firstNameValid.className = 'ClassErrorInputFirstNameTag';
       lastNameValid.className = 'ClassErrorInputLastNameTag';
       adresseValid.className = 'ClassErrorInputAdresseTag';
@@ -108,7 +126,6 @@
       labelFirstName.htmlFor = "firstName";
       labelFirstName.name = "firstName";
 
-      sectionTag.appendChild(pTag);
       sectionTag.appendChild(formContactTag);
       formContactTag.appendChild(labelFirstName);
       formContactTag.appendChild(inputFirstNameTag);
@@ -413,59 +430,26 @@
       });
   }
   formulaire();
-
-  // formContactTag.addEventListener("submit", () => {
-
-  //     fetch("http://localhost:3000/api/furniture/order").then(() =>
-  //         console.log("cart envoyée")
-  //     );
-  // });
-
-
   // Permet de créer la méthode Post. Pour envoyer les données du formulaire à la page Confirmation de commande.
 
-  // Permet de créer la récupération et l'affichage des produits ajoutés au panier via la page produit.  Clef / Valeur. set Item.
-  // Inversement de la syntaxe par rapport à la page produit pour la lecture, 
-  // la syntaxe JSON.parse() reforme l’objet à partir de la chaîne linéarise et l'affiche sur la page.
-  //  Transforme le Json en objet java Script pour le renvoyer à L'API dans
-  //  le formulaire pour l'envoyer ensuite sur la page de confirmation commande.
-  //  CRUD >  Create (POST), read (GET),  update (PUT), Delete (DELETE); 
+  //   formContactTag.addEventListener("submit", () => {
+  //       const donnees = {
+  //           method: "POST",
+  //           headers: {
+  //               Allow: "POST",
+  //               'Content-Type': 'application/json'
+  //           },
+  //           body: JSON.stringify({
 
-  // const donnees = {
-  //     method: "POST",
-  //     headers: {
-  //         Allow: "POST",
-  //         'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify({
+  //           }),
+  //           mode: "cors",
+  //           credentials: "same-origin",
+  //       };
 
-  //     }),
-  //     mode: "cors",
-  //     credentials: "same-origin",
-  // };
-
-  // const myHeaders = new Headers();
-  // const init = {
-  //     method: "GET",
-  //     headers: myHeaders,
-  //     mode: "cors",
-  //     cache: "default",
-  // };
-  // fetch("cart.json", init).then((res) => console.log(res));
-
-  // const Display = () => {
-  //     cart = JSON.parse(localStorage.getItem("cart"));
-  //     articleTag.textContent = cart
-  //     console.log(cart);
-
-  //     alert(JSON.stringify(cart));
-  // };
-  // Display();
-  // console.log(Display);
-
-
-  // //Conversion en chaine JSON
-  // let json = JSON.stringify(cart);
-
-  // .document.appendChild("articleTag").innerHTML =
-  //     "cart" + typeof(json) + "<br>Contenu de la variable : " + json;
+  //       fetch("http://localhost:3000/api/furniture/order", donnees).then((res) => res.json());
+  //       console.log("cart envoyée")
+  //   })
+  /* "Get" - Obtenir  "myHeaders" pleins de méthodes.
+   "cors" = Permission ( requête )
+   cache : "default" */
+  //   CRUD > Create(POST)(Ajouter), read(GET)(optenir), update(PUT)(ajouter), Delete(DELETE)(supprimer);

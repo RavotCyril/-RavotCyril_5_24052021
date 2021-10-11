@@ -174,8 +174,13 @@
             // let oldArticle = 0;
             // let qty = 0;
 
-            /* Inégalité stricte (!==) Renvoie true si la comparaison des 2 valeurs ne sont pas égaux ou 
-            s'ils ne sont pas de même type. 
+            /* 
+
+            L'opérateur d'inégalité (!=) vérifie si ses deux opérandes ne sont pas égaux et 
+            renvoie un booléen correspondant au résultat.
+            
+             À la différence de l'opérateur d'inégalité stricte, l'opérateur d'inégalité tente
+            une conversion de ses opérandes avant la comparaison si ceux-ci sont de types différents.
             La valeur null est un littéral JavaScript représentant la nullité au sens où aucune valeur pour 
             l'objet n'est présente.C'est une des valeurs primitives de JavaScript */
 
