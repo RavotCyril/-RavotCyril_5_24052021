@@ -15,59 +15,66 @@
       let prix3;
       let prix4;
       let prix5;
-      //   for (let i = 0; i < cart.length; i++)
 
-      for (let i = 0; i < 4; i++) {
-          if (cart[i].idproduit == "5be9cc611c9d440000c1421e") {
-              document.getElementById("basket_tablebody1").innerHTML += "<tr id='Article1' class='row-fluid' data-id=" + cart[i].idproduit + "><td class='Name'>" + cart[i].name + "</td>" + "<td class='Varnish'>" + cart[i].varnish + "</td>" + "<td class='Quantite'>" + (quantite1 = cart[i].quantite) + "</td>" + "<td class='Prix'>" + (prix1 = cart[i].prix) + "</td></tr>"
-              prixTotale1 = (parseInt(quantite1) * parseInt(prix1));
-          } else if (cart[i].idproduit == undefined) {
-              document.getElementById("basket_tablebody1").innerHTML == null;
+      //  5 articles,  13 Options =  18 Possibilités d'achats d'articles;
+
+      for (let index1 = 0; index1 < 4; index1++) {
+          if (cart[index1].idproduit == "5be9cc611c9d440000c1421e") {
+              //   let comptageDuNombreDoption = cart[index1].varnish.match(/(\w+)/g).length;
+              //   console.log(comptageDuNombreDoption);
+              document.getElementById("basket_tablebody").innerHTML += "<tr id='Article1' class='row-fluid' data-id=" + cart[index1].idproduit + "><td class='Name'>" + cart[index1].name + "</td>" + "<td class='Varnish'>" + cart[index1].varnish + "</td>" + "<td class='Quantite'>" + (quantite1 = cart[index1].quantite) + "</td>" + "<td class='Prix'>" + (prix1 = cart[index1].prix) + "</td></tr>"
+              prixTotale1 = (parseInt(quantite1) * parseInt(prix1)); /* * comptageDuNombreDoption */
+              console.log(prixTotale1);
+          } else if (cart[index1].idproduit == undefined) {
+              document.getElementById("basket_tablebody").innerHTML == null;
           }
       }
-      for (let i = 0; i < 2; i++) {
-          if (cart[i].idproduit == "5beaadda1c9d440000a57d98") {
-              document.getElementById("basket_tablebody2").innerHTML += "<tr id='Article2' class='row-fluid' data-id=" + cart[i].idproduit + "><td <td class='Name'>" + cart[i].name + "</td>" + "<td class='Varnish'>" + cart[i].varnish + "</td>" + "<td class='Quantite'>" + (quantite2 = cart[i].quantite) + "</td>" + "<td class='Prix'>" + (prix2 = cart[i].prix) + "</td></tr>"
+      for (let index2 = 4; index2 < 6; index2++) {
+          if (cart[index2].idproduit == "5beaadda1c9d440000a57d98") {
+              document.getElementById("basket_tablebody").innerHTML += "<tr id='article2' class='row-fluid' data-id=" + cart[index2].idproduit + "><td class='Name'>" + cart[index2].name + "</td>" + "<td class='Varnish'>" + cart[index2].varnish + "</td>" + "<td class='Quantite'>" + (quantite2 = cart[index2].quantite) + "</td>" + "<td class='Prix'>" + (prix2 = cart[index2].prix) + "</td></tr>"
               prixTotale2 = (parseInt(quantite2) * parseInt(prix2));
-          } else if (cart[i].idproduit == undefined) {
-              document.getElementById("basket_tablebody2").innerHTML == null;
+              console.log(prixTotale2);
+          } else if (cart[index2].idproduit == undefined) {
+              document.getElementById("basket_tablebody").innerHTML == null;
           }
       }
 
-      for (let i = 0; i < 3; i++) {
-          if (cart[i].idproduit == "5beaae361c9d440000a57d99") {
-              document.getElementById("basket_tablebody3").innerHTML += "<tr id='Article3' class='row-fluid' data-id=" + cart[i].idproduit + "><td <td class='Name'>" + cart[i].name + "</td>" + "<td class='Varnish'>" + cart[i].varnish + "</td>" + "<td class='Quantite'>" + (quantite3 = cart[i].quantite) + "</td>" + "<td class='Prix'>" + (prix3 = cart[i].prix) + "</td></tr>"
-              prixTotale3 = (parseInt(quantite3) * parseInt(prix3));
-          } else if (cart[i].idproduit == undefined) {
-              document.getElementById("basket_tablebody3").innerHTML == null;
+      for (let index3 = 6; index3 < 9; index3++) {
+          if (cart[index3].idproduit == "5beaae361c9d440000a57d99") {
+              document.getElementById("basket_tablebody").innerHTML += "<tr id='article3' class='row-fluid' data-id=" + cart[index3].idproduit + "><td class='Name'>" + cart[index3].name + "</td>" + "<td class='Varnish'>" + cart[index3].varnish + "</td>" + "<td class='Quantite'>" + (quantite3 = cart[index3].quantite) + "</td>" + "<td class='Prix'>" + (prix3 = cart[index3].prix) + "</td></tr>"
+              prixTotale3 = (parseInt(quantite3) * (1099));
+              console.log(prixTotale3);
+          } else if (cart[index3].idproduit == undefined) {
+              document.getElementById("basket_tablebody").innerHTML == null;
           }
       }
 
-      for (let i = 0; i < 2; i++) {
-          if (cart[i].idproduit == "5beaaf2e1c9d440000a57d9a") {
-              document.getElementById("basket_tablebody4").innerHTML += "<tr id='Article4' class='row-fluid' data-id=" + cart[i].idproduit + "><td class='Name'>" + cart[i].name + "</td>" + "<td class='Varnish'>" + cart[i].varnish + "</td>" + "<td class='Quantite'>" + (quantite4 = cart[i].quantite) + "</td>" + "<td class='Prix'>" + (prix4 = cart[i].prix) + "</td></tr>"
+      for (let index4 = 9; index4 < 11; index4++) {
+          if (cart[index4].idproduit == "5beaaf2e1c9d440000a57d9a") {
+              document.getElementById("basket_tablebody").innerHTML += "<tr id='article4' class='row-fluid' data-id=" + cart[index4].idproduit + "><td class='Name'>" + cart[index4].name + "</td>" + "<td class='Varnish'>" + cart[index4].varnish + "</td>" + "<td class='Quantite'>" + (quantite4 = cart[index4].quantite) + "</td>" + "<td class='Prix'>" + (prix4 = cart[index4].prix) + "</td></tr>"
               prixTotale4 = (parseInt(quantite4) * parseInt(prix4));
-          } else if (cart[i].idproduit == undefined) {
-              document.getElementById("basket_tablebody4").innerHTML == null;
+              console.log(prixTotale4);
+          } else if (cart[index4].idproduit == undefined) {
+              document.getElementById("basket_tablebody").innerHTML == null;
           }
       }
 
-      for (let i = 0; i < 2; i++) {
-          if (cart[i].idproduit == "5beab2061c9d440000a57d9b") {
-              document.getElementById("basket_tablebody5").innerHTML += "<tr id='Article5' class='row-fluid' data-id=" + cart[i].idproduit + "><td class='Name'>" + cart[i].name + "</td>" + "<td <td class='Varnish'>" + cart[i].varnish + "</td>" + "<td class='Quantite'>" + (quantite5 = cart[i].quantite) + "</td>" + "<td class='Prix'>" + (prix5 = cart[i].prix) + "</td></tr>"
+      for (let index5 = 11; index5 < 13; index5++) {
+          if (cart[index5].idproduit == "5beab2061c9d440000a57d9b") {
+              document.getElementById("basket_tablebody").innerHTML += "<tr id='article5' class='row-fluid' data-id=" + cart[index5].idproduit + "><td class='Name'>" + cart[index5].name + "</td>" + "<td class='Varnish'>" + cart[index5].varnish + "</td>" + "<td class='Quantite'>" + (quantite5 = cart[index5].quantite) + "</td>" + "<td class='Prix'>" + (prix5 = cart[index5].prix) + "</td></tr>"
               prixTotale5 = (parseInt(quantite5) * parseInt(prix5));
-          } else if (cart[i].idproduit == undefined) {
-              document.getElementById("basket_tablebody5").innerHTML == null;
+              console.log(prixTotale5);
+          } else if (cart[index5].idproduit == undefined) {
+              document.getElementById("basket_tablebody").innerHTML == null;
           }
       }
 
       /* L'opérateur OU logique (||) (disjonction logique) renvoie vrai si et seulement si au moins un de ses opérandes est vrai.
       Toutefois, || peut aussi être utilisé avec des valeurs non-booléennes et, dans ce cas, renverra une valeur non-booléenne. */
-
       let prixPaniertotal = (parseInt(prixTotale1) + parseInt(prixTotale2) + parseInt(prixTotale3) + parseInt(prixTotale4) + parseInt(prixTotale5));
       let quantitePaniertotal = (parseInt(quantite1) + parseInt(quantite2) + parseInt(quantite3) + parseInt(quantite4) + parseInt(quantite5));
 
-      document.getElementById("Article6").innerHTML += "<tr>" + "<td>" + "</td>" + "<td>" + "</td>" + "<td>" + quantitePaniertotal + "</td>" + "<td >" + prixPaniertotal + "€" + "</td></tr>"
+      document.getElementById("article6").innerHTML += "<tr>" + "<td>" + "</td>" + "<td>" + "</td>" + "<td>" + quantitePaniertotal + "</td>" + "<td >" + prixPaniertotal + "€" + "</td></tr>"
       console.log(cart);
 
   }

@@ -147,7 +147,7 @@
     .Boutton-Produit:active {
         color: green;
     }
-    /* Pour mettre une bordure aux td ( case ) des données du panier */
+    /* Pour mettre une bordure aux  ( case ) des données du panier */
     
     td {
         border: 1px solid black;
