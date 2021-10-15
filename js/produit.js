@@ -93,19 +93,18 @@
 
         // Déclaration - Variable et constante - > Price
 
-        let price = article.price;
 
         // on affiche une devise avec le style "currency"  et  on se limite ici à deux chiffres  l'euro et les centimes.
 
-        let price2 = new Intl.NumberFormat("fr-FR", {
-            style: "currency",
-            currency: "EUR",
-            minimumFractionDigits: "0",
-        }).format(Math.round(price / 100));
+        // let price2 = new Intl.NumberFormat("fr-FR", {
+        //     style: "currency",
+        //     currency: "EUR",
+        //     minimumFractionDigits: "0",
+        // }).format(Math.round(price / 100));
 
         // Appel - > Price
 
-        prixTag.textContent = price2;
+        prixTag.textContent = (parseInt(article.price) / 100) + "€";
         prixTag.className = "Prix";
         figcaptionTag.appendChild(prixTag);
 
@@ -165,8 +164,8 @@
 
         /* Déclaration de la variable " cart "dans laquelle on met les valeurs du localStorage stocké. */
         // TODO: recupérer la liste d 'article du panier
-        console.log(idproduit);
-        console.log({ "idproduit": article._id, "varnish": article.varnish, "name": article.name, "prix": price2 });
+        // console.log(idproduit);
+        // console.log({ "idproduit": article._id, "varnish": article.varnish, "name": article.name, "prix": price2 });
         inputTag.addEventListener("click", function() {
             /* JSON.parse --> La méthode JSON.parse() convertit la chaîne de caractères JSON en un objet JavaScript.  ( l'inverse de JSON.stringify )*/
             let cart = JSON.parse(localStorage.getItem("cart"))
@@ -194,12 +193,12 @@
                     cart[cart.indexOf(art)].quantite += 1;
                     validTag("Message-Ajout-Panier-Validation-Erreur", alert("Article ajouté au panier"), true);
                 } else {
-                    cart.push({ "idproduit": article._id, "varnish": optionSelected, "name": article.name, "prix": price2, "quantite": 1 });
+                    cart.push({ "idproduit": article._id, "varnish": optionSelected, "name": article.name, "prix": (article.price / 100), "quantite": 1 });
                 }
             } else {
 
                 cart = [];
-                cart.push({ "idproduit": article._id, "varnish": optionSelected, "name": article.name, "prix": price2, "quantite": 1 });
+                cart.push({ "idproduit": article._id, "varnish": optionSelected, "name": article.name, "prix": (article.price / 100), "quantite": 1 });
 
 
             }

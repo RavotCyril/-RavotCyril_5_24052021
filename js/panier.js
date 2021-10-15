@@ -1,81 +1,84 @@
   function afficherPanier() {
       let cart = JSON.parse(localStorage.getItem("cart"));
-      let prixTotale1;
-      let prixTotale2;
-      let prixTotale3;
-      let prixTotale4;
-      let prixTotale5;
-      let quantite1;
-      let quantite2;
-      let quantite3;
-      let quantite4;
-      let quantite5;
-      let prix1;
-      let prix2;
-      let prix3;
-      let prix4;
-      let prix5;
+
 
       //  5 articles,  13 Options =  18 Possibilités d'achats d'articles;
 
-      for (let index1 = 0; index1 < 4; index1++) {
-          if (cart[index1].idproduit == "5be9cc611c9d440000c1421e") {
-              //   let comptageDuNombreDoption = cart[index1].varnish.match(/(\w+)/g).length;
-              //   console.log(comptageDuNombreDoption);
-              document.getElementById("basket_tablebody").innerHTML += "<tr id='Article1' class='row-fluid' data-id=" + cart[index1].idproduit + "><td class='Name'>" + cart[index1].name + "</td>" + "<td class='Varnish'>" + cart[index1].varnish + "</td>" + "<td class='Quantite'>" + (quantite1 = cart[index1].quantite) + "</td>" + "<td class='Prix'>" + (prix1 = cart[index1].prix) + "</td></tr>"
-              prixTotale1 = (parseInt(quantite1) * parseInt(prix1)); /* * comptageDuNombreDoption */
-              console.log(prixTotale1);
-          } else if (cart[index1].idproduit == undefined) {
-              document.getElementById("basket_tablebody").innerHTML == null;
-          }
-      }
-      for (let index2 = 4; index2 < 6; index2++) {
-          if (cart[index2].idproduit == "5beaadda1c9d440000a57d98") {
-              document.getElementById("basket_tablebody").innerHTML += "<tr id='article2' class='row-fluid' data-id=" + cart[index2].idproduit + "><td class='Name'>" + cart[index2].name + "</td>" + "<td class='Varnish'>" + cart[index2].varnish + "</td>" + "<td class='Quantite'>" + (quantite2 = cart[index2].quantite) + "</td>" + "<td class='Prix'>" + (prix2 = cart[index2].prix) + "</td></tr>"
-              prixTotale2 = (parseInt(quantite2) * parseInt(prix2));
-              console.log(prixTotale2);
-          } else if (cart[index2].idproduit == undefined) {
-              document.getElementById("basket_tablebody").innerHTML == null;
-          }
+      if (cart != null) {
+          let prixPaniertotal = 0;
+          let quantitePaniertotal = 0;
+          cart.forEach(element => {
+              document.getElementById("basket_tablebody").innerHTML += "<tr id='Article1' class='row-fluid' data-id=" + element.idproduit +
+                  "><td class='Name'>" + element.name + "</td>" + "<td class='Varnish'>" +
+                  element.varnish + "</td>" + "<td class='Quantite'>" + element.quantite + "</td>" +
+                  "<td class='Prix'>" + element.prix + "</td></tr>"
+
+              console.log("prix" + element.prix)
+              console.log("quantite" + element.quantite)
+              console.log((parseInt(element.quantite) * parseInt(element.prix)))
+
+              prixPaniertotal = (parseInt(element.quantite) * parseInt(element.prix)) + parseInt(prixPaniertotal);
+              quantitePaniertotal = element.quantite + quantitePaniertotal;
+
+          });
+          console.log(prixPaniertotal);
+
+          document.getElementById("basket_tablebody").innerHTML += "<tr>" + "<td>" + "</td>" + "<td>" + "</td>" + "<td>" + quantitePaniertotal + "</td>" + "<td >" + prixPaniertotal + "€" + "</td></tr>"
+          document.getElementById("Formulaire").innerHTML += " <h2 class='my-4 text-center'>Veuillez remplir ce formulaire pour valider votre commande</h2>"
+      } else {
+          document.getElementById("Formulaire").innerHTML += " <h2 class='my-4 text-center'>Aucun article dans votre panier</h2>"
       }
 
-      for (let index3 = 6; index3 < 9; index3++) {
-          if (cart[index3].idproduit == "5beaae361c9d440000a57d99") {
-              document.getElementById("basket_tablebody").innerHTML += "<tr id='article3' class='row-fluid' data-id=" + cart[index3].idproduit + "><td class='Name'>" + cart[index3].name + "</td>" + "<td class='Varnish'>" + cart[index3].varnish + "</td>" + "<td class='Quantite'>" + (quantite3 = cart[index3].quantite) + "</td>" + "<td class='Prix'>" + (prix3 = cart[index3].prix) + "</td></tr>"
-              prixTotale3 = (parseInt(quantite3) * (1099));
-              console.log(prixTotale3);
-          } else if (cart[index3].idproduit == undefined) {
-              document.getElementById("basket_tablebody").innerHTML == null;
-          }
-      }
 
-      for (let index4 = 9; index4 < 11; index4++) {
-          if (cart[index4].idproduit == "5beaaf2e1c9d440000a57d9a") {
-              document.getElementById("basket_tablebody").innerHTML += "<tr id='article4' class='row-fluid' data-id=" + cart[index4].idproduit + "><td class='Name'>" + cart[index4].name + "</td>" + "<td class='Varnish'>" + cart[index4].varnish + "</td>" + "<td class='Quantite'>" + (quantite4 = cart[index4].quantite) + "</td>" + "<td class='Prix'>" + (prix4 = cart[index4].prix) + "</td></tr>"
-              prixTotale4 = (parseInt(quantite4) * parseInt(prix4));
-              console.log(prixTotale4);
-          } else if (cart[index4].idproduit == undefined) {
-              document.getElementById("basket_tablebody").innerHTML == null;
-          }
-      }
+      //   for (let index1 = 0; index1 < 4; index1++) {
+      //       if (cart[index1].idproduit == "5be9cc611c9d440000c1421e") {
+      //           //   let comptageDuNombreDoption = cart[index1].varnish.match(/(\w+)/g).length;
+      //           //   console.log(comptageDuNombreDoption);
 
-      for (let index5 = 11; index5 < 13; index5++) {
-          if (cart[index5].idproduit == "5beab2061c9d440000a57d9b") {
-              document.getElementById("basket_tablebody").innerHTML += "<tr id='article5' class='row-fluid' data-id=" + cart[index5].idproduit + "><td class='Name'>" + cart[index5].name + "</td>" + "<td class='Varnish'>" + cart[index5].varnish + "</td>" + "<td class='Quantite'>" + (quantite5 = cart[index5].quantite) + "</td>" + "<td class='Prix'>" + (prix5 = cart[index5].prix) + "</td></tr>"
-              prixTotale5 = (parseInt(quantite5) * parseInt(prix5));
-              console.log(prixTotale5);
-          } else if (cart[index5].idproduit == undefined) {
-              document.getElementById("basket_tablebody").innerHTML == null;
-          }
-      }
+      //           prixTotale1 = (parseInt(quantite1) * parseInt(prix1)); /* * comptageDuNombreDoption */
+      //       } else if (cart[index1].idproduit == undefined) {
+      //           document.getElementById("basket_tablebody").innerHTML == null;
+      //       }
+      //   }
+      //   for (let index2 = 4; index2 < 6; index2++) {
+      //       if (cart[index2].idproduit == "5beaadda1c9d440000a57d98") {
+      //           document.getElementById("basket_tablebody").innerHTML += "<tr id='article2' class='row-fluid' data-id=" + cart[index2].idproduit + "><td class='Name'>" + cart[index2].name + "</td>" + "<td class='Varnish'>" + cart[index2].varnish + "</td>" + "<td class='Quantite'>" + (quantite2 = cart[index2].quantite) + "</td>" + "<td class='Prix'>" + (prix2 = cart[index2].prix) + "</td></tr>"
+      //           prixTotale2 = (parseInt(quantite2) * parseInt(prix2));
+      //       } else if (cart[index2].idproduit == undefined) {
+      //           document.getElementById("basket_tablebody").innerHTML == null;
+      //       }
+      //   }
+
+      //   for (let index3 = 6; index3 < 9; index3++) {
+      //       if (cart[index3].idproduit == "5beaae361c9d440000a57d99") {
+      //           document.getElementById("basket_tablebody").innerHTML += "<tr id='article3' class='row-fluid' data-id=" + cart[index3].idproduit + "><td class='Name'>" + cart[index3].name + "</td>" + "<td class='Varnish'>" + cart[index3].varnish + "</td>" + "<td class='Quantite'>" + (quantite3 = cart[index3].quantite) + "</td>" + "<td class='Prix'>" + (prix3 = cart[index3].prix) + "</td></tr>"
+      //           prixTotale3 = (parseInt(quantite3) * (1099));
+      //       } else if (cart[index3].idproduit == undefined) {
+      //           document.getElementById("basket_tablebody").innerHTML == null;
+      //       }
+      //   }
+
+      //   for (let index4 = 9; index4 < 11; index4++) {
+      //       if (cart[index4].idproduit == "5beaaf2e1c9d440000a57d9a") {
+      //           document.getElementById("basket_tablebody").innerHTML += "<tr id='article4' class='row-fluid' data-id=" + cart[index4].idproduit + "><td class='Name'>" + cart[index4].name + "</td>" + "<td class='Varnish'>" + cart[index4].varnish + "</td>" + "<td class='Quantite'>" + (quantite4 = cart[index4].quantite) + "</td>" + "<td class='Prix'>" + (prix4 = cart[index4].prix) + "</td></tr>"
+      //           prixTotale4 = (parseInt(quantite4) * parseInt(prix4));
+      //       } else if (cart[index4].idproduit == undefined) {
+      //           document.getElementById("basket_tablebody").innerHTML == null;
+      //       }
+      //   }
+
+      //   for (let index5 = 11; index5 < 13; index5++) {
+      //       if (cart[index5].idproduit == "5beab2061c9d440000a57d9b") {
+      //           document.getElementById("basket_tablebody").innerHTML += "<tr id='article5' class='row-fluid' data-id=" + cart[index5].idproduit + "><td class='Name'>" + cart[index5].name + "</td>" + "<td class='Varnish'>" + cart[index5].varnish + "</td>" + "<td class='Quantite'>" + (quantite5 = cart[index5].quantite) + "</td>" + "<td class='Prix'>" + (prix5 = cart[index5].prix) + "</td></tr>"
+      //           prixTotale5 = (parseInt(quantite5) * parseInt(prix5));
+      //       } else if (cart[index5].idproduit == undefined) {
+      //           document.getElementById("basket_tablebody").innerHTML == null;
+      //       }
+      //   }
 
       /* L'opérateur OU logique (||) (disjonction logique) renvoie vrai si et seulement si au moins un de ses opérandes est vrai.
       Toutefois, || peut aussi être utilisé avec des valeurs non-booléennes et, dans ce cas, renverra une valeur non-booléenne. */
-      let prixPaniertotal = (parseInt(prixTotale1) + parseInt(prixTotale2) + parseInt(prixTotale3) + parseInt(prixTotale4) + parseInt(prixTotale5));
-      let quantitePaniertotal = (parseInt(quantite1) + parseInt(quantite2) + parseInt(quantite3) + parseInt(quantite4) + parseInt(quantite5));
 
-      document.getElementById("article6").innerHTML += "<tr>" + "<td>" + "</td>" + "<td>" + "</td>" + "<td>" + quantitePaniertotal + "</td>" + "<td >" + prixPaniertotal + "€" + "</td></tr>"
-      console.log(cart);
 
   }
   afficherPanier();
@@ -167,12 +170,12 @@
       // Formulaire Ville
 
       inputCityTag.className = "Input-Page-Panier Largeur-Input col-12 my-4 mx-auto";
-      inputCityTag.id = "ville";
+      inputCityTag.id = "city";
       inputCityTag.placeholder = "Entrer Une Ville";
       inputCityTag.setAttribute("required", "");
-      inputCityTag.name = "ville";
+      inputCityTag.name = "city";
       inputCityTag.type = "text";
-      labelCity.htmlFor = "ville";
+      labelCity.htmlFor = "city";
       formContactTag.appendChild(labelCity);
       formContactTag.appendChild(inputCityTag);
       formContactTag.appendChild(cityValid);
@@ -388,7 +391,7 @@
       formContactTag.addEventListener("submit", (e) => {
           e.preventDefault();
           let carts = document.querySelectorAll('input[type="text"], input[type="email"]');
-          let firstName, lastName, adresse, ville, email;
+          let firstName, lastName, address, city, email;
           carts.forEach((input) => {
               switch (input.name) {
 
@@ -399,10 +402,10 @@
                       lastName = input.value;
                       break;
                   case "adresse":
-                      adresse = input.value
+                      address = input.value
                       break;
                   case "ville":
-                      ville = input.value;
+                      city = input.value;
                       break;
                   case "email":
                       email = input.value;
@@ -412,51 +415,63 @@
               }
 
           })
-          console.log("firstName :" + firstName, "lastName : " + lastName, "adresse : " + adresse, "ville :" + ville, "email : " + email);
-          if (firstName && lastName && adresse && ville && email) {
-              const cart = {
+          console.log("firstName :" + firstName, "lastName : " + lastName, "adress : " + address, "ville :" + city, "email : " + email);
+          if (firstName && lastName && address && city && email) {
+              let contact = {
                   firstName,
                   lastName,
-                  adresse,
-                  ville,
+                  address,
+                  city,
                   email,
               };
-              console.log(cart);
+
 
               inputs.forEach((input) => (input.value = ""));
               firstName = null;
               lastName = null;
-              adresse = null;
-              ville = null;
+              address = null;
+              city = null;
               email = null;
-              alert("Inscription validée !");
+
+              // Permet de créer la méthode Post. Pour envoyer les données du formulaire à la page Confirmation de commande.
+              /* "Get" - Obtenir  "myHeaders" pleins de méthodes.
+                              "cors" = Permission ( requête )
+                              cache : "default" */
+              //   CRUD > Create(POST)(Ajouter), read(GET)(optenir), update(PUT)(ajouter), Delete(DELETE)(supprimer);
+              let cart = JSON.parse(localStorage.getItem("cart"));
+              let products = [];
+              cart.forEach(element => {
+                  products.push(element.idproduit);
+              });
+
+              (async() => {
+                  const serveur = await fetch('http://localhost:3000/api/furniture/order', {
+                      method: 'POST',
+                      headers: {
+                          'Accept': 'application/json',
+                          'Content-Type': 'application/json'
+                      },
+                      body: JSON.stringify({ contact, products })
+                  });
+                  const content = await serveur.json();
+
+                  console.log(content);
+              })();
+              //   const donneesFormulaire = await fetch("http://localhost:3000/api/furniture/order", {
+              //       method: "POST",
+              //       body: JSON.stringify(cart),
+              //       headers: {
+              //           'Content-Type': 'application/json'
+              //       }
+              //       //   mode: "cors",
+              //       //   credentials: "same-origin",
+              //   });
+              //   const myJson = await donneesFormulaire.json(); //Extrait du JSON de l'adresse http response
+              alert("Panier et formulaire envoyé Inscription validée !");
+              //   console.log(myJson);
           } else {
               alert("veuillez remplir correctement les champs");
           }
-
       });
   }
   formulaire();
-  // Permet de créer la méthode Post. Pour envoyer les données du formulaire à la page Confirmation de commande.
-
-  //   formContactTag.addEventListener("submit", () => {
-  //       const donnees = {
-  //           method: "POST",
-  //           headers: {
-  //               Allow: "POST",
-  //               'Content-Type': 'application/json'
-  //           },
-  //           body: JSON.stringify({
-
-  //           }),
-  //           mode: "cors",
-  //           credentials: "same-origin",
-  //       };
-
-  //       fetch("http://localhost:3000/api/furniture/order", donnees).then((res) => res.json());
-  //       console.log("cart envoyée")
-  //   })
-  /* "Get" - Obtenir  "myHeaders" pleins de méthodes.
-   "cors" = Permission ( requête )
-   cache : "default" */
-  //   CRUD > Create(POST)(Ajouter), read(GET)(optenir), update(PUT)(ajouter), Delete(DELETE)(supprimer);

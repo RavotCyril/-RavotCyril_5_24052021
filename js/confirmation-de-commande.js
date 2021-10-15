@@ -1,12 +1,13 @@
  function confirmationCommande() {
      // Déclaration de toutes les variables de la page HTML
+
      const myHeaders = new Headers();
-     const init = {
+     const donneesFormulaire = {
          method: "GET",
          headers: myHeaders,
          mode: "cors",
          cache: "default",
      };
-     fetch("cart.json", init).then((res) => res.json());
+     fetch("http://localhost:3000/api/furniture/order", donneesFormulaire).then((res) => res.djson());
  }
  confirmationCommande();
