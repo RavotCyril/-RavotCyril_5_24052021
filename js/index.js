@@ -26,7 +26,7 @@
 
 
     const articles = await getArticles();
-    //console.log(articles);
+    // console.log(articles);
     for (let i in articles) {
         console.log(articles[i]);
         afficherArticle(sectionTag, articles[i]);
@@ -37,10 +37,11 @@
 
 async function getArticles() {
     try {
-        let res = await fetch("http://localhost:3000/api/furniture");
-        return await res.json();
+        let resultat = await fetch("http://localhost:3000/api/furniture");
+        // console.log(resultat);
+        return await resultat.json();
     } catch (error) {
-        alert(error);
+        alert("Serveur indisponible Veuillez tapper 'node serveur' dans le back-end");
     }
 }
 // Déclaration - Variable et Fonction - > Articles + H2 : Object, Id , Name, Prix, Description, ...

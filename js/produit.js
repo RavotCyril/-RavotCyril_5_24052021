@@ -6,6 +6,9 @@
         document.querySelector("header");
         let newMain = document.createElement("Main");
         let sectionTag = document.createElement("section");
+        //---Appel du paramètre GetId pour mettre 
+        //  la valeur de l'id à la variable idproduit----------------------------------------------
+
         let idproduit = getId();
         let h1Tag = document.createElement("h1");
 
@@ -25,10 +28,11 @@
         /*Constante article. Qui permet de récupérer avec la function getARticle 
         le résultat de la méthode Fetch pour récupérer les donnéees de l'API  */
 
-        const article = await getArticles(idproduit);
+        const article = await getArticle(idproduit);
+        // console.log(article);
         // Fonction - > APi Déclaration
 
-        afficherArticle(sectionTag, idproduit, article);
+        afficherArticle(sectionTag, article);
 
     })();
 
@@ -37,21 +41,23 @@
     function getId() {
         const param = window.location.search;
         const id = param.replace("?id=", "");
+        // console.log(id);
         return id;
     }
-    async function getArticles(id) {
+    async function getArticle(id) {
         try {
-            let res = await fetch("http://localhost:3000/api/furniture/" + id);
-            return await res.json();
+            let resultat = await fetch("http://localhost:3000/api/furniture/" + id);
+            // console.log(resultat);
+            return await resultat.json();
         } catch (error) {
-            alert(error);
+            alert("Serveur indisponible Veuillez tapper 'node serveur' dans le back-end");
         }
 
     }
 
     // Déclaration - Variable et Fonction - > Articles - H2 -figure - div - img -figcaption -p : Object, Id , imageUrl Name, Prix, Description, ...
 
-    function afficherArticle(sectionTag, idproduit, article) {
+    function afficherArticle(sectionTag, article) {
 
         let articleTag = document.createElement("article");
         let titleTag = document.createElement("h2");
@@ -169,7 +175,7 @@
         inputTag.addEventListener("click", function() {
             /* JSON.parse --> La méthode JSON.parse() convertit la chaîne de caractères JSON en un objet JavaScript.  ( l'inverse de JSON.stringify )*/
             let cart = JSON.parse(localStorage.getItem("cart"))
-            console.log(cart);
+
             // let oldArticle = 0;
             // let qty = 0;
 
