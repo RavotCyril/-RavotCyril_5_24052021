@@ -41,7 +41,7 @@ async function getArticles() {
         // console.log(resultat);
         return await resultat.json();
     } catch (error) {
-        alert("Serveur indisponible Veuillez tapper 'node serveur' dans le back-end");
+        alert("Serveur indisponible.Veuillez contacter l'administrateur du site");
     }
 }
 // Déclaration - Variable et Fonction - > Articles + H2 : Object, Id , Name, Prix, Description, ...

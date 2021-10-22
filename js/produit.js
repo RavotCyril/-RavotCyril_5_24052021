@@ -50,7 +50,7 @@
             // console.log(resultat);
             return await resultat.json();
         } catch (error) {
-            alert("Serveur indisponible Veuillez tapper 'node serveur' dans le back-end");
+            alert("Serveur indisponible.Veuillez contacter l'administrateur du site");
         }
 
     }
@@ -174,23 +174,16 @@
         // console.log({ "idproduit": article._id, "varnish": article.varnish, "name": article.name, "prix": price2 });
         inputTag.addEventListener("click", function() {
             /* JSON.parse --> La méthode JSON.parse() convertit la chaîne de caractères JSON en un objet JavaScript.  ( l'inverse de JSON.stringify )*/
-            let cart = JSON.parse(localStorage.getItem("cart"))
-
-            // let oldArticle = 0;
-            // let qty = 0;
-
-            /* 
-
-            L'opérateur d'inégalité (!=) vérifie si ses deux opérandes ne sont pas égaux et 
-            renvoie un booléen correspondant au résultat.
-            
-             À la différence de l'opérateur d'inégalité stricte, l'opérateur d'inégalité tente
+            let cart = JSON.parse(localStorage.getItem("cart"));
+    
+            let e = document.getElementById("Meuble-Select");
+            let optionSelected = e.options[e.selectedIndex].text;
+             /* 
+            L'opérateur d'inégalité (!=) vérifie si ses deux opérandes ne sont pas égaux et renvoie un booléen correspondant au résultat.   
+            À la différence de l'opérateur d'inégalité stricte, l'opérateur d'inégalité tente
             une conversion de ses opérandes avant la comparaison si ceux-ci sont de types différents.
             La valeur null est un littéral JavaScript représentant la nullité au sens où aucune valeur pour 
             l'objet n'est présente.C'est une des valeurs primitives de JavaScript */
-
-            let e = document.getElementById("Meuble-Select");
-            let optionSelected = e.options[e.selectedIndex].text;
             if (cart != null) {
 
                 // Je verifie que l'article que je souhaite ajouter existe dans le panier

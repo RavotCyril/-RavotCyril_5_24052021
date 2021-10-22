@@ -152,6 +152,18 @@
     td {
         border: 1px solid black;
     }
+    /* Page Confirmation-de-commande -> Pour mettre en gras les 2 Id OrderId, Prix total de commande */
+    
+    .OrderId,
+    .PrixTotalCommande {
+        font-weight: bold;
+    }
+    /* Page Confirmation-de-commande -> Pour mettre en italique les descriptions des 3 paragraphes
+     */
+    
+    .Italique {
+        font-style: italic;
+    }
     
     @media screen and (min-width:769px) and (max-width:1089px)
     /* styles pour tablettes*/

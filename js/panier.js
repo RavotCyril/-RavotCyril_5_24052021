@@ -15,7 +15,7 @@ function afficherPanier() {
 
             prixPaniertotal = (parseInt(element.quantite) * parseInt(element.prix)) + parseInt(prixPaniertotal);
             quantitePaniertotal = element.quantite + quantitePaniertotal;
-            // products.push(element);
+            localStorage.setItem("prixPaniertotal", prixPaniertotal);
         });
 
         document.getElementById("basket_tablebody").innerHTML += "<tr>" + "<td>" + "</td>" + "<td>" + "</td>" + "<td>" + quantitePaniertotal + "</td>" + "<td >" + prixPaniertotal + "€" + "</td></tr>"
@@ -292,11 +292,11 @@ function formulaire() {
     // Constante inputs : Récupération - Sélection de tous les inputs de la page.
 
     const inputs = document.querySelectorAll('input[type="text"], input[type="email"]');
-    console.log(inputs);
+    // console.log(inputs);
 
     inputs.forEach((input) => {
         input.addEventListener("input", (e) => {
-            console.log(e.target.id);
+            // console.log(e.target.id);
             switch (e.target.id) {
 
                 case "firstName":
@@ -304,19 +304,19 @@ function formulaire() {
                     break;
                 case "lastName":
                     inputLastNameTagChecker(e.target.value);
-                    console.log(e.target.value);
+                    // console.log(e.target.value);
                     break;
                 case "adress":
                     inputAdresseTagChecker(e.target.value);
-                    console.log(e.target.value);
+                    // console.log(e.target.value);
                     break;
                 case "city":
                     inputCityTagChecker(e.target.value);
-                    console.log(e.target.value);
+                    // console.log(e.target.value);
                     break;
                 case "email":
                     inputEmailTagChecker(e.target.value);
-                    console.log(e.target.value);
+                    // console.log(e.target.value);
                     break;
                 default:
                     nul;
@@ -332,9 +332,9 @@ function formulaire() {
 
     formContactTag.addEventListener("submit", (e) => {
         e.preventDefault();
-        let carts = document.querySelectorAll('input[type="text"], input[type="email"]');
+        let inputFormulaire = document.querySelectorAll('input[type="text"], input[type="email"]');
         let firstName, lastName, address, city, email;
-        carts.forEach((input) => {
+        inputFormulaire.forEach((input) => {
             switch (input.name) {
 
                 case "firstName":
@@ -379,14 +379,10 @@ function formulaire() {
                             "cors" = Permission ( requête )
                             cache : "default" */
             //   CRUD > Create(POST)(Ajouter), read(GET)(optenir), update(PUT)(ajouter), Delete(DELETE)(supprimer);
-            // let orderId = [];
-
             let products = [];
-
 
             cart.forEach(element => {
                 products.push(element.idproduit);
-
             });
 
             fetch('http://localhost:3000/api/furniture/order', {
@@ -398,15 +394,14 @@ function formulaire() {
                     body: JSON.stringify({ contact, products })
                         //       //   mode: "cors",
                         //             //       //   credentials: "same-origin",
+
+                    // lire le corps de réponse et donne le résultat en JSON.
                 }).then((response) => response.json())
                 .then(value => {
                     localStorage.setItem("orderConfirmation", value.orderId);
                 });
-            // lire le corps de réponse et donne le résultat en JSON.
-
 
             //     /* Permet d'aller à la page confirmation avec L'Id Order + le message de confirmation */
-
             window.location.href = "confirmation-de-commande.html";
 
             alert("Panier et formulaire envoyé Inscription validée !");
