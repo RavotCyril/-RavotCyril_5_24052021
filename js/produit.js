@@ -97,18 +97,9 @@
         descriptionTag.className = "Produit-Figcaption-Description";
         descriptionTag.textContent = article.description;
 
-        // Déclaration - Variable et constante - > Price
 
-
-        // on affiche une devise avec le style "currency"  et  on se limite ici à deux chiffres  l'euro et les centimes.
-
-        // let price2 = new Intl.NumberFormat("fr-FR", {
-        //     style: "currency",
-        //     currency: "EUR",
-        //     minimumFractionDigits: "0",
-        // }).format(Math.round(price / 100));
-
-        // Appel - > Price
+        // on affiche le prix sans centimes et avec des valeurs plus raisonnables. 
+        // Price divisé / 100.
 
         prixTag.textContent = (parseInt(article.price) / 100) + "€";
         prixTag.className = "Prix";
@@ -175,10 +166,10 @@
         inputTag.addEventListener("click", function() {
             /* JSON.parse --> La méthode JSON.parse() convertit la chaîne de caractères JSON en un objet JavaScript.  ( l'inverse de JSON.stringify )*/
             let cart = JSON.parse(localStorage.getItem("cart"));
-    
-            let e = document.getElementById("Meuble-Select");
-            let optionSelected = e.options[e.selectedIndex].text;
-             /* 
+            // console.log(cart);
+            let varnish = document.getElementById("Meuble-Select");
+            let optionSelected = varnish.options[varnish.selectedIndex].text;
+            /* 
             L'opérateur d'inégalité (!=) vérifie si ses deux opérandes ne sont pas égaux et renvoie un booléen correspondant au résultat.   
             À la différence de l'opérateur d'inégalité stricte, l'opérateur d'inégalité tente
             une conversion de ses opérandes avant la comparaison si ceux-ci sont de types différents.
@@ -204,5 +195,6 @@
             /* l’objet avec la syntaxe JSON.stringify().La méthode JSON.stringify() convertit les objets JavaScript en chaîne JSON
              et stock les données dans local storage  ( l'inverse de JSON.Parse )*/
             localStorage.setItem("cart", JSON.stringify(cart));
+            console.log(cart);
         })
     }

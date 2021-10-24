@@ -7,24 +7,32 @@ function afficherPanier() {
     if (cart != null) {
         let prixPaniertotal = 0;
         let quantitePaniertotal = 0;
+
         cart.forEach(element => {
             document.getElementById("basket_tablebody").innerHTML += "<tr id='Article1' class='row-fluid' data-id=" + element.idproduit +
                 "><td class='Name'>" + element.name + "</td>" + "<td class='Varnish'>" +
                 element.varnish + "</td>" + "<td class='Quantite'>" + element.quantite + "</td>" +
-                "<td class='Prix'>" + element.prix + "</td></tr>"
+                "<td class='Prix'>" + NumberWithSpacesEveryMile(element.prix) + "</td></tr>"
 
             prixPaniertotal = (parseInt(element.quantite) * parseInt(element.prix)) + parseInt(prixPaniertotal);
             quantitePaniertotal = element.quantite + quantitePaniertotal;
             localStorage.setItem("prixPaniertotal", prixPaniertotal);
         });
 
-        document.getElementById("basket_tablebody").innerHTML += "<tr>" + "<td>" + "</td>" + "<td>" + "</td>" + "<td>" + quantitePaniertotal + "</td>" + "<td >" + prixPaniertotal + "€" + "</td></tr>"
+        document.getElementById("basket_tablebody").innerHTML += "<tr>" + "<td>" + "</td>" + "<td>" + "</td>" + "<td>" + quantitePaniertotal + "</td>" + "<td>" + NumberWithSpacesEveryMile(prixPaniertotal) + "€" + "</td></tr>"
         document.getElementById("Formulaire").innerHTML += " <h2 class='my-4 text-center'>Veuillez remplir ce formulaire pour valider votre commande</h2>"
     } else {
         document.getElementById("Formulaire").innerHTML += " <h2 class='my-4 text-center'>Aucun article dans votre panier</h2>"
     }
 }
 afficherPanier();
+
+//  Function qui permet de mettre un espace au prix tous les centaines ( tous les 3 chiffres );
+
+function NumberWithSpacesEveryMile(SpaceMile) {
+    return SpaceMile.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+}
+
 // Function Principal du formulaire du panier 
 
 function formulaire() {
@@ -384,7 +392,8 @@ function formulaire() {
             cart.forEach(element => {
                 products.push(element.idproduit);
             });
-
+            console.log(products);
+            console.log(contact);
             fetch('http://localhost:3000/api/furniture/order', {
                     method: 'POST',
                     headers: {
@@ -392,16 +401,17 @@ function formulaire() {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({ contact, products })
-                        //       //   mode: "cors",
-                        //             //       //   credentials: "same-origin",
+
+                    //       //   mode: "cors",
+                    //             //       //   credentials: "same-origin",
 
                     // lire le corps de réponse et donne le résultat en JSON.
                 }).then((response) => response.json())
                 .then(value => {
                     localStorage.setItem("orderConfirmation", value.orderId);
+                    console.log(value);
                 });
-
-            //     /* Permet d'aller à la page confirmation avec L'Id Order + le message de confirmation */
+            /* Permet d'aller à la page confirmation avec L'Id Order + le message de confirmation */
             window.location.href = "confirmation-de-commande.html";
 
             alert("Panier et formulaire envoyé Inscription validée !");
