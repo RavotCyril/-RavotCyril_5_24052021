@@ -393,7 +393,6 @@ function formulaire() {
                 products.push(element.idproduit);
             });
             console.log(products);
-            console.log(contact);
             fetch('http://localhost:3000/api/furniture/order', {
                     method: 'POST',
                     headers: {
@@ -409,10 +408,9 @@ function formulaire() {
                 }).then((response) => response.json())
                 .then(value => {
                     localStorage.setItem("orderConfirmation", value.orderId);
-                    console.log(value);
+                    window.location.href = "confirmation-de-commande.html";
                 });
             /* Permet d'aller à la page confirmation avec L'Id Order + le message de confirmation */
-            window.location.href = "confirmation-de-commande.html";
 
             alert("Panier et formulaire envoyé Inscription validée !");
         } else {
