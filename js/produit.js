@@ -2,10 +2,12 @@
 
     (async function() {
         // Déclaration de toutes les variables de la page HTML
+
         let b = document.body;
         document.querySelector("header");
         let newMain = document.createElement("Main");
         let sectionTag = document.createElement("section");
+
         //---Appel du paramètre GetId pour mettre 
         //  la valeur de l'id à la variable idproduit----------------------------------------------
 
@@ -32,11 +34,11 @@
         // console.log(article);
         // Fonction - > APi Déclaration
 
-        afficherArticle(sectionTag, article);
+        displayArticle(sectionTag, article);
 
     })();
 
-    // Methode Get Permet de récupérer l'?id= des paramètres de l'URL, l'identifiant
+    // Methode Get Permet de récupérer l'?id= des paramètres de l'URL, l'identifiant.
 
     function getId() {
         const param = window.location.search;
@@ -44,6 +46,8 @@
         // console.log(id);
         return id;
     }
+    // Methode fetch. Permet de récupérer les données de l'API.Avec le paramètre Id.(Valeur : id produit);
+
     async function getArticle(id) {
         try {
             let resultat = await fetch("http://localhost:3000/api/furniture/" + id);
@@ -57,7 +61,7 @@
 
     // Déclaration - Variable et Fonction - > Articles - H2 -figure - div - img -figcaption -p : Object, Id , imageUrl Name, Prix, Description, ...
 
-    function afficherArticle(sectionTag, article) {
+    function displayArticle(sectionTag, article) {
 
         let articleTag = document.createElement("article");
         let titleTag = document.createElement("h2");
@@ -154,16 +158,14 @@
             }
         }
 
+
+        /* Déclaration de la variable " cart "dans laquelle on met les valeurs du localStorage stocké. 
         /* Permet de créer la récupération de L'iD selectionné sur la page catalogue et la quantité dans le panier.  Clef / Valeur. Get Item.
             Pour mémoriser des valeurs complexes et l'afficher, on utilisera le format JSON (JavaScript Objet Notation)  JSON.Parse.
-            on sérialise (ou linéarise)
-         
+            on sérialise (ou linéarise)*/
 
-        /* Déclaration de la variable " cart "dans laquelle on met les valeurs du localStorage stocké. */
-        // TODO: recupérer la liste d 'article du panier
-        // console.log(idproduit);
-        // console.log({ "idproduit": article._id, "varnish": article.varnish, "name": article.name, "prix": price2 });
         inputTag.addEventListener("click", function() {
+
             /* JSON.parse --> La méthode JSON.parse() convertit la chaîne de caractères JSON en un objet JavaScript.  ( l'inverse de JSON.stringify )*/
             let cart = JSON.parse(localStorage.getItem("cart"));
             // console.log(cart);
@@ -173,24 +175,26 @@
             L'opérateur d'inégalité (!=) vérifie si ses deux opérandes ne sont pas égaux et renvoie un booléen correspondant au résultat.   
             À la différence de l'opérateur d'inégalité stricte, l'opérateur d'inégalité tente
             une conversion de ses opérandes avant la comparaison si ceux-ci sont de types différents.
+
             La valeur null est un littéral JavaScript représentant la nullité au sens où aucune valeur pour 
             l'objet n'est présente.C'est une des valeurs primitives de JavaScript */
+
             if (cart != null) {
 
-                // Je verifie que l'article que je souhaite ajouter existe dans le panier
-                let art = cart.find(x => x.idproduit == article._id && x.varnish == optionSelected);
-                if (art != null) {
-                    cart[cart.indexOf(art)].quantite += 1;
+                // Verifie que l'article que je souhaite ajouter existe dans le panier.
+                // Verification d'une correspondance entre un Id de l'API et un Id d'un article selectionné.
+                // Verification que l'id produit soit égale à un id de l'API avec en même temps l'option selectionné.
+
+                let articlePresent = cart.find(x => x.idproduit == article._id && x.varnish == optionSelected);
+                if (articlePresent != null) {
+                    cart[cart.indexOf(articlePresent)].quantite += 1;
                     validTag("Message-Ajout-Panier-Validation-Erreur", alert("Article ajouté au panier"), true);
                 } else {
                     cart.push({ "idproduit": article._id, "varnish": optionSelected, "name": article.name, "prix": (article.price / 100), "quantite": 1 });
                 }
             } else {
-
                 cart = [];
                 cart.push({ "idproduit": article._id, "varnish": optionSelected, "name": article.name, "prix": (article.price / 100), "quantite": 1 });
-
-
             }
             /* l’objet avec la syntaxe JSON.stringify().La méthode JSON.stringify() convertit les objets JavaScript en chaîne JSON
              et stock les données dans local storage  ( l'inverse de JSON.Parse )*/

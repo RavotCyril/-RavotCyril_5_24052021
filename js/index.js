@@ -29,7 +29,7 @@
     // console.log(articles);
     for (let i in articles) {
         console.log(articles[i]);
-        afficherArticle(sectionTag, articles[i]);
+        displayArticle(sectionTag, articles[i]);
     }
 
 })();
@@ -46,7 +46,7 @@ async function getArticles() {
 }
 // Déclaration - Variable et Fonction - > Articles + H2 : Object, Id , Name, Prix, Description, ...
 
-function afficherArticle(sectionTag, article) {
+function displayArticle(sectionTag, article) {
     let articleTag = document.createElement("article");
     let titleTag = document.createElement("h2");
     let figureTag = document.createElement("figure");

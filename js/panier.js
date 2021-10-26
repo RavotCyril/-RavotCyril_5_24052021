@@ -1,8 +1,8 @@
 let cart = JSON.parse(localStorage.getItem("cart"));
 
-function afficherPanier() {
+function displayBasket() {
 
-    //  5 articles,  13 Options =  18 Possibilités d'achats d'articles;
+    //  5 articles,  13 Options =  13qs  Possibilités d'achats d'articles;
 
     if (cart != null) {
         let prixPaniertotal = 0;
@@ -12,30 +12,29 @@ function afficherPanier() {
             document.getElementById("basket_tablebody").innerHTML += "<tr id='Article1' class='row-fluid' data-id=" + element.idproduit +
                 "><td class='Name'>" + element.name + "</td>" + "<td class='Varnish'>" +
                 element.varnish + "</td>" + "<td class='Quantite'>" + element.quantite + "</td>" +
-                "<td class='Prix'>" + NumberWithSpacesEveryMile(element.prix) + "</td></tr>"
-
+                "<td class='Prix'>" + numberWithSpacesEachThousand(element.prix) + "</td></tr>"
             prixPaniertotal = (parseInt(element.quantite) * parseInt(element.prix)) + parseInt(prixPaniertotal);
             quantitePaniertotal = element.quantite + quantitePaniertotal;
             localStorage.setItem("prixPaniertotal", prixPaniertotal);
         });
 
-        document.getElementById("basket_tablebody").innerHTML += "<tr>" + "<td>" + "</td>" + "<td>" + "</td>" + "<td>" + quantitePaniertotal + "</td>" + "<td>" + NumberWithSpacesEveryMile(prixPaniertotal) + "€" + "</td></tr>"
+        document.getElementById("basket_tablebody").innerHTML += "<tr>" + "<td>" + "</td>" + "<td>" + "</td>" + "<td>" + quantitePaniertotal + "</td>" + "<td>" + numberWithSpacesEachThousand(prixPaniertotal) + "€" + "</td></tr>"
         document.getElementById("Formulaire").innerHTML += " <h2 class='my-4 text-center'>Veuillez remplir ce formulaire pour valider votre commande</h2>"
     } else {
         document.getElementById("Formulaire").innerHTML += " <h2 class='my-4 text-center'>Aucun article dans votre panier</h2>"
     }
 }
-afficherPanier();
+displayBasket();
 
 //  Function qui permet de mettre un espace au prix tous les centaines ( tous les 3 chiffres );
 
-function NumberWithSpacesEveryMile(SpaceMile) {
+function numberWithSpacesEachThousand(SpaceMile) {
     return SpaceMile.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 }
 
 // Function Principal du formulaire du panier 
 
-function formulaire() {
+function form() {
 
     let sectionTag = document.getElementById("Formulaire");
     let formContactTag = document.createElement("form");
@@ -418,4 +417,4 @@ function formulaire() {
         }
     });
 }
-formulaire();
+form();

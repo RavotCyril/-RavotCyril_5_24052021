@@ -1,6 +1,6 @@
 let cart = JSON.parse(localStorage.getItem("cart"));
 
-function RecapitulatifCommande() {
+function summaryOrdered() {
     let orderId = localStorage.getItem("orderConfirmation");
     let prixPaniertotal = localStorage.getItem("prixPaniertotal");
     if (orderId != null) {;
@@ -10,8 +10,7 @@ function RecapitulatifCommande() {
         alert("L'identifiant de commande ou le prix sont vides");
     }
 }
-
-RecapitulatifCommande();
+summaryOrdered();
 
 //  Function qui permet de mettre un espace au prix tous les centaines ( tous les 3 chiffres );
 
