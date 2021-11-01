@@ -3,7 +3,7 @@
     
     {
         font-family: "Roboto Regular";
-        src: url("/font/Roboto-Regular.ttf") format("truetype");
+        src: url("/Frontend/font/Roboto-Regular.ttf") format("truetype");
     }
     
     body

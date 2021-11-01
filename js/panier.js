@@ -2,7 +2,7 @@ let cart = JSON.parse(localStorage.getItem("cart"));
 
 function displayBasket() {
 
-    //  5 articles,  13 Options =  13qs  Possibilités d'achats d'articles;
+    //  5 articles,  13 Options =  13 Possibilités d'achats d'articles;
 
     if (cart != null) {
         let prixPaniertotal = 0;
@@ -386,12 +386,11 @@ function form() {
                             "cors" = Permission ( requête )
                             cache : "default" */
             //   CRUD > Create(POST)(Ajouter), read(GET)(optenir), update(PUT)(ajouter), Delete(DELETE)(supprimer);
+            // let products = JSON.parse(localStorage.getItem("cart"));
             let products = [];
-
             cart.forEach(element => {
                 products.push(element.idproduit);
             });
-            console.log(products);
             fetch('http://localhost:3000/api/furniture/order', {
                     method: 'POST',
                     headers: {
