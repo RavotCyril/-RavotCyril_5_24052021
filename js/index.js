@@ -69,7 +69,7 @@ function displayArticle(sectionTag, article) {
 
     // Appel - Liens -> Id produit - > Id
 
-    liensTag.setAttribute("href", "produit.html?id=" + article._id);
+    liensTag.setAttribute("href", "Produit.html?id=" + article._id);
 
     // Appel - Liens <a> -> Page Index + Classe <a>.
     // Appel - Variable et Fonction - > Titre h2 + Figure
