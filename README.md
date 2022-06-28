@@ -14,8 +14,6 @@ Pour pouvoir lire ce projet :
 
 Npm Install ou Yarn Start
 
-Cliquer sur le fichier : index.html et l'ouvrir avec un navigateur.
-
 Aller dans le dossier Backend :
 
 -En étant à la racine du projet  tapper :  cd backend
