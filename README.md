@@ -32,7 +32,9 @@ Aller dans le dossier Backend :
 Avoir le message suivant qui apparait dans la console : 
 
 Version de yarn  : run v1.22.18
+
 Lecture du fichier : $ node server.js
+
 Lecture du port 3000 : Listening on port 3000
 
 Puis, cliquer sur le fichier index.html  et l'ouvrir avec un navigateur pour pouvoir lire le projet. 
