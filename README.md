@@ -17,7 +17,9 @@ Npm Install ou Yarn Start
 Aller dans le dossier Backend :
 
 -En étant à la racine du projet  tapper :  cd backend
+
 -Vérifier que l'on a bien pointer sur le dossier backend ( dans le dossier backend dans le terminal )
+
 -Tapper dans la console yarn start
  
  Avoir le message suivant qui apparait dans la console : 
