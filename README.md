@@ -22,15 +22,15 @@ Pour pouvoir lire ce projet :
 
 https://github.com/OpenClassrooms-Student-Center/JWDP5
 
-- Puis, l'installer dans le dossier racine du projet avec le nom backend 
+- Puis, l'installer dans le dossier racine du projet avec le nom backend ou garder le nom existant du dossier JWDP5
 ----------------------------------------------------------------------------
 
 Mise en route du site et accéder au serveur : 
-Aller dans le dossier backend :
+Aller dans le dossier JWDP5 ou backend :
 
-- En étant à la racine du projet  tapper :  cd backend
+- En étant à la racine du projet  tapper :  cd JWDP5 ou backend
 
-- Vérifier que l'on a bien pointer sur le dossier backend ( dans le dossier backend dans le terminal )
+- Vérifier que l'on a bien pointer sur le dossier JWDP5 ou backend ( dans le dossier JWDP5 ou backend dans le terminal )
 
 - Tapper dans la console yarn start
  
