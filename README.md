@@ -16,7 +16,7 @@ Pour pouvoir lire ce projet :
 
 - Installation de Npm ou Yarn.  ( En global ou dans le dossier du projet ). 
 
--Npm Install ou Yarn Start
+- Npm Install ou Yarn Start
 
 ----------------------------------------------------------------------------
 
@@ -27,7 +27,7 @@ Aller dans le dossier Backend :
 
 - Vérifier que l'on a bien pointer sur le dossier backend ( dans le dossier backend dans le terminal )
 
--Tapper dans la console yarn start
+- Tapper dans la console yarn start
  
 Avoir le message suivant qui apparait dans la console : 
 
