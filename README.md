@@ -18,10 +18,15 @@ Pour pouvoir lire ce projet :
 
 - Npm Install ou Yarn Start
 
+- Récupérer le repository avec le backend du site 
+
+https://github.com/OpenClassrooms-Student-Center/JWDP5
+
+- Puis, l'installer dans le dossier racine du projet avec le nom backend 
 ----------------------------------------------------------------------------
 
 Mise en route du site et accéder au serveur : 
-Aller dans le dossier Backend :
+Aller dans le dossier backend :
 
 - En étant à la racine du projet  tapper :  cd backend
 
